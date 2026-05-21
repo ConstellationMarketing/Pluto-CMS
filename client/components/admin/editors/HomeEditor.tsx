@@ -49,8 +49,73 @@ function HeroSection({ content, update }: SectionProps) {
   return (
     <Section title="Hero Section">
       <div className="grid gap-4">
+        <ImageField
+          label="Background Image"
+          value={hero.backgroundImage}
+          onChange={(url) => set({ backgroundImage: url })}
+          folder="hero"
+        />
+        <div>
+          <Label>Overlay Opacity (0–1)</Label>
+          <Input
+            type="number"
+            min="0"
+            max="1"
+            step="0.05"
+            value={hero.backgroundOverlayOpacity ?? 0.4}
+            onChange={(e) => set({ backgroundOverlayOpacity: parseFloat(e.target.value) || 0.4 })}
+          />
+        </div>
+
+        <div className="border rounded-lg p-3 space-y-3 bg-gray-50">
+          <Label className="font-semibold">Tagline Words</Label>
+          <div className="grid grid-cols-3 gap-3">
+            <div>
+              <Label>Word 1 (light)</Label>
+              <Input value={hero.taglineWord1} onChange={(e) => set({ taglineWord1: e.target.value })} placeholder="TRUSTED" />
+            </div>
+            <div>
+              <Label>Word 2 (bold)</Label>
+              <Input value={hero.taglineWord2} onChange={(e) => set({ taglineWord2: e.target.value })} placeholder="TESTED" />
+            </div>
+            <div>
+              <Label>Word 3 (light)</Label>
+              <Input value={hero.taglineWord3} onChange={(e) => set({ taglineWord3: e.target.value })} placeholder="READY" />
+            </div>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-2 gap-3">
+          <div>
+            <Label>CTA Button Text</Label>
+            <Input value={hero.ctaText} onChange={(e) => set({ ctaText: e.target.value })} placeholder="SCHEDULE A CONSULTATION" />
+          </div>
+          <div>
+            <Label>CTA Button URL</Label>
+            <Input value={hero.ctaUrl} onChange={(e) => set({ ctaUrl: e.target.value })} placeholder="/contact" />
+          </div>
+        </div>
+
+        <div>
+          <Label>Accent Bar Color</Label>
+          <div className="flex items-center gap-2">
+            <input
+              type="color"
+              value={hero.accentBarColor || "#2ba6a3"}
+              onChange={(e) => set({ accentBarColor: e.target.value })}
+              className="h-9 w-12 cursor-pointer rounded border border-input p-0.5"
+            />
+            <Input
+              value={hero.accentBarColor || "#2ba6a3"}
+              onChange={(e) => set({ accentBarColor: e.target.value })}
+              placeholder="#2ba6a3"
+              className="font-mono text-sm"
+            />
+          </div>
+        </div>
+
         <HeadingField
-          label="H1 Title"
+          label="H1 Title (below accent bar)"
           value={hero.h1Title}
           onChange={(v) => set({ h1Title: v })}
           tag={ht.get("hero.h1Title") === "h2" ? "h1" : ht.get("hero.h1Title")}
@@ -64,7 +129,7 @@ function HeroSection({ content, update }: SectionProps) {
         <div>
           <Label>Highlighted Text</Label>
           <Input value={hero.highlightedText} onChange={(e) => set({ highlightedText: e.target.value })} />
-          <p className="text-xs text-gray-500 mt-1">Enter the exact portion of the headline to display in accent color</p>
+          <p className="text-xs text-gray-500 mt-1">Portion of headline to display in accent color</p>
         </div>
         <p className="text-xs text-gray-500 italic">Phone number is managed in Site Settings &gt; Contact Info</p>
       </div>

@@ -2,7 +2,15 @@
 // Each section maps directly to a static component's data needs
 
 export interface HeroContent {
-  h1Title: string; // H1 title text (all caps, ~20px) between headline and phone button
+  backgroundImage: string;
+  backgroundOverlayOpacity: number; // 0-1, default 0.4
+  taglineWord1: string; // e.g. "TRUSTED" (light 96px)
+  taglineWord2: string; // e.g. "TESTED" (bold 128px)
+  taglineWord3: string; // e.g. "READY" (light 96px)
+  ctaText: string;
+  ctaUrl: string;
+  accentBarColor: string; // teal line above h1, default #2ba6a3
+  h1Title: string;
   headline: string;
   highlightedText: string;
   phone: string;
@@ -152,6 +160,14 @@ export interface HomePageContent {
 // Default content - empty defaults, content comes exclusively from the CMS
 export const defaultHomeContent: HomePageContent = {
   hero: {
+    backgroundImage: "",
+    backgroundOverlayOpacity: 0.4,
+    taglineWord1: "TRUSTED",
+    taglineWord2: "TESTED",
+    taglineWord3: "READY",
+    ctaText: "",
+    ctaUrl: "/contact",
+    accentBarColor: "#2ba6a3",
     h1Title: "",
     headline: "",
     highlightedText: "",
