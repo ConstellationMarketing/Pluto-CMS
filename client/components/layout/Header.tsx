@@ -36,9 +36,7 @@ export default function Header() {
                 <img
                   src={logoUrl}
                   alt={logoAlt}
-                  className="h-[48px] max-w-full"
-                  width={200}
-                  height={48}
+                  className="h-[48px] w-auto max-w-full object-contain"
                 />
               ) : (
                 <span className="font-outfit text-white text-[24px] leading-none">
