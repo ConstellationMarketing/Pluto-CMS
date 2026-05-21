@@ -69,20 +69,20 @@ function HeroSection({ content, update }: SectionProps) {
 
         <div className="border rounded-lg p-3 space-y-3 bg-gray-50">
           <div>
-            <Label className="font-semibold">H1 Tagline (3 reči)</Label>
-            <p className="text-xs text-gray-500 mt-0.5">Prikazuju se kao veliki H1 naslov u hero sekciji (TRUSTED / TESTED / READY)</p>
+            <Label className="font-semibold">H1 Tagline (3 words)</Label>
+            <p className="text-xs text-gray-500 mt-0.5">Displayed as the large H1 heading in the hero section (e.g. TRUSTED / TESTED / READY)</p>
           </div>
           <div className="grid grid-cols-3 gap-3">
             <div>
-              <Label>Reč 1 — &lt;h1&gt; tanko (96px)</Label>
+              <Label>Word 1 — &lt;h1&gt; light (96px)</Label>
               <Input value={hero.taglineWord1} onChange={(e) => set({ taglineWord1: e.target.value })} placeholder="TRUSTED" />
             </div>
             <div>
-              <Label>Reč 2 — &lt;h1&gt; debelo (128px)</Label>
+              <Label>Word 2 — &lt;h1&gt; bold (128px)</Label>
               <Input value={hero.taglineWord2} onChange={(e) => set({ taglineWord2: e.target.value })} placeholder="TESTED" />
             </div>
             <div>
-              <Label>Reč 3 — &lt;h1&gt; tanko (96px)</Label>
+              <Label>Word 3 — &lt;h1&gt; light (96px)</Label>
               <Input value={hero.taglineWord3} onChange={(e) => set({ taglineWord3: e.target.value })} placeholder="READY" />
             </div>
           </div>
@@ -118,8 +118,8 @@ function HeroSection({ content, update }: SectionProps) {
         </div>
 
         <div>
-          <Label>Podnaslov — &lt;p&gt; tekst (ispod accent linije)</Label>
-          <p className="text-xs text-gray-500 mb-1">Prikazuje se kao obični paragraf ispod teal linije (npr. "Trusted & Experienced Lawyers in Atlanta.")</p>
+          <Label>Subtitle — &lt;p&gt; text (below accent bar)</Label>
+          <p className="text-xs text-gray-500 mb-1">Displayed as a paragraph below the accent bar (e.g. "Trusted & Experienced Lawyers in Atlanta.")</p>
           <Input value={hero.h1Title} onChange={(e) => set({ h1Title: e.target.value })} placeholder="Trusted & Experienced Lawyers in Atlanta." />
         </div>
         <div>
