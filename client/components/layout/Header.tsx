@@ -127,10 +127,10 @@ export default function Header() {
             </SheetTrigger>
             <SheetContent side="right" className="bg-black border-none">
               <nav className="flex flex-col gap-4 mt-8">
-                {phoneLabel && phoneNumber && (
+                {headerPhoneLabel && phoneNumber && (
                   <div className="flex flex-col gap-1 pb-4 border-b border-white/20">
                     <p className="font-outfit text-[14px] text-white">
-                      {phoneLabel}
+                      {headerPhoneLabel}
                     </p>
                     <a
                       href={`tel:${phoneNumber.replace(/\D/g, "")}`}
