@@ -104,6 +104,20 @@ export default function Index() {
         </div>
       </section>
 
+      {/* Divider Section */}
+      <section className="relative w-full pt-[28px]" style={{ backgroundColor: "rgb(239, 240, 235)" }}>
+        <div className="w-full">
+          <div className="flex justify-end" style={{ marginTop: "-40px" }}>
+            <img
+              alt=""
+              loading="lazy"
+              src="https://design-pluto.netlify.app/images/divider.png"
+              className="h-[17px] w-[1111px] max-w-full"
+            />
+          </div>
+        </div>
+      </section>
+
       {/* Contact Form Section - below hero */}
       <div className="max-w-[2560px] mx-auto w-[95%] py-[40px]">
         <ContactForm />
