@@ -68,18 +68,21 @@ function HeroSection({ content, update }: SectionProps) {
         </div>
 
         <div className="border rounded-lg p-3 space-y-3 bg-gray-50">
-          <Label className="font-semibold">Tagline Words</Label>
+          <div>
+            <Label className="font-semibold">H1 Tagline (3 reči)</Label>
+            <p className="text-xs text-gray-500 mt-0.5">Prikazuju se kao veliki H1 naslov u hero sekciji (TRUSTED / TESTED / READY)</p>
+          </div>
           <div className="grid grid-cols-3 gap-3">
             <div>
-              <Label>Word 1 (light)</Label>
+              <Label>Reč 1 — &lt;h1&gt; tanko (96px)</Label>
               <Input value={hero.taglineWord1} onChange={(e) => set({ taglineWord1: e.target.value })} placeholder="TRUSTED" />
             </div>
             <div>
-              <Label>Word 2 (bold)</Label>
+              <Label>Reč 2 — &lt;h1&gt; debelo (128px)</Label>
               <Input value={hero.taglineWord2} onChange={(e) => set({ taglineWord2: e.target.value })} placeholder="TESTED" />
             </div>
             <div>
-              <Label>Word 3 (light)</Label>
+              <Label>Reč 3 — &lt;h1&gt; tanko (96px)</Label>
               <Input value={hero.taglineWord3} onChange={(e) => set({ taglineWord3: e.target.value })} placeholder="READY" />
             </div>
           </div>
@@ -114,13 +117,11 @@ function HeroSection({ content, update }: SectionProps) {
           </div>
         </div>
 
-        <HeadingField
-          label="H1 Title (below accent bar)"
-          value={hero.h1Title}
-          onChange={(v) => set({ h1Title: v })}
-          tag={ht.get("hero.h1Title") === "h2" ? "h1" : ht.get("hero.h1Title")}
-          onTagChange={(t) => ht.set("hero.h1Title", t)}
-        />
+        <div>
+          <Label>Podnaslov — &lt;p&gt; tekst (ispod accent linije)</Label>
+          <p className="text-xs text-gray-500 mb-1">Prikazuje se kao obični paragraf ispod teal linije (npr. "Trusted & Experienced Lawyers in Atlanta.")</p>
+          <Input value={hero.h1Title} onChange={(e) => set({ h1Title: e.target.value })} placeholder="Trusted & Experienced Lawyers in Atlanta." />
+        </div>
         <div>
           <Label>Full Headline</Label>
           <Input value={hero.headline} onChange={(e) => set({ headline: e.target.value })} />

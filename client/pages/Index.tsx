@@ -59,8 +59,8 @@ export default function Index() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-[48px] items-center">
             {/* Left column */}
             <div>
-              {/* Tagline: TRUSTED TESTED READY - always shown with defaults */}
-              <p className="mb-[32px] leading-none">
+              {/* Tagline: TRUSTED TESTED READY - H1 */}
+              <h1 className="mb-[32px] leading-none">
                 <span className="block font-outfit text-[96px] font-light leading-[96px] text-white">
                   {heroContent.taglineWord1 || "TRUSTED"}
                 </span>
@@ -70,7 +70,7 @@ export default function Index() {
                 <span className="block font-outfit text-[96px] font-light leading-[96px] text-white">
                   {heroContent.taglineWord3 || "READY"}
                 </span>
-              </p>
+              </h1>
 
               {/* CTA Button - always shown with default text */}
               <a
@@ -88,12 +88,12 @@ export default function Index() {
                   style={{ backgroundColor: heroContent.accentBarColor || "#2ba6a3" }}
                 />
                 {heroContent.h1Title && (
-                  <h1
-                    className="text-white font-light text-[36px] leading-[40px] whitespace-nowrap"
+                  <p
+                    className="text-white font-light text-[36px] leading-[40px]"
                     style={{ fontFamily: "'Crimson Pro', Georgia, serif" }}
                   >
                     {heroContent.h1Title}
-                  </h1>
+                  </p>
                 )}
               </div>
             </div>
