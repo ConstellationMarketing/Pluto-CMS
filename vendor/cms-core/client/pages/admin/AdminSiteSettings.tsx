@@ -1012,6 +1012,80 @@ export default function AdminSiteSettings() {
                   placeholder="/contact"
                 />
               </div>
+              <div className="grid grid-cols-3 gap-4 pt-2">
+                <div className="space-y-2">
+                  <Label htmlFor="headerCtaBgColor">Background Color</Label>
+                  <div className="flex items-center gap-2">
+                    <input
+                      type="color"
+                      id="headerCtaBgColor"
+                      value={settings.headerCtaBgColor || "#ee530e"}
+                      onChange={(e) => updateSettings({ headerCtaBgColor: e.target.value })}
+                      className="h-9 w-12 cursor-pointer rounded border border-input p-0.5"
+                    />
+                    <Input
+                      value={settings.headerCtaBgColor || "#ee530e"}
+                      onChange={(e) => updateSettings({ headerCtaBgColor: e.target.value })}
+                      placeholder="#ee530e"
+                      className="font-mono text-sm"
+                    />
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="headerCtaTextColor">Text Color</Label>
+                  <div className="flex items-center gap-2">
+                    <input
+                      type="color"
+                      id="headerCtaTextColor"
+                      value={settings.headerCtaTextColor || "#ffffff"}
+                      onChange={(e) => updateSettings({ headerCtaTextColor: e.target.value })}
+                      className="h-9 w-12 cursor-pointer rounded border border-input p-0.5"
+                    />
+                    <Input
+                      value={settings.headerCtaTextColor || "#ffffff"}
+                      onChange={(e) => updateSettings({ headerCtaTextColor: e.target.value })}
+                      placeholder="#ffffff"
+                      className="font-mono text-sm"
+                    />
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="headerCtaBorderColor">Border Color</Label>
+                  <div className="flex items-center gap-2">
+                    <input
+                      type="color"
+                      id="headerCtaBorderColor"
+                      value={settings.headerCtaBorderColor || "#ee530e"}
+                      onChange={(e) => updateSettings({ headerCtaBorderColor: e.target.value })}
+                      className="h-9 w-12 cursor-pointer rounded border border-input p-0.5"
+                    />
+                    <Input
+                      value={settings.headerCtaBorderColor || ""}
+                      onChange={(e) => updateSettings({ headerCtaBorderColor: e.target.value })}
+                      placeholder="(prazno = bez bordera)"
+                      className="font-mono text-sm"
+                    />
+                  </div>
+                </div>
+              </div>
+              {/* Live preview */}
+              <div className="space-y-2 pt-2">
+                <Label className="text-xs text-gray-500">Preview</Label>
+                <div className="p-4 bg-gray-100 rounded-lg">
+                  <a
+                    href="#"
+                    onClick={(e) => e.preventDefault()}
+                    style={{
+                      backgroundColor: settings.headerCtaBgColor || "#ee530e",
+                      color: settings.headerCtaTextColor || "#ffffff",
+                      border: settings.headerCtaBorderColor ? `2px solid ${settings.headerCtaBorderColor}` : "none",
+                    }}
+                    className="inline-block font-outfit font-semibold text-[18px] px-[32px] py-[16px]"
+                  >
+                    {settings.headerCtaText || "SCHEDULE A CONSULTATION"}
+                  </a>
+                </div>
+              </div>
             </CardContent>
           </Card>
 

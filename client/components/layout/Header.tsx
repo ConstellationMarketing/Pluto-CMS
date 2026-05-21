@@ -15,6 +15,9 @@ export default function Header() {
 
   const ctaText = settings.headerCtaText?.trim() || "";
   const ctaUrl = settings.headerCtaUrl?.trim() || "/contact";
+  const ctaBgColor = settings.headerCtaBgColor?.trim() || "#ee530e";
+  const ctaTextColor = settings.headerCtaTextColor?.trim() || "#ffffff";
+  const ctaBorderColor = settings.headerCtaBorderColor?.trim() || "";
 
   const phoneNumber = settings.phoneNumber?.trim() || "";
   const phoneDisplay = settings.phoneDisplay?.trim() || "";
@@ -110,7 +113,12 @@ export default function Header() {
           {ctaText && (
             <Link
               to={ctaUrl}
-              className="hidden lg:inline-block bg-[#ee530e] text-white font-outfit font-semibold text-[18px] px-[32px] py-[16px] hover:opacity-90 transition-opacity whitespace-nowrap"
+              style={{
+                backgroundColor: ctaBgColor,
+                color: ctaTextColor,
+                border: ctaBorderColor ? `2px solid ${ctaBorderColor}` : "none",
+              }}
+              className="hidden lg:inline-block font-outfit font-semibold text-[18px] px-[32px] py-[16px] hover:opacity-90 transition-opacity whitespace-nowrap"
             >
               {ctaText}
             </Link>

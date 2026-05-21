@@ -29,6 +29,9 @@ export interface SiteSettings {
   applyPhoneGlobally: boolean;
   headerCtaText: string;
   headerCtaUrl: string;
+  headerCtaBgColor: string;
+  headerCtaTextColor: string;
+  headerCtaBorderColor: string;
   headerPhoneLabel: string;
   headerPhoneIconUrl: string;
   navigationItems: {
@@ -157,6 +160,9 @@ interface SiteSettingsRow {
   apply_phone_globally?: boolean | null;
   header_cta_text?: string | null;
   header_cta_url?: string | null;
+  header_cta_bg_color?: string | null;
+  header_cta_text_color?: string | null;
+  header_cta_border_color?: string | null;
   header_phone_label?: string | null;
   header_phone_icon_url?: string | null;
   navigation_items?: SiteSettings["navigationItems"] | null;
@@ -197,6 +203,9 @@ export const DEFAULT_SITE_SETTINGS: SiteSettings = {
   applyPhoneGlobally: true,
   headerCtaText: "",
   headerCtaUrl: "",
+  headerCtaBgColor: "#ee530e",
+  headerCtaTextColor: "#ffffff",
+  headerCtaBorderColor: "",
   headerPhoneLabel: "",
   headerPhoneIconUrl: "",
   navigationItems: [],
@@ -435,6 +444,9 @@ export function shapeSiteSettings(row?: SiteSettingsRow | null): SiteSettings {
     applyPhoneGlobally: row.apply_phone_globally ?? DEFAULT_SITE_SETTINGS.applyPhoneGlobally,
     headerCtaText: row.header_cta_text || DEFAULT_SITE_SETTINGS.headerCtaText,
     headerCtaUrl: row.header_cta_url || DEFAULT_SITE_SETTINGS.headerCtaUrl,
+    headerCtaBgColor: row.header_cta_bg_color || DEFAULT_SITE_SETTINGS.headerCtaBgColor,
+    headerCtaTextColor: row.header_cta_text_color || DEFAULT_SITE_SETTINGS.headerCtaTextColor,
+    headerCtaBorderColor: row.header_cta_border_color || DEFAULT_SITE_SETTINGS.headerCtaBorderColor,
     headerPhoneLabel: row.header_phone_label || DEFAULT_SITE_SETTINGS.headerPhoneLabel,
     headerPhoneIconUrl: row.header_phone_icon_url || DEFAULT_SITE_SETTINGS.headerPhoneIconUrl,
     navigationItems: row.navigation_items?.length ? row.navigation_items : DEFAULT_SITE_SETTINGS.navigationItems,
