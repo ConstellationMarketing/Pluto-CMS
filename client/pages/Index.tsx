@@ -48,48 +48,38 @@ export default function Index() {
         style={{
           backgroundImage: heroContent.backgroundImage
             ? `linear-gradient(rgba(0,0,0,${heroContent.backgroundOverlayOpacity ?? 0.4}), rgba(0,0,0,${heroContent.backgroundOverlayOpacity ?? 0.4})), url(${heroContent.backgroundImage})`
-            : undefined,
+            : "linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6))",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
         }}
       >
         <div className="max-w-[1280px] mx-auto px-[32px] w-full">
-          {/* Two-column grid */}
+          {/* Two-column grid - right col empty as per layout */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-[48px] items-center">
             {/* Left column */}
             <div>
-              {/* Tagline: TRUSTED TESTED READY */}
-              {(heroContent.taglineWord1 || heroContent.taglineWord2 || heroContent.taglineWord3) && (
-                <p className="mb-[32px] leading-none">
-                  {heroContent.taglineWord1 && (
-                    <span className="block font-outfit text-[96px] font-light leading-[96px] text-white">
-                      {heroContent.taglineWord1}
-                    </span>
-                  )}
-                  {heroContent.taglineWord2 && (
-                    <span className="block font-outfit text-[128px] font-semibold leading-[128px] text-white">
-                      {heroContent.taglineWord2}
-                    </span>
-                  )}
-                  {heroContent.taglineWord3 && (
-                    <span className="block font-outfit text-[96px] font-light leading-[96px] text-white">
-                      {heroContent.taglineWord3}
-                    </span>
-                  )}
-                </p>
-              )}
+              {/* Tagline: TRUSTED TESTED READY - always shown with defaults */}
+              <p className="mb-[32px] leading-none">
+                <span className="block font-outfit text-[96px] font-light leading-[96px] text-white">
+                  {heroContent.taglineWord1 || "TRUSTED"}
+                </span>
+                <span className="block font-outfit text-[128px] font-semibold leading-[128px] text-white">
+                  {heroContent.taglineWord2 || "TESTED"}
+                </span>
+                <span className="block font-outfit text-[96px] font-light leading-[96px] text-white">
+                  {heroContent.taglineWord3 || "READY"}
+                </span>
+              </p>
 
-              {/* CTA Button */}
-              {heroContent.ctaText && (
-                <a
-                  href={heroContent.ctaUrl || "/contact"}
-                  className="inline-flex items-center gap-[12px] bg-[#ee530e] text-white font-outfit font-semibold text-[18px] px-[32px] py-[16px] mb-[32px] hover:opacity-90 transition-opacity"
-                >
-                  {heroContent.ctaText}
-                  <ArrowRight className="w-5 h-5" />
-                </a>
-              )}
+              {/* CTA Button - always shown with default text */}
+              <a
+                href={heroContent.ctaUrl || "/contact"}
+                className="inline-flex items-center gap-[12px] bg-[#ee530e] text-white font-outfit font-semibold text-[18px] px-[32px] py-[16px] mb-[32px] hover:opacity-90 transition-opacity"
+              >
+                {heroContent.ctaText || "SCHEDULE A CONSULTATION"}
+                <ArrowRight className="w-5 h-5" />
+              </a>
 
               {/* Accent bar + H1 */}
               <div className="mb-[32px]">
@@ -108,13 +98,16 @@ export default function Index() {
               </div>
             </div>
 
-            {/* Right column - Contact Form */}
-            <div>
-              <ContactForm />
-            </div>
+            {/* Right column - empty as per layout */}
+            <div />
           </div>
         </div>
       </section>
+
+      {/* Contact Form Section - below hero */}
+      <div className="max-w-[2560px] mx-auto w-[95%] py-[40px]">
+        <ContactForm />
+      </div>
 
       {/* Partner Badges Section - Bottom of Hero */}
       {partnerLogos.length > 0 && (
