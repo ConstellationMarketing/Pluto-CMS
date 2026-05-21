@@ -141,7 +141,10 @@ export default function AdminSiteSettings() {
 
     if (error) {
       console.error("Error saving settings:", error);
-      toast.error("Failed to save settings: " + error.message);
+      const errorMessage = error.message
+        || (typeof error === 'string' ? error : JSON.stringify(error))
+        || "Unknown error occurred";
+      toast.error("Failed to save settings: " + errorMessage);
     } else {
       // Clear the cache so components refetch
       clearSiteSettingsCache();
