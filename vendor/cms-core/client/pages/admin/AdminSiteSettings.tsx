@@ -981,6 +981,39 @@ export default function AdminSiteSettings() {
 
           <Card>
             <CardHeader>
+              <CardTitle>Header CTA Button</CardTitle>
+              <CardDescription>
+                The "Schedule a Consultation" button displayed in the header
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="headerCtaText">Button Text</Label>
+                <Input
+                  id="headerCtaText"
+                  value={settings.headerCtaText}
+                  onChange={(e) =>
+                    updateSettings({ headerCtaText: e.target.value })
+                  }
+                  placeholder="SCHEDULE A CONSULTATION"
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="headerCtaUrl">Button URL</Label>
+                <Input
+                  id="headerCtaUrl"
+                  value={settings.headerCtaUrl}
+                  onChange={(e) =>
+                    updateSettings({ headerCtaUrl: e.target.value })
+                  }
+                  placeholder="/contact"
+                />
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
               <CardTitle>Phone Number</CardTitle>
               <CardDescription>Displayed in header and footer</CardDescription>
             </CardHeader>

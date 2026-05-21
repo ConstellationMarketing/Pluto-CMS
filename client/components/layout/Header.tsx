@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, ArrowRight, ChevronDown, Phone } from "lucide-react";
+import { Menu, ChevronDown } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useSiteSettings } from "@site/contexts/SiteSettingsContext";
 import NavDropdown from "./NavDropdown";
@@ -26,66 +26,59 @@ export default function Header() {
   );
 
   return (
-    <>
-      {/* Top padding that scrolls away */}
-      <div className="h-[30px]"></div>
+    <header className="sticky top-0 z-50 bg-white">
+      <div className="px-[32px] py-[16px] w-full">
+        <div className="flex items-center justify-between gap-[32px]">
+          {/* Logo */}
+          <div>
+            <Link to="/">
+              {logoUrl ? (
+                <img
+                  src={logoUrl}
+                  alt={logoAlt}
+                  className="h-[48px] max-w-full"
+                  width={200}
+                  height={48}
+                />
+              ) : (
+                <span className="font-outfit text-black text-[24px] leading-none">
+                  {settings.siteName || " "}
+                </span>
+              )}
+            </Link>
+          </div>
 
-      {/* Sticky header wrapper */}
-      <div className="sticky top-0 z-50 pb-[30px]">
-        <div className="max-w-[2560px] mx-auto w-[95%]">
-          <div className="bg-brand-card border border-brand-border px-[30px] py-[10px] flex items-center justify-between">
-            {/* Logo */}
-            <div className="flex items-center w-[300px]">
-              <Link to="/" className="mr-[30px]">
-                {logoUrl ? (
-                  <img
-                    src={logoUrl}
-                    alt={logoAlt}
-                    className="w-[306px] max-w-full"
-                    width={306}
-                    height={50}
-                  />
-                ) : (
-                  <span className="font-outfit text-white text-[22px] leading-none">
-                    {settings.siteName || " "}
-                  </span>
-                )}
-              </Link>
-            </div>
-
-            {/* Phone Section - Desktop */}
+          {/* Center: Phone section + Navigation */}
+          <div className="flex-1 flex flex-col gap-[8px]">
+            {/* Phone section - visible on desktop */}
             {phoneLabel && phoneNumber && (
-              <div className="hidden lg:flex items-center gap-3 text-white">
-                <div className="flex flex-col">
-                  <span className="font-outfit text-[14px] font-light">
-                    {phoneLabel}
-                  </span>
-                  <a
-                    href={`tel:${phoneNumber.replace(/\D/g, "")}`}
-                    className="font-outfit text-[20px] font-light hover:opacity-80 transition-opacity"
-                  >
-                    {phoneDisplay}
-                  </a>
-                </div>
+              <div className="hidden lg:flex items-center gap-[12px] text-black">
+                <p className="font-outfit text-[18px] font-light">{phoneLabel}</p>
+                <a
+                  href={`tel:${phoneNumber.replace(/\D/g, "")}`}
+                  className="font-outfit text-[24px] font-light hover:opacity-80 transition-opacity"
+                >
+                  {phoneDisplay}
+                </a>
                 {phoneIconUrl && (
                   <img
                     src={phoneIconUrl}
                     alt="Phone"
-                    className="w-[24px] h-[24px] ml-2"
+                    className="h-[32px] w-auto"
                   />
                 )}
               </div>
             )}
 
-            {/* Desktop Navigation */}
-            <nav className="hidden lg:flex items-center flex-1 justify-end">
-              <ul className="flex flex-wrap justify-end items-center -mx-[11px]">
+            {/* Navigation */}
+            <nav className="hidden lg:flex items-center justify-end gap-[24px]">
+              <ul className="flex gap-[24px]">
                 {navItems.map((item) => {
                   const hasChildren =
                     item.children && item.children.length > 0;
 
                   return (
-                    <li key={item.href} className="px-[11px] flex items-center">
+                    <li key={item.href} className="flex items-center">
                       {hasChildren ? (
                         <NavDropdown item={item} />
                       ) : (
@@ -99,7 +92,7 @@ export default function Header() {
                               ? "noopener noreferrer"
                               : undefined
                           }
-                          className="font-outfit text-[20px] text-white py-[31px] mr-[20px] whitespace-nowrap hover:opacity-80 transition-opacity duration-400"
+                          className="font-outfit text-[18px] text-black font-light hover:opacity-80 transition-opacity"
                         >
                           {item.label}
                         </Link>
@@ -109,54 +102,66 @@ export default function Header() {
                 })}
               </ul>
             </nav>
-
-            {/* Contact CTA Button - Desktop */}
-            <div className="hidden lg:block w-[280px]">
-              {ctaText ? (
-                <Button asChild className="bg-white text-black font-outfit text-[22px] py-[25px] px-[15.4px] h-auto w-[200px] hover:bg-brand-accent hover:text-white transition-all duration-300 flex items-center justify-center gap-2">
-                  <Link to={ctaUrl}>
-                    {ctaText}
-                    <ArrowRight className="w-5 h-5" />
-                  </Link>
-                </Button>
-              ) : null}
-            </div>
-
-            {/* Mobile Menu */}
-            <Sheet>
-              <SheetTrigger asChild className="lg:hidden">
-                <Button variant="ghost" size="icon" className="text-white">
-                  <Menu className="h-6 w-6" />
-                </Button>
-              </SheetTrigger>
-              <SheetContent
-                side="right"
-                className="bg-brand-card border-brand-border"
-              >
-                <nav className="flex flex-col gap-4 mt-8">
-                  {navItems.map((item) => {
-                    const hasChildren =
-                      item.children && item.children.length > 0;
-
-                    return (
-                      <MobileNavItem key={item.href} item={item} hasChildren={hasChildren} />
-                    );
-                  })}
-                  {ctaText ? (
-                    <Button asChild className="bg-white text-black font-outfit text-[22px] py-[25px] w-full hover:bg-brand-accent hover:text-white transition-all duration-300 flex items-center justify-center gap-2 mt-4">
-                      <Link to={ctaUrl}>
-                        {ctaText}
-                        <ArrowRight className="w-5 h-5" />
-                      </Link>
-                    </Button>
-                  ) : null}
-                </nav>
-              </SheetContent>
-            </Sheet>
           </div>
+
+          {/* CTA Button - Desktop */}
+          {ctaText && (
+            <Link
+              to={ctaUrl}
+              className="hidden lg:inline-block bg-[#ee530e] text-white font-outfit font-semibold text-[18px] px-[32px] py-[16px] hover:opacity-90 transition-opacity whitespace-nowrap"
+            >
+              {ctaText}
+            </Link>
+          )}
+
+          {/* Mobile Menu */}
+          <Sheet>
+            <SheetTrigger asChild className="lg:hidden">
+              <Button variant="ghost" size="icon" className="text-black">
+                <Menu className="h-6 w-6" />
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="right" className="bg-white border-none">
+              <nav className="flex flex-col gap-4 mt-8">
+                {phoneLabel && phoneNumber && (
+                  <div className="flex flex-col gap-1 pb-4 border-b">
+                    <p className="font-outfit text-[14px] text-black">
+                      {phoneLabel}
+                    </p>
+                    <a
+                      href={`tel:${phoneNumber.replace(/\D/g, "")}`}
+                      className="font-outfit text-[20px] font-light text-black hover:opacity-80"
+                    >
+                      {phoneDisplay}
+                    </a>
+                  </div>
+                )}
+                {navItems.map((item) => {
+                  const hasChildren =
+                    item.children && item.children.length > 0;
+
+                  return (
+                    <MobileNavItem
+                      key={item.href}
+                      item={item}
+                      hasChildren={hasChildren}
+                    />
+                  );
+                })}
+                {ctaText && (
+                  <Link
+                    to={ctaUrl}
+                    className="inline-block bg-[#ee530e] text-white font-outfit font-semibold text-[18px] px-[32px] py-[16px] hover:opacity-90 transition-opacity text-center w-full mt-4"
+                  >
+                    {ctaText}
+                  </Link>
+                )}
+              </nav>
+            </SheetContent>
+          </Sheet>
         </div>
       </div>
-    </>
+    </header>
   );
 }
 
@@ -184,7 +189,7 @@ function MobileNavItem({
         to={item.href}
         target={item.openInNewTab ? "_blank" : undefined}
         rel={item.openInNewTab ? "noopener noreferrer" : undefined}
-        className="font-outfit text-[20px] text-white py-[10px] px-[5%] border-b border-black/5 hover:opacity-80 transition-opacity"
+        className="font-outfit text-[18px] text-black py-[10px] border-b border-gray-200 hover:opacity-80 transition-opacity block"
       >
         {item.label}
       </Link>
@@ -193,17 +198,17 @@ function MobileNavItem({
 
   return (
     <div>
-      <div className="flex items-center border-b border-black/5">
+      <div className="flex items-center border-b border-gray-200">
         <Link
           to={item.href}
-          className="font-outfit text-[20px] text-white py-[10px] px-[5%] hover:opacity-80 transition-opacity flex-1"
+          className="font-outfit text-[18px] text-black py-[10px] hover:opacity-80 transition-opacity flex-1"
         >
           {item.label}
         </Link>
         <button
           type="button"
           onClick={() => setExpanded((v) => !v)}
-          className="text-white/70 hover:text-white p-2 mr-2 transition-colors"
+          className="text-gray-700 hover:text-black p-2 mr-2 transition-colors"
           aria-label={expanded ? "Collapse submenu" : "Expand submenu"}
         >
           <ChevronDown
@@ -211,14 +216,14 @@ function MobileNavItem({
           />
         </button>
       </div>
-      <div className={`pl-[10%] py-1 ${expanded ? "block" : "hidden"}`}>
+      <div className={`pl-4 py-1 ${expanded ? "block" : "hidden"}`}>
         {item.children!.map((child, idx) => (
           <div key={idx}>
             <Link
               to={child.href}
               target={child.openInNewTab ? "_blank" : undefined}
               rel={child.openInNewTab ? "noopener noreferrer" : undefined}
-              className="block font-outfit text-[17px] text-white/80 py-[8px] hover:text-white transition-colors"
+              className="block font-outfit text-[16px] text-gray-700 py-[8px] hover:text-black transition-colors"
             >
               {child.label}
             </Link>
@@ -230,7 +235,7 @@ function MobileNavItem({
                     to={grandchild.href}
                     target={grandchild.openInNewTab ? "_blank" : undefined}
                     rel={grandchild.openInNewTab ? "noopener noreferrer" : undefined}
-                    className="block font-outfit text-[15px] text-white/65 py-[6px] hover:text-white transition-colors"
+                    className="block font-outfit text-[15px] text-gray-600 py-[6px] hover:text-black transition-colors"
                   >
                     {grandchild.label}
                   </Link>
