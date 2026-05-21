@@ -21,6 +21,10 @@ const SiteSettingsContext = createContext<SiteSettingsContextValue | null>(null)
 
 let settingsCache: SiteSettings | null = null;
 
+export function clearSiteSettingsCache() {
+  settingsCache = null;
+}
+
 interface SiteSettingsProviderProps {
   children: ReactNode;
   initialSettings?: SiteSettings | null;
