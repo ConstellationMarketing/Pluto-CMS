@@ -15,8 +15,6 @@ import { getPreloadedSiteSettings } from "../lib/preloadState";
 interface SiteSettingsContextValue {
   settings: SiteSettings;
   isLoading: boolean;
-  phoneDisplay: string;
-  phoneLabel: string;
 }
 
 const SiteSettingsContext = createContext<SiteSettingsContextValue | null>(null);
@@ -92,8 +90,6 @@ export function SiteSettingsProvider({
   const value: SiteSettingsContextValue = {
     settings,
     isLoading,
-    phoneDisplay: settings.phoneDisplay,
-    phoneLabel: settings.phoneAvailability,
   };
 
   return (
@@ -109,8 +105,6 @@ export function useSiteSettings(): SiteSettingsContextValue {
     return {
       settings: DEFAULT_SITE_SETTINGS,
       isLoading: false,
-      phoneDisplay: DEFAULT_SITE_SETTINGS.phoneDisplay,
-      phoneLabel: DEFAULT_SITE_SETTINGS.phoneAvailability,
     };
   }
 
@@ -123,6 +117,8 @@ export function useGlobalPhone() {
     phoneNumber: settings.phoneNumber,
     phoneDisplay: settings.phoneDisplay,
     phoneLabel: settings.phoneAvailability,
+    headerPhoneLabel: settings.headerPhoneLabel,
+    headerPhoneIconUrl: settings.headerPhoneIconUrl,
     isLoading,
   };
 }

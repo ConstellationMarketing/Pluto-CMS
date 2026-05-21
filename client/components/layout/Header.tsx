@@ -18,8 +18,8 @@ export default function Header() {
 
   const phoneNumber = settings.phoneNumber?.trim() || "";
   const phoneDisplay = settings.phoneDisplay?.trim() || "";
-  const phoneLabel = settings.headerPhoneLabel?.trim() || "";
-  const phoneIconUrl = settings.headerPhoneIconUrl?.trim() || "";
+  const headerPhoneLabel = settings.headerPhoneLabel?.trim() || "";
+  const headerPhoneIconUrl = settings.headerPhoneIconUrl?.trim() || "";
 
   const navItems = [...(settings.navigationItems ?? [])].sort(
     (a, b) => (a.order ?? 0) - (b.order ?? 0),
@@ -51,18 +51,22 @@ export default function Header() {
           {/* Center: Phone section + Navigation */}
           <div className="flex-1 flex flex-col gap-[8px]">
             {/* Phone section - visible on desktop */}
-            {phoneLabel && phoneNumber && (
+            {(headerPhoneLabel || phoneNumber) && (
               <div className="hidden lg:flex items-center gap-[12px] text-white">
-                <p className="font-outfit text-[18px] font-light">{phoneLabel}</p>
-                <a
-                  href={`tel:${phoneNumber.replace(/\D/g, "")}`}
-                  className="font-outfit text-[24px] font-light hover:opacity-80 transition-opacity"
-                >
-                  {phoneDisplay}
-                </a>
-                {phoneIconUrl && (
+                {headerPhoneLabel && (
+                  <p className="font-outfit text-[18px] font-light">{headerPhoneLabel}</p>
+                )}
+                {phoneNumber && phoneDisplay && (
+                  <a
+                    href={`tel:${phoneNumber.replace(/\D/g, "")}`}
+                    className="font-outfit text-[24px] font-light hover:opacity-80 transition-opacity"
+                  >
+                    {phoneDisplay}
+                  </a>
+                )}
+                {headerPhoneIconUrl && (
                   <img
-                    src={phoneIconUrl}
+                    src={headerPhoneIconUrl}
                     alt="Phone"
                     className="h-[32px] w-auto"
                   />
