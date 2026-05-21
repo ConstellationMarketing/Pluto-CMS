@@ -17,6 +17,22 @@ export interface HeroContent {
   phoneLabel: string;
 }
 
+export interface AboutFirmContent {
+  sectionLabel: string;       // "ABOUT OUR LAW FIRM"
+  headingBold: string;        // "Trusted Experienced" (bold part)
+  headingLight: string;       // "Attorneys In Atlanta" (light part)
+  badgeImage: string;
+  badgeImageAlt: string;
+  photo: string;
+  photoAlt: string;
+  accentBarColor: string;
+  subHeading: string;         // "Providing Legal Services Throughout Atlanta"
+  paragraph1: string;
+  paragraph2: string;
+  paragraph3: string;
+  paragraph4: string;
+}
+
 export interface PartnerLogo {
   src: string;
   alt: string;
@@ -144,6 +160,7 @@ export interface ContactContent {
 export interface HomePageContent {
   hero: HeroContent;
   partnerLogos: PartnerLogo[];
+  aboutFirm: AboutFirmContent;
   about: AboutContent;
   practiceAreasIntro: PracticeAreasIntroContent;
   practiceAreas: PracticeAreaItem[];
@@ -175,6 +192,21 @@ export const defaultHomeContent: HomePageContent = {
     phoneLabel: "",
   },
   partnerLogos: [],
+  aboutFirm: {
+    sectionLabel: "ABOUT OUR LAW FIRM",
+    headingBold: "Trusted Experienced",
+    headingLight: "Attorneys In Atlanta",
+    badgeImage: "https://design-pluto.netlify.app/images/experience-badge.png",
+    badgeImageAlt: "Over 20 Years of Experience",
+    photo: "https://design-pluto.netlify.app/images/about-photo.jpg",
+    photoAlt: "Constellation Law Attorneys",
+    accentBarColor: "#2ba6a3",
+    subHeading: "Providing Legal Services Throughout Atlanta",
+    paragraph1: "We founded Constellation Law with a shared vision: to support our clients through the many challenges and transitions life brings.",
+    paragraph2: "No matter where our clients are in their journey, we are here to guide them forward with clarity and care.",
+    paragraph3: "While not every situation calls for legal intervention, when it does, the right approach can be truly life-changing. Whether facing personal, financial, or family-related matters, we help individuals understand their options and take confident steps toward resolution.",
+    paragraph4: "Many of our clients come to us during times of significant change—and we're here to help them move forward with peace of mind.",
+  },
   about: {
     sectionLabel: "",
     heading: "",

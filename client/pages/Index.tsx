@@ -120,7 +120,7 @@ export default function Index() {
       </section>
 
       {/* About Firm Section */}
-      <AboutFirmSection />
+      <AboutFirmSection content={content.aboutFirm} />
 
       {/* Contact Form Section - below hero */}
       <div className="max-w-[2560px] mx-auto w-[95%] py-[40px]">
