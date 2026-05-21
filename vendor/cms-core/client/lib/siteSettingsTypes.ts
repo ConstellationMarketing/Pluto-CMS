@@ -48,6 +48,10 @@ export interface SiteSettings {
   headerCtaText: string;
   headerCtaUrl: string;
 
+  // Header Phone
+  headerPhoneLabel: string;
+  headerPhoneIconUrl: string;
+
   // Navigation
   navigationItems: NavigationItem[];
 
@@ -100,6 +104,8 @@ export interface SiteSettingsRow {
   apply_phone_globally: boolean;
   header_cta_text: string | null;
   header_cta_url: string | null;
+  header_phone_label: string | null;
+  header_phone_icon_url: string | null;
   navigation_items: NavigationItem[];
   footer_about_links: FooterLink[];
   footer_practice_links: FooterLink[];
@@ -138,6 +144,8 @@ export const DEFAULT_SITE_SETTINGS: SiteSettings = {
   applyPhoneGlobally: true,
   headerCtaText: "",
   headerCtaUrl: "",
+  headerPhoneLabel: "",
+  headerPhoneIconUrl: "",
   navigationItems: [
   ],
   footerAboutLinks: [
@@ -183,6 +191,8 @@ export function rowToSiteSettings(row: SiteSettingsRow): SiteSettings {
       row.apply_phone_globally ?? DEFAULT_SITE_SETTINGS.applyPhoneGlobally,
     headerCtaText: row.header_cta_text || DEFAULT_SITE_SETTINGS.headerCtaText,
     headerCtaUrl: row.header_cta_url || DEFAULT_SITE_SETTINGS.headerCtaUrl,
+    headerPhoneLabel: row.header_phone_label || DEFAULT_SITE_SETTINGS.headerPhoneLabel,
+    headerPhoneIconUrl: row.header_phone_icon_url || DEFAULT_SITE_SETTINGS.headerPhoneIconUrl,
     navigationItems: row.navigation_items?.length
       ? row.navigation_items
       : DEFAULT_SITE_SETTINGS.navigationItems,
@@ -230,6 +240,8 @@ export function siteSettingsToRow(
     apply_phone_globally: settings.applyPhoneGlobally,
     header_cta_text: settings.headerCtaText,
     header_cta_url: settings.headerCtaUrl,
+    header_phone_label: settings.headerPhoneLabel,
+    header_phone_icon_url: settings.headerPhoneIconUrl,
     navigation_items: settings.navigationItems,
     footer_about_links: settings.footerAboutLinks,
     footer_practice_links: settings.footerPracticeLinks,

@@ -947,6 +947,40 @@ export default function AdminSiteSettings() {
         <TabsContent value="contact" className="mt-6 space-y-6">
           <Card>
             <CardHeader>
+              <CardTitle>Header Phone Section</CardTitle>
+              <CardDescription>
+                Customize the "Call For A Consultation" section displayed in the header
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="headerPhoneLabel">Phone Label</Label>
+                <Input
+                  id="headerPhoneLabel"
+                  value={settings.headerPhoneLabel}
+                  onChange={(e) =>
+                    updateSettings({ headerPhoneLabel: e.target.value })
+                  }
+                  placeholder="Call For A Consultation"
+                />
+              </div>
+              <div className="space-y-2">
+                <Label>Phone Icon</Label>
+                <ImageUploader
+                  value={settings.headerPhoneIconUrl}
+                  onChange={(url) => updateSettings({ headerPhoneIconUrl: url })}
+                  folder="site/header"
+                  accept="image/*"
+                  preserveOriginal
+                  placeholder="Upload or choose a phone icon"
+                  helperText="PNG, JPG, SVG, or WebP. Recommended: 32x32px or SVG"
+                />
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
               <CardTitle>Phone Number</CardTitle>
               <CardDescription>Displayed in header and footer</CardDescription>
             </CardHeader>

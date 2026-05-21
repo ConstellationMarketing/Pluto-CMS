@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, ArrowRight, ChevronDown } from "lucide-react";
+import { Menu, ArrowRight, ChevronDown, Phone } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useSiteSettings } from "@site/contexts/SiteSettingsContext";
 import NavDropdown from "./NavDropdown";
@@ -15,6 +15,11 @@ export default function Header() {
 
   const ctaText = settings.headerCtaText?.trim() || "";
   const ctaUrl = settings.headerCtaUrl?.trim() || "/contact";
+
+  const phoneNumber = settings.phoneNumber?.trim() || "";
+  const phoneDisplay = settings.phoneDisplay?.trim() || "";
+  const phoneLabel = settings.headerPhoneLabel?.trim() || "";
+  const phoneIconUrl = settings.headerPhoneIconUrl?.trim() || "";
 
   const navItems = [...(settings.navigationItems ?? [])].sort(
     (a, b) => (a.order ?? 0) - (b.order ?? 0),
@@ -47,6 +52,30 @@ export default function Header() {
                 )}
               </Link>
             </div>
+
+            {/* Phone Section - Desktop */}
+            {phoneLabel && phoneNumber && (
+              <div className="hidden lg:flex items-center gap-3 text-white">
+                <div className="flex flex-col">
+                  <span className="font-outfit text-[14px] font-light">
+                    {phoneLabel}
+                  </span>
+                  <a
+                    href={`tel:${phoneNumber.replace(/\D/g, "")}`}
+                    className="font-outfit text-[20px] font-light hover:opacity-80 transition-opacity"
+                  >
+                    {phoneDisplay}
+                  </a>
+                </div>
+                {phoneIconUrl && (
+                  <img
+                    src={phoneIconUrl}
+                    alt="Phone"
+                    className="w-[24px] h-[24px] ml-2"
+                  />
+                )}
+              </div>
+            )}
 
             {/* Desktop Navigation */}
             <nav className="hidden lg:flex items-center flex-1 justify-end">
