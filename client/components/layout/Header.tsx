@@ -26,7 +26,7 @@ export default function Header() {
   );
 
   return (
-    <header className="sticky top-0 z-50 bg-white">
+    <header className="sticky top-0 z-50 bg-black">
       <div className="px-[32px] py-[16px] w-full">
         <div className="flex items-center justify-between gap-[32px]">
           {/* Logo */}
@@ -41,7 +41,7 @@ export default function Header() {
                   height={48}
                 />
               ) : (
-                <span className="font-outfit text-black text-[24px] leading-none">
+                <span className="font-outfit text-white text-[24px] leading-none">
                   {settings.siteName || " "}
                 </span>
               )}
@@ -49,35 +49,33 @@ export default function Header() {
           </div>
 
           {/* Center: Phone section + Navigation */}
-          <div className="hidden lg:flex items-center flex-1 gap-[32px]">
-            {/* Phone section - Desktop */}
+          <div className="hidden lg:flex flex-col flex-1 gap-[8px]">
+            {/* Phone section - Desktop - HORIZONTAL */}
             {(headerPhoneLabel || phoneNumber) && (
-              <div className="flex flex-col items-center gap-[12px] text-black">
+              <div className="flex items-center gap-[12px] text-white">
                 {headerPhoneLabel && (
-                  <p className="font-outfit text-[18px] font-light text-black">{headerPhoneLabel}</p>
+                  <p className="font-outfit text-[18px] font-light text-white">{headerPhoneLabel}</p>
                 )}
-                <div className="flex items-center gap-[12px]">
-                  {phoneNumber && phoneDisplay && (
-                    <a
-                      href={`tel:${phoneNumber.replace(/\D/g, "")}`}
-                      className="font-outfit text-[24px] font-light text-black hover:opacity-80 transition-opacity"
-                    >
-                      {phoneDisplay}
-                    </a>
-                  )}
-                  {headerPhoneIconUrl && (
-                    <img
-                      src={headerPhoneIconUrl}
-                      alt="Phone"
-                      className="h-[32px] w-auto"
-                    />
-                  )}
-                </div>
+                {phoneNumber && phoneDisplay && (
+                  <a
+                    href={`tel:${phoneNumber.replace(/\D/g, "")}`}
+                    className="font-outfit text-[24px] font-light text-white hover:opacity-80 transition-opacity"
+                  >
+                    {phoneDisplay}
+                  </a>
+                )}
+                {headerPhoneIconUrl && (
+                  <img
+                    src={headerPhoneIconUrl}
+                    alt="Phone"
+                    className="h-[32px] w-auto"
+                  />
+                )}
               </div>
             )}
 
             {/* Navigation */}
-            <nav className="flex items-center justify-end flex-1">
+            <nav className="flex items-center justify-end gap-[24px]">
               <ul className="flex gap-[24px]">
                 {navItems.map((item) => {
                   const hasChildren =
@@ -98,7 +96,7 @@ export default function Header() {
                               ? "noopener noreferrer"
                               : undefined
                           }
-                          className="font-outfit text-[18px] text-black font-light hover:opacity-80 transition-opacity"
+                          className="font-outfit text-[18px] text-white font-light hover:opacity-80 transition-opacity"
                         >
                           {item.label}
                         </Link>
@@ -123,20 +121,20 @@ export default function Header() {
           {/* Mobile Menu */}
           <Sheet>
             <SheetTrigger asChild className="lg:hidden">
-              <Button variant="ghost" size="icon" className="text-black">
+              <Button variant="ghost" size="icon" className="text-white">
                 <Menu className="h-6 w-6" />
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="bg-white border-none">
+            <SheetContent side="right" className="bg-black border-none">
               <nav className="flex flex-col gap-4 mt-8">
                 {headerPhoneLabel && phoneNumber && (
-                  <div className="flex flex-col gap-1 pb-4 border-b border-gray-300">
-                    <p className="font-outfit text-[14px] text-black">
+                  <div className="flex flex-col gap-1 pb-4 border-b border-white/20">
+                    <p className="font-outfit text-[14px] text-white">
                       {headerPhoneLabel}
                     </p>
                     <a
                       href={`tel:${phoneNumber.replace(/\D/g, "")}`}
-                      className="font-outfit text-[20px] font-light text-black hover:opacity-80"
+                      className="font-outfit text-[20px] font-light text-white hover:opacity-80"
                     >
                       {phoneDisplay}
                     </a>
@@ -195,7 +193,7 @@ function MobileNavItem({
         to={item.href}
         target={item.openInNewTab ? "_blank" : undefined}
         rel={item.openInNewTab ? "noopener noreferrer" : undefined}
-        className="font-outfit text-[18px] text-black py-[10px] border-b border-gray-300 hover:opacity-80 transition-opacity block"
+        className="font-outfit text-[18px] text-white py-[10px] border-b border-white/20 hover:opacity-80 transition-opacity block"
       >
         {item.label}
       </Link>
@@ -204,17 +202,17 @@ function MobileNavItem({
 
   return (
     <div>
-      <div className="flex items-center border-b border-gray-300">
+      <div className="flex items-center border-b border-white/20">
         <Link
           to={item.href}
-          className="font-outfit text-[18px] text-black py-[10px] hover:opacity-80 transition-opacity flex-1"
+          className="font-outfit text-[18px] text-white py-[10px] hover:opacity-80 transition-opacity flex-1"
         >
           {item.label}
         </Link>
         <button
           type="button"
           onClick={() => setExpanded((v) => !v)}
-          className="text-gray-700 hover:text-black p-2 mr-2 transition-colors"
+          className="text-white/70 hover:text-white p-2 mr-2 transition-colors"
           aria-label={expanded ? "Collapse submenu" : "Expand submenu"}
         >
           <ChevronDown
@@ -229,7 +227,7 @@ function MobileNavItem({
               to={child.href}
               target={child.openInNewTab ? "_blank" : undefined}
               rel={child.openInNewTab ? "noopener noreferrer" : undefined}
-              className="block font-outfit text-[16px] text-gray-700 py-[8px] hover:text-black transition-colors"
+              className="block font-outfit text-[16px] text-white/80 py-[8px] hover:text-white transition-colors"
             >
               {child.label}
             </Link>
@@ -241,7 +239,7 @@ function MobileNavItem({
                     to={grandchild.href}
                     target={grandchild.openInNewTab ? "_blank" : undefined}
                     rel={grandchild.openInNewTab ? "noopener noreferrer" : undefined}
-                    className="block font-outfit text-[15px] text-gray-600 py-[6px] hover:text-black transition-colors"
+                    className="block font-outfit text-[15px] text-white/60 py-[6px] hover:text-white transition-colors"
                   >
                     {grandchild.label}
                   </Link>
