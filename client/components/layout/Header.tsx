@@ -49,10 +49,10 @@ export default function Header() {
           </div>
 
           {/* Center: Phone section + Navigation */}
-          <div className="hidden lg:flex flex-col flex-1 gap-[8px]">
-            {/* Phone section - Desktop - HORIZONTAL */}
+          <div className="hidden lg:flex flex-col flex-1 gap-[8px] items-center justify-center">
+            {/* Phone section - Desktop - HORIZONTAL CENTERED */}
             {(headerPhoneLabel || phoneNumber) && (
-              <div className="flex items-center gap-[12px] text-white">
+              <div className="flex items-center gap-[12px] text-white justify-center">
                 {headerPhoneLabel && (
                   <p className="font-outfit text-[18px] font-light text-white">{headerPhoneLabel}</p>
                 )}
@@ -74,8 +74,8 @@ export default function Header() {
               </div>
             )}
 
-            {/* Navigation */}
-            <nav className="flex items-center justify-end gap-[24px]">
+            {/* Navigation - CENTERED BELOW */}
+            <nav className="flex items-center justify-center gap-[24px]">
               <ul className="flex gap-[24px]">
                 {navItems.map((item) => {
                   const hasChildren =
