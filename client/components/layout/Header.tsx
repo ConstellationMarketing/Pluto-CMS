@@ -49,33 +49,35 @@ export default function Header() {
           </div>
 
           {/* Center: Phone section + Navigation */}
-          <div className="flex-1 flex flex-col gap-[8px]">
-            {/* Phone section - visible on desktop */}
+          <div className="hidden lg:flex items-center flex-1 gap-[32px]">
+            {/* Phone section - Desktop */}
             {(headerPhoneLabel || phoneNumber) && (
-              <div className="hidden lg:flex items-center gap-[12px] text-white">
+              <div className="flex flex-col items-center gap-[12px] text-white">
                 {headerPhoneLabel && (
                   <p className="font-outfit text-[18px] font-light">{headerPhoneLabel}</p>
                 )}
-                {phoneNumber && phoneDisplay && (
-                  <a
-                    href={`tel:${phoneNumber.replace(/\D/g, "")}`}
-                    className="font-outfit text-[24px] font-light hover:opacity-80 transition-opacity"
-                  >
-                    {phoneDisplay}
-                  </a>
-                )}
-                {headerPhoneIconUrl && (
-                  <img
-                    src={headerPhoneIconUrl}
-                    alt="Phone"
-                    className="h-[32px] w-auto"
-                  />
-                )}
+                <div className="flex items-center gap-[12px]">
+                  {phoneNumber && phoneDisplay && (
+                    <a
+                      href={`tel:${phoneNumber.replace(/\D/g, "")}`}
+                      className="font-outfit text-[24px] font-light hover:opacity-80 transition-opacity"
+                    >
+                      {phoneDisplay}
+                    </a>
+                  )}
+                  {headerPhoneIconUrl && (
+                    <img
+                      src={headerPhoneIconUrl}
+                      alt="Phone"
+                      className="h-[32px] w-auto"
+                    />
+                  )}
+                </div>
               </div>
             )}
 
             {/* Navigation */}
-            <nav className="hidden lg:flex items-center justify-end gap-[24px]">
+            <nav className="flex items-center justify-end flex-1">
               <ul className="flex gap-[24px]">
                 {navItems.map((item) => {
                   const hasChildren =
