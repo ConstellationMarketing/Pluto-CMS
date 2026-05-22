@@ -19,7 +19,7 @@ export default function TestimonialsSection({ content, practiceAreasIntro }: Pro
     <section
       style={{
         backgroundColor: "rgb(255, 255, 255)",
-        backgroundImage: content.backgroundImage ? `url(${content.backgroundImage})` : undefined,
+        backgroundImage: `linear-gradient(rgba(255,255,255,0.88), rgba(255,255,255,0.88)), url(${content.backgroundImage || "https://design-pluto.netlify.app/images/testimonials-bg.jpg"})`,
         backgroundPosition: "50% 100%",
         backgroundRepeat: "no-repeat",
         backgroundSize: "contain",
