@@ -27,7 +27,7 @@ export default function HomeBlogSection({ content }: Props) {
 
   useEffect(() => {
     fetchRestRows<PostRow>(
-      `cms_posts?select=slug,title,excerpt,featured_image&status=eq.published&order=published_at.desc&limit=${count}`
+      `posts?select=slug,title,excerpt,featured_image&status=eq.published&order=published_at.desc&limit=${count}`
     )
       .then((rows) => setPosts(rows))
       .catch(() => setPosts([]));
