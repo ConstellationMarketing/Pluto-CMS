@@ -16,7 +16,11 @@ export default function Footer() {
     /\{year\}/gi,
     String(new Date().getFullYear())
   );
-  const mapEmbedUrl = settings.mapEmbedUrl?.trim() || "";
+  const rawMapUrl = settings.mapEmbedUrl?.trim() || "";
+  const mapEmbedUrl = (() => {
+    const srcMatch = rawMapUrl.match(/src=["']([^"']+)["']/);
+    return srcMatch ? srcMatch[1] : rawMapUrl;
+  })();
   const addressLine1 = settings.addressLine1?.trim() || "";
   const addressLine2 = settings.addressLine2?.trim() || "";
 

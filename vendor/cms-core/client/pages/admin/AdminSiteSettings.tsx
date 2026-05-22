@@ -877,10 +877,10 @@ export default function AdminSiteSettings() {
             <CardHeader>
               <CardTitle>Quick Links Column</CardTitle>
               <CardDescription>
-                Navigation links column heading and links in the footer bottom section
+                Heading and navigation links shown in the footer bottom section
               </CardDescription>
             </CardHeader>
-            <CardContent>
+            <CardContent className="space-y-4">
               <div className="space-y-2">
                 <Label htmlFor="footerResourcesHeading">Column Heading</Label>
                 <Input
@@ -890,55 +890,47 @@ export default function AdminSiteSettings() {
                   placeholder="Quick Links"
                 />
               </div>
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardHeader>
-              <CardTitle>About Column Links</CardTitle>
-              <CardDescription>
-                Links in the resources section of the footer
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              {settings.footerAboutLinks.map((item, index) => (
-                <div key={index} className="flex items-center gap-3">
-                  <Input
-                    value={item.label}
-                    onChange={(e) =>
-                      updateAboutLink(index, { label: e.target.value })
-                    }
-                    placeholder="Link text"
-                    className="flex-1"
-                  />
-                  <Input
-                    value={item.href || ""}
-                    onChange={(e) =>
-                      updateAboutLink(index, {
-                        href: e.target.value || undefined,
-                      })
-                    }
-                    placeholder="/page-url (optional)"
-                    className="flex-1"
-                  />
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => removeAboutLink(index)}
-                    className="text-red-500 hover:text-red-700 hover:bg-red-50"
-                  >
-                    <Trash2 className="h-4 w-4" />
-                  </Button>
-                </div>
-              ))}
-              <Button
-                variant="outline"
-                onClick={addAboutLink}
-                className="w-full"
-              >
-                <Plus className="h-4 w-4 mr-2" />
-                Add Link
-              </Button>
+              <div className="border-t pt-4">
+                <p className="text-sm font-medium mb-3">Links</p>
+                {settings.footerAboutLinks.map((item, index) => (
+                  <div key={index} className="flex items-center gap-3 mb-3">
+                    <Input
+                      value={item.label}
+                      onChange={(e) =>
+                        updateAboutLink(index, { label: e.target.value })
+                      }
+                      placeholder="Link text"
+                      className="flex-1"
+                    />
+                    <Input
+                      value={item.href || ""}
+                      onChange={(e) =>
+                        updateAboutLink(index, {
+                          href: e.target.value || undefined,
+                        })
+                      }
+                      placeholder="/page-url"
+                      className="flex-1"
+                    />
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => removeAboutLink(index)}
+                      className="text-red-500 hover:text-red-700 hover:bg-red-50"
+                    >
+                      <Trash2 className="h-4 w-4" />
+                    </Button>
+                  </div>
+                ))}
+                <Button
+                  variant="outline"
+                  onClick={addAboutLink}
+                  className="w-full"
+                >
+                  <Plus className="h-4 w-4 mr-2" />
+                  Add Link
+                </Button>
+              </div>
             </CardContent>
           </Card>
 
@@ -1004,23 +996,21 @@ export default function AdminSiteSettings() {
                 <Input
                   id="mapEmbedUrl"
                   value={settings.mapEmbedUrl}
-                  onChange={(e) =>
-                    updateSettings({ mapEmbedUrl: e.target.value })
-                  }
+                  onChange={(e) => {
+                    // Accept both raw URL and full iframe HTML — extract the src
+                    const val = e.target.value.trim();
+                    const srcMatch = val.match(/src=["']([^"']+)["']/);
+                    updateSettings({ mapEmbedUrl: srcMatch ? srcMatch[1] : val });
+                  }}
                   placeholder="https://www.google.com/maps/embed?..."
                 />
+                <p className="text-xs text-gray-500">
+                  Paste the <strong>src URL</strong> from the Google Maps embed code (or paste the full &lt;iframe&gt; HTML — the URL will be extracted automatically).
+                </p>
               </div>
-              {settings.mapEmbedUrl && (
-                <div className="mt-4">
-                  <p className="text-sm text-gray-500 mb-2">Preview:</p>
-                  <iframe
-                    src={settings.mapEmbedUrl}
-                    width="100%"
-                    height="200"
-                    className="rounded-lg border"
-                    loading="lazy"
-                    title="Map Preview"
-                  />
+              {settings.mapEmbedUrl && settings.mapEmbedUrl.startsWith("http") && (
+                <div className="mt-3 p-3 bg-gray-50 rounded border text-sm text-gray-600 break-all">
+                  <span className="font-medium">Saved URL: </span>{settings.mapEmbedUrl}
                 </div>
               )}
             </CardContent>
