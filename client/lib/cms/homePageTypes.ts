@@ -93,11 +93,19 @@ export interface PracticeAreasIntroContent {
   buttonTextLine2: string;
 }
 
+export interface AwardsFeature {
+  icon: string;
+  iconAlt?: string;
+  title: string;
+}
+
 export interface AwardsContent {
   sectionLabel: string;
-  heading: string;
+  heading: string;       // light part, e.g. "Over The Years,"
+  headingBold: string;   // bold part, e.g. "Our dedication to excellence..."
   description: string;
   logos: Array<{ src: string; alt: string }>;
+  features: AwardsFeature[];
 }
 
 export interface TestimonialItem {
@@ -267,9 +275,21 @@ export const defaultHomeContent: HomePageContent = {
   ],
   awards: {
     sectionLabel: "",
-    heading: "",
+    heading: "Over The Years,",
+    headingBold: "Our dedication to excellence and client care has earned recognition.",
     description: "",
-    logos: [],
+    logos: [
+      { src: "https://design-pluto.netlify.app/images/forbes.png", alt: "Forbes" },
+      { src: "https://design-pluto.netlify.app/images/experience-badge.png", alt: "Over 20 Years of Experience" },
+      { src: "https://design-pluto.netlify.app/images/recognition-2.png", alt: "Recognition Award" },
+      { src: "https://design-pluto.netlify.app/images/recognition-3.png", alt: "Award" },
+      { src: "https://design-pluto.netlify.app/images/lc-logo.png", alt: "LC Logo" },
+    ],
+    features: [
+      { icon: "https://design-pluto.netlify.app/images/icon-law.png", iconAlt: "", title: "SOLUTIONS-FOCUSED REPRESENTATION" },
+      { icon: "https://design-pluto.netlify.app/images/icon-vector.png", iconAlt: "", title: "EXTENSIVE COURTROOM EXPERIENCE" },
+      { icon: "https://design-pluto.netlify.app/images/icon-court.png", iconAlt: "", title: "INDIVIDUALIZED ATTENTION" },
+    ],
   },
   testimonials: {
     sectionLabel: "OUR CLIENTS STORIES",

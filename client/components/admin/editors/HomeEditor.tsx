@@ -530,21 +530,18 @@ function AwardsSection({ content, update }: SectionProps) {
   return (
     <Section title="Awards & Memberships" defaultOpen={false}>
       <div className="grid gap-4">
-        <HeadingField
-          label="Section Heading"
-          value={awards.sectionLabel}
-          onChange={(v) => set({ sectionLabel: v })}
-          tag={ht.get("awards.sectionLabel")}
-          onTagChange={(t) => ht.set("awards.sectionLabel", t)}
-        />
         <div>
-          <Label>Subtitle</Label>
-          <Input value={awards.heading} onChange={(e) => set({ heading: e.target.value })} />
+          <Label>Heading — Light Part (e.g. "Over The Years,")</Label>
+          <Input value={awards.heading} onChange={(e) => set({ heading: e.target.value })} placeholder="Over The Years," />
         </div>
-        <RichTextField label="Description" value={awards.description} onChange={(v) => set({ description: v })} />
-        <h4 className="font-medium">Award Logos</h4>
+        <div>
+          <Label>Heading — Bold Part</Label>
+          <Textarea value={awards.headingBold || ""} onChange={(e) => set({ headingBold: e.target.value })} rows={2} placeholder="Our dedication to excellence and client care has earned recognition." />
+        </div>
+
+        <h4 className="font-medium pt-2">Award Logos (full-width row)</h4>
         <ArrayEditor
-          items={awards.logos}
+          items={awards.logos ?? []}
           onChange={(items) => set({ logos: items })}
           itemLabel="Logo"
           newItem={() => ({ src: "", alt: "" })}
@@ -556,16 +553,38 @@ function AwardsSection({ content, update }: SectionProps) {
                 onChange={(url) => upd({ ...item, src: url })}
                 altValue={item.alt}
                 onAltChange={(alt) => upd({ ...item, alt })}
-                onSelectAsset={(asset) => upd({
-                  ...item,
-                  src: asset.url,
-                  alt: asset.suggestedAltText || item.alt,
-                })}
+                onSelectAsset={(asset) => upd({ ...item, src: asset.url, alt: asset.suggestedAltText || item.alt })}
                 folder="awards"
               />
               <div>
                 <Label>Alt Text</Label>
                 <Input value={item.alt} onChange={(e) => upd({ ...item, alt: e.target.value })} />
+              </div>
+            </div>
+          )}
+        />
+
+        <h4 className="font-medium pt-2">Feature Columns (icon + title)</h4>
+        <ArrayEditor
+          items={awards.features ?? []}
+          onChange={(items) => set({ features: items })}
+          itemLabel="Feature"
+          newItem={() => ({ icon: "", iconAlt: "", title: "" })}
+          renderItem={(item, _, upd) => (
+            <div className="grid gap-3">
+              <ImageField
+                label="Icon Image"
+                value={item.icon}
+                onChange={(url) => upd({ ...item, icon: url })}
+                folder="awards"
+              />
+              <div>
+                <Label>Icon Alt Text</Label>
+                <Input value={item.iconAlt || ""} onChange={(e) => upd({ ...item, iconAlt: e.target.value })} />
+              </div>
+              <div>
+                <Label>Title (uppercase)</Label>
+                <Input value={item.title} onChange={(e) => upd({ ...item, title: e.target.value })} placeholder="SOLUTIONS-FOCUSED REPRESENTATION" />
               </div>
             </div>
           )}

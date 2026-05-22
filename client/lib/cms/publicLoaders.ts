@@ -523,6 +523,7 @@ export function mergeHomeContentWithDefaults(cmsContent: Partial<HomePageContent
       ...defaults.awards,
       ...cmsContent.awards,
       logos: cmsContent.awards?.logos?.length ? cmsContent.awards.logos : defaults.awards.logos,
+      features: cmsContent.awards?.features?.length ? cmsContent.awards.features : defaults.awards.features,
     },
     testimonials: {
       ...defaults.testimonials,
