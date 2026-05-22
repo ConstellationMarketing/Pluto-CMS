@@ -1,4 +1,5 @@
 import type { HomePageContent } from "@site/lib/cms/homePageTypes";
+import { defaultHomeContent } from "@site/lib/cms/homePageTypes";
 import { Section, ArrayEditor, ImageField, RichTextField, HeadingField, Input, Label } from "./EditorShared";
 import { Textarea } from "@/components/ui/textarea";
 
@@ -541,7 +542,7 @@ function AwardsSection({ content, update }: SectionProps) {
 
         <h4 className="font-medium pt-2">Award Logos (full-width row)</h4>
         <ArrayEditor
-          items={awards.logos ?? []}
+          items={awards.logos?.length ? awards.logos : defaultHomeContent.awards.logos}
           onChange={(items) => set({ logos: items })}
           itemLabel="Logo"
           newItem={() => ({ src: "", alt: "" })}
@@ -566,7 +567,7 @@ function AwardsSection({ content, update }: SectionProps) {
 
         <h4 className="font-medium pt-2">Feature Columns (icon + title)</h4>
         <ArrayEditor
-          items={awards.features ?? []}
+          items={awards.features?.length ? awards.features : defaultHomeContent.awards.features}
           onChange={(items) => set({ features: items })}
           itemLabel="Feature"
           newItem={() => ({ icon: "", iconAlt: "", title: "" })}
