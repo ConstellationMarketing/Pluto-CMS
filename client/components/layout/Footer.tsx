@@ -41,7 +41,6 @@ export default function Footer() {
     <footer
       style={{
         backgroundColor: "rgb(29, 129, 128)",
-        paddingBottom: "54px",
         position: "relative",
         fontFamily: "Outfit, Helvetica, Arial, sans-serif",
       }}
