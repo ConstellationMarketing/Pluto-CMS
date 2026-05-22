@@ -81,6 +81,8 @@ export interface SiteSettings {
   footerTaglineHtml: string;
 
   // Footer Layout
+  footerLogoUrl: string;
+  footerLogoAlt: string;
   footerBgImage: string;
   footerFormHeadingLight: string;
   footerFormHeadingBold: string;
@@ -132,6 +134,8 @@ export interface SiteSettingsRow {
   social_links: SocialLink[];
   copyright_text: string | null;
   footer_tagline_html: string | null;
+  footer_logo_url: string | null;
+  footer_logo_alt: string | null;
   footer_bg_image: string | null;
   footer_form_heading_light: string | null;
   footer_form_heading_bold: string | null;
@@ -190,6 +194,8 @@ export const DEFAULT_SITE_SETTINGS: SiteSettings = {
   ],
   copyrightText: "",
   footerTaglineHtml: "",
+  footerLogoUrl: "",
+  footerLogoAlt: "",
   footerBgImage: "",
   footerFormHeadingLight: "",
   footerFormHeadingBold: "",
@@ -249,6 +255,8 @@ export function rowToSiteSettings(row: SiteSettingsRow): SiteSettings {
       : DEFAULT_SITE_SETTINGS.socialLinks,
     copyrightText: row.copyright_text || DEFAULT_SITE_SETTINGS.copyrightText,
     footerTaglineHtml: row.footer_tagline_html || DEFAULT_SITE_SETTINGS.footerTaglineHtml,
+    footerLogoUrl: row.footer_logo_url || DEFAULT_SITE_SETTINGS.footerLogoUrl,
+    footerLogoAlt: row.footer_logo_alt || DEFAULT_SITE_SETTINGS.footerLogoAlt,
     footerBgImage: row.footer_bg_image || DEFAULT_SITE_SETTINGS.footerBgImage,
     footerFormHeadingLight: row.footer_form_heading_light || DEFAULT_SITE_SETTINGS.footerFormHeadingLight,
     footerFormHeadingBold: row.footer_form_heading_bold || DEFAULT_SITE_SETTINGS.footerFormHeadingBold,
@@ -298,6 +306,8 @@ export function siteSettingsToRow(
     social_links: settings.socialLinks,
     copyright_text: settings.copyrightText,
     footer_tagline_html: settings.footerTaglineHtml || null,
+    ...(settings.footerLogoUrl ? { footer_logo_url: settings.footerLogoUrl } : {}),
+    ...(settings.footerLogoAlt ? { footer_logo_alt: settings.footerLogoAlt } : {}),
     ...(settings.footerBgImage ? { footer_bg_image: settings.footerBgImage } : {}),
     ...(settings.footerFormHeadingLight ? { footer_form_heading_light: settings.footerFormHeadingLight } : {}),
     ...(settings.footerFormHeadingBold ? { footer_form_heading_bold: settings.footerFormHeadingBold } : {}),

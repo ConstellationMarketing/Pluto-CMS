@@ -49,6 +49,8 @@ const baseSettings: SiteSettings = {
   footerResourcesHeading: "",
   footerPracticeAreasHeading: "",
   footerTaglineHtml: "",
+  footerLogoUrl: "",
+  footerLogoAlt: "",
   footerBgImage: "",
   footerFormHeadingLight: "",
   footerFormHeadingBold: "",

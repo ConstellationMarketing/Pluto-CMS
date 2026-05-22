@@ -796,6 +796,38 @@ export default function AdminSiteSettings() {
             </CardContent>
           </Card>
 
+          {/* Footer Logo */}
+          <Card>
+            <CardHeader>
+              <CardTitle>Footer Logo</CardTitle>
+              <CardDescription>
+                Separate logo for the footer (if different from the header logo)
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="space-y-2">
+                <Label>Footer Logo Image</Label>
+                <ImageUploader
+                  value={settings.footerLogoUrl}
+                  onChange={(url) => updateSettings({ footerLogoUrl: url })}
+                  folder="site/logos"
+                  accept="image/*"
+                  placeholder="Upload or choose a footer logo"
+                  helperText="Leave empty to use the same logo as the header."
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="footerLogoAlt">Footer Logo Alt Text</Label>
+                <Input
+                  id="footerLogoAlt"
+                  value={settings.footerLogoAlt}
+                  onChange={(e) => updateSettings({ footerLogoAlt: e.target.value })}
+                  placeholder="Logo alt text"
+                />
+              </div>
+            </CardContent>
+          </Card>
+
           {/* Contact Form Box */}
           <Card>
             <CardHeader>

@@ -7,8 +7,8 @@ import ContactForm from "@site/components/home/ContactForm";
 export default function Footer() {
   const { settings } = useSiteSettings();
 
-  const logoUrl = settings.logoUrl?.trim() || "";
-  const logoAlt = settings.logoAlt?.trim() || settings.siteName?.trim() || "Logo";
+  const logoUrl = settings.footerLogoUrl?.trim() || settings.logoUrl?.trim() || "";
+  const logoAlt = settings.footerLogoAlt?.trim() || settings.logoAlt?.trim() || settings.siteName?.trim() || "Logo";
   const phoneNumber = settings.phoneNumber?.trim() || "";
   const phoneDisplay = settings.phoneDisplay?.trim() || "404-555-5555";
   const phoneLabel = settings.phoneAvailability?.trim() || "Call For A Consultation";

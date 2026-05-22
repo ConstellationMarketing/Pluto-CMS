@@ -46,6 +46,8 @@ export interface SiteSettings {
   footerResourcesHeading: string;
   footerPracticeAreasHeading: string;
   footerTaglineHtml: string;
+  footerLogoUrl: string;
+  footerLogoAlt: string;
   footerBgImage: string;
   footerFormHeadingLight: string;
   footerFormHeadingBold: string;
@@ -178,6 +180,8 @@ interface SiteSettingsRow {
   footer_resources_heading?: string | null;
   footer_practice_areas_heading?: string | null;
   footer_tagline_html?: string | null;
+  footer_logo_url?: string | null;
+  footer_logo_alt?: string | null;
   footer_bg_image?: string | null;
   footer_form_heading_light?: string | null;
   footer_form_heading_bold?: string | null;
@@ -228,6 +232,8 @@ export const DEFAULT_SITE_SETTINGS: SiteSettings = {
   footerResourcesHeading: "",
   footerPracticeAreasHeading: "",
   footerTaglineHtml: "",
+  footerLogoUrl: "",
+  footerLogoAlt: "",
   footerBgImage: "",
   footerFormHeadingLight: "",
   footerFormHeadingBold: "",
@@ -478,6 +484,8 @@ export function shapeSiteSettings(row?: SiteSettingsRow | null): SiteSettings {
     footerResourcesHeading: row.footer_resources_heading || DEFAULT_SITE_SETTINGS.footerResourcesHeading,
     footerPracticeAreasHeading: row.footer_practice_areas_heading || DEFAULT_SITE_SETTINGS.footerPracticeAreasHeading,
     footerTaglineHtml: row.footer_tagline_html || DEFAULT_SITE_SETTINGS.footerTaglineHtml,
+    footerLogoUrl: row.footer_logo_url || DEFAULT_SITE_SETTINGS.footerLogoUrl,
+    footerLogoAlt: row.footer_logo_alt || DEFAULT_SITE_SETTINGS.footerLogoAlt,
     footerBgImage: row.footer_bg_image || DEFAULT_SITE_SETTINGS.footerBgImage,
     footerFormHeadingLight: row.footer_form_heading_light || DEFAULT_SITE_SETTINGS.footerFormHeadingLight,
     footerFormHeadingBold: row.footer_form_heading_bold || DEFAULT_SITE_SETTINGS.footerFormHeadingBold,
