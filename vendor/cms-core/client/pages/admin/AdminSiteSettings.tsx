@@ -983,11 +983,41 @@ export default function AdminSiteSettings() {
             </CardContent>
           </Card>
 
+          {/* Address Column */}
+          <Card>
+            <CardHeader>
+              <CardTitle>Address Column</CardTitle>
+              <CardDescription>
+                Address displayed in the footer with a map pin icon (3rd column)
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="footerAddressLine1">Address Line 1</Label>
+                <Input
+                  id="footerAddressLine1"
+                  value={settings.addressLine1}
+                  onChange={(e) => updateSettings({ addressLine1: e.target.value })}
+                  placeholder="1237 Lorem Dummy. NE, Suite A-1"
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="footerAddressLine2">Address Line 2</Label>
+                <Input
+                  id="footerAddressLine2"
+                  value={settings.addressLine2}
+                  onChange={(e) => updateSettings({ addressLine2: e.target.value })}
+                  placeholder="City, State, ZIP"
+                />
+              </div>
+            </CardContent>
+          </Card>
+
           <Card>
             <CardHeader>
               <CardTitle>Map Embed</CardTitle>
               <CardDescription>
-                Google Maps embed URL for the footer map
+                Google Maps embed URL for the footer map (4th column)
               </CardDescription>
             </CardHeader>
             <CardContent>
