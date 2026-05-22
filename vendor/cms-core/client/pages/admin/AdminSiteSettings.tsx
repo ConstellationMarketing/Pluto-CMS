@@ -783,12 +783,14 @@ export default function AdminSiteSettings() {
             </CardHeader>
             <CardContent>
               <div className="space-y-2">
-                <Label htmlFor="footerBgImage">Background Image URL</Label>
-                <Input
-                  id="footerBgImage"
+                <Label>Background Image</Label>
+                <ImageUploader
                   value={settings.footerBgImage}
-                  onChange={(e) => updateSettings({ footerBgImage: e.target.value })}
-                  placeholder="https://..."
+                  onChange={(url) => updateSettings({ footerBgImage: url })}
+                  folder="site/footer"
+                  accept="image/*"
+                  placeholder="Upload or choose a footer background image"
+                  helperText="Decorative image shown in the top-right corner of the footer."
                 />
               </div>
             </CardContent>
