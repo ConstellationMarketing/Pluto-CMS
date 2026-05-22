@@ -46,7 +46,7 @@ export default function Index() {
 
       {/* Hero Section */}
       <section
-        className="relative flex items-center justify-center w-full min-h-[1225px] pt-[80px]"
+        className="relative flex items-center justify-center w-full min-h-[600px] md:min-h-[900px] lg:min-h-[1225px] pt-[80px]"
         style={{
           backgroundImage: heroContent.backgroundImage
             ? `linear-gradient(rgba(0,0,0,${heroContent.backgroundOverlayOpacity ?? 0.4}), rgba(0,0,0,${heroContent.backgroundOverlayOpacity ?? 0.4})), url(${heroContent.backgroundImage})`
@@ -56,20 +56,20 @@ export default function Index() {
           backgroundRepeat: "no-repeat",
         }}
       >
-        <div className="max-w-[1280px] mx-auto px-[32px] w-full">
+        <div className="max-w-[1280px] mx-auto px-[16px] md:px-[32px] w-full">
           {/* Two-column grid - right col empty as per layout */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-[48px] items-center">
             {/* Left column */}
             <div>
               {/* Tagline: TRUSTED TESTED READY - H1 */}
-              <h1 className="mb-[32px] leading-none">
-                <span className="block font-outfit text-[96px] font-light leading-[96px] text-white">
+              <h1 className="mb-[24px] md:mb-[32px] leading-none">
+                <span className="block font-outfit text-[48px] sm:text-[64px] md:text-[80px] lg:text-[96px] font-light leading-none text-white">
                   {heroContent.taglineWord1 || "TRUSTED"}
                 </span>
-                <span className="block font-outfit text-[128px] font-semibold leading-[128px] text-white">
+                <span className="block font-outfit text-[56px] sm:text-[80px] md:text-[100px] lg:text-[128px] font-semibold leading-none text-white">
                   {heroContent.taglineWord2 || "TESTED"}
                 </span>
-                <span className="block font-outfit text-[96px] font-light leading-[96px] text-white">
+                <span className="block font-outfit text-[48px] sm:text-[64px] md:text-[80px] lg:text-[96px] font-light leading-none text-white">
                   {heroContent.taglineWord3 || "READY"}
                 </span>
               </h1>
@@ -77,7 +77,7 @@ export default function Index() {
               {/* CTA Button - always shown with default text */}
               <a
                 href={heroContent.ctaUrl || "/contact"}
-                className="inline-flex items-center gap-[12px] bg-[#ee530e] text-white font-outfit font-semibold text-[18px] px-[32px] py-[16px] mb-[32px] hover:opacity-90 transition-opacity"
+                className="inline-flex items-center gap-[8px] md:gap-[12px] bg-[#ee530e] text-white font-outfit font-semibold text-[14px] md:text-[18px] px-[20px] md:px-[32px] py-[12px] md:py-[16px] mb-[24px] md:mb-[32px] hover:opacity-90 transition-opacity"
               >
                 {heroContent.ctaText || "SCHEDULE A CONSULTATION"}
                 <ArrowRight className="w-5 h-5" />
@@ -91,7 +91,7 @@ export default function Index() {
                 />
                 {heroContent.h1Title && (
                   <p
-                    className="text-white font-light text-[36px] leading-[40px]"
+                    className="text-white font-light text-[20px] md:text-[28px] lg:text-[36px] leading-tight md:leading-[40px]"
                     style={{ fontFamily: "'Crimson Pro', Georgia, serif" }}
                   >
                     {heroContent.h1Title}

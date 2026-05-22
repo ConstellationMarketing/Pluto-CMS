@@ -45,75 +45,31 @@ export default function Footer() {
         fontFamily: "Outfit, Helvetica, Arial, sans-serif",
       }}
     >
-      {/* Decorative background image - top right absolute */}
-      <div
-        style={{
-          maxWidth: "2560px",
-          overflowX: "hidden",
-          overflowY: "hidden",
-          pointerEvents: "none",
-          position: "absolute",
-          right: 0,
-          top: 0,
-          width: "100%",
-        }}
-      >
-        <div style={{ display: "flex", justifyContent: "flex-end", pointerEvents: "none" }}>
+      {/* Decorative background image - top right absolute, hidden on mobile */}
+      <div className="absolute top-0 right-0 w-full overflow-hidden pointer-events-none hidden md:block">
+        <div className="flex justify-end pointer-events-none">
           <img
             src={bgImage}
             alt=""
-            style={{ width: "1724px", maxWidth: "100%", display: "inline", verticalAlign: "middle" }}
+            style={{ width: "1724px", maxWidth: "100%" }}
             loading="lazy"
             decoding="async"
           />
         </div>
       </div>
 
-      {/* Top Section: Form box (left) + CTA box (right) */}
-      <div
-        style={{
-          alignItems: "flex-end",
-          display: "flex",
-          marginLeft: "auto",
-          marginRight: "auto",
-          maxWidth: "2560px",
-          position: "relative",
-          width: "90%",
-        }}
-      >
+      {/* Top Section: Form box + CTA box — stack on mobile, side-by-side on desktop */}
+      <div className="relative mx-auto w-[95%] lg:w-[90%] max-w-[2560px] flex flex-col lg:flex-row lg:items-end">
         {/* Left: Contact Form Box */}
         <div
-          style={{
-            backgroundColor: "rgb(39, 71, 86)",
-            marginRight: "5.5%",
-            padding: "40px",
-            position: "relative",
-            width: "36.7%",
-            zIndex: 2,
-          }}
+          className="w-full lg:w-[36.7%] lg:mr-[5.5%] p-[24px] md:p-[40px] relative z-[2]"
+          style={{ backgroundColor: "rgb(39, 71, 86)" }}
         >
-          <div style={{ marginBottom: "20px", textAlign: "center" }}>
-            <p
-              style={{
-                color: "rgb(255, 255, 255)",
-                fontSize: "32px",
-                fontWeight: 300,
-                lineHeight: "38.4px",
-                margin: 0,
-              }}
-            >
+          <div className="mb-[20px] text-center">
+            <p className="text-white font-light text-[22px] md:text-[32px] leading-tight m-0">
               {formHeadingLight}
             </p>
-            <h2
-              style={{
-                color: "rgb(255, 255, 255)",
-                fontSize: "59.136px",
-                fontWeight: 300,
-                lineHeight: "59.136px",
-                paddingBottom: "10px",
-                margin: 0,
-              }}
-            >
+            <h2 className="text-white font-light text-[36px] md:text-[50px] lg:text-[59px] leading-tight pb-[10px] m-0">
               {formHeadingBold}
             </h2>
           </div>
@@ -121,51 +77,22 @@ export default function Footer() {
         </div>
 
         {/* Right: CTA Box */}
-        <div
-          style={{
-            paddingBottom: "32px",
-            paddingRight: "10%",
-            position: "relative",
-            width: "57.8%",
-            zIndex: 2,
-          }}
-        >
+        <div className="w-full lg:w-[57.8%] pb-0 lg:pb-[32px] lg:pr-[10%] relative z-[2]">
           <div
-            style={{
-              backgroundColor: "rgb(39, 71, 86)",
-              maxWidth: "630px",
-              padding: "32px",
-              position: "relative",
-              width: "100%",
-            }}
+            className="w-full max-w-[630px] p-[24px] md:p-[32px]"
+            style={{ backgroundColor: "rgb(39, 71, 86)" }}
           >
-            <div style={{ textAlign: "center" }}>
-              <h2
-                style={{
-                  color: "rgb(255, 255, 255)",
-                  fontSize: "43.1616px",
-                  fontWeight: 300,
-                  lineHeight: "43.1616px",
-                  paddingBottom: "10px",
-                  margin: 0,
-                }}
-              >
+            <div className="text-center">
+              <h2 className="text-white font-light text-[28px] md:text-[36px] lg:text-[43px] leading-tight pb-[10px] m-0">
                 {ctaHeadingLight}{" "}
-                <strong style={{ fontWeight: 700 }}>{ctaHeadingBold}</strong>
+                <strong className="font-bold">{ctaHeadingBold}</strong>
               </h2>
             </div>
-            <div style={{ marginTop: "16px", textAlign: "center" }}>
+            <div className="mt-[16px] text-center">
               <Link
                 to={ctaButtonUrl}
-                style={{
-                  backgroundColor: "rgb(238, 83, 14)",
-                  color: "rgb(255, 255, 255)",
-                  display: "inline-block",
-                  fontSize: "24px",
-                  lineHeight: "40.8px",
-                  padding: "15px 55px 15px 30px",
-                  textDecoration: "none",
-                }}
+                className="inline-block text-white text-[16px] md:text-[20px] lg:text-[24px] no-underline px-[20px] md:px-[30px] py-[12px] md:py-[15px]"
+                style={{ backgroundColor: "rgb(238, 83, 14)" }}
               >
                 {ctaButtonText}
               </Link>
@@ -174,154 +101,87 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Bottom Section: 4 columns */}
-      <div
-        style={{
-          display: "flex",
-          gap: 0,
-          marginLeft: "auto",
-          marginRight: "auto",
-          maxWidth: "2560px",
-          paddingTop: "80px",
-          paddingBottom: "54px",
-          position: "relative",
-          width: "80%",
-        }}
-      >
+      {/* Bottom Section: 4 columns — stack on mobile, 2-col on sm, 4-col on lg */}
+      <div className="relative mx-auto w-[90%] max-w-[2560px] pt-[40px] md:pt-[60px] lg:pt-[80px] pb-[40px] md:pb-[54px] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[32px] lg:gap-0">
+
         {/* Column 1: Logo + Phone */}
-        <div style={{ marginRight: "5.5%", order: 1, position: "relative", width: "20.875%", zIndex: 2 }}>
+        <div className="relative z-[2] lg:mr-[5.5%]">
           {logoUrl ? (
-            <div style={{ marginBottom: "13%", lineHeight: 0 }}>
+            <div className="mb-[20px]">
               <Link to="/">
-                <img src={logoUrl} alt={logoAlt} style={{ maxWidth: "100%", width: "290px" }} />
+                <img src={logoUrl} alt={logoAlt} className="max-w-full w-[220px] md:w-[290px]" />
               </Link>
             </div>
           ) : null}
-          <a href={telHref} style={{ textDecoration: "none" }}>
-            <div style={{ display: "table", width: "100%", maxWidth: "550px" }}>
-              <div style={{ display: "table-cell", width: "48px", lineHeight: 0, paddingTop: "10px", verticalAlign: "top" }}>
-                <img
-                  src="https://design-pluto.netlify.app/images/phone-icon-footer.png"
-                  alt=""
-                  width={48}
-                  height={48}
-                  style={{ width: "48px", height: "48px" }}
-                />
-              </div>
-              <div style={{ display: "table-cell", paddingLeft: "15px", verticalAlign: "top" }}>
-                <h4
-                  style={{
-                    color: "rgb(255, 255, 255)",
-                    fontSize: "20px",
-                    fontWeight: 300,
-                    lineHeight: "28px",
-                    paddingBottom: "10px",
-                    margin: 0,
-                  }}
-                >
-                  {phoneLabel}
-                </h4>
-                <p
-                  style={{
-                    color: "rgb(255, 255, 255)",
-                    fontFamily: '"Crimson Pro", Georgia, serif',
-                    fontSize: "35px",
-                    lineHeight: "28px",
-                    margin: 0,
-                  }}
-                >
-                  {phoneDisplay}
-                </p>
-              </div>
+          <a href={telHref} className="no-underline flex items-start gap-[12px]">
+            <img
+              src="https://design-pluto.netlify.app/images/phone-icon-footer.png"
+              alt=""
+              width={48}
+              height={48}
+              className="w-[40px] h-[40px] md:w-[48px] md:h-[48px] mt-[4px] shrink-0"
+            />
+            <div>
+              <h4 className="text-white font-light text-[16px] md:text-[20px] leading-[28px] pb-[4px] m-0">
+                {phoneLabel}
+              </h4>
+              <p
+                className="text-white text-[24px] md:text-[30px] lg:text-[35px] leading-tight m-0"
+                style={{ fontFamily: '"Crimson Pro", Georgia, serif' }}
+              >
+                {phoneDisplay}
+              </p>
             </div>
           </a>
         </div>
 
         {/* Column 2: Quick Links */}
-        <div style={{ marginRight: "5.5%", order: 2, position: "relative", width: "20.875%", zIndex: 2 }}>
-          <h3
-            style={{
-              color: "rgb(255, 255, 255)",
-              fontSize: "36px",
-              fontWeight: 300,
-              lineHeight: "36px",
-              paddingBottom: "10px",
-              margin: 0,
-            }}
-          >
+        <div className="relative z-[2] lg:mr-[5.5%]">
+          <h3 className="text-white font-light text-[24px] md:text-[30px] lg:text-[36px] leading-tight pb-[10px] m-0">
             {quickLinksHeading}
           </h3>
-          <nav style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-            {quickLinks.length > 0 ? (
-              quickLinks.map((link) => (
-                <Link
-                  key={link.label}
-                  to={link.href || "#"}
-                  style={{
-                    color: "rgb(255, 255, 255)",
-                    fontSize: "22px",
-                    fontWeight: 300,
-                    lineHeight: "33px",
-                    textDecoration: "none",
-                  }}
-                >
-                  {link.label}
-                </Link>
-              ))
-            ) : null}
+          <nav className="flex flex-col gap-[8px]">
+            {quickLinks.map((link) => (
+              <Link
+                key={link.label}
+                to={link.href || "#"}
+                className="text-white font-light text-[18px] md:text-[22px] leading-[33px] no-underline hover:opacity-70 transition-opacity"
+              >
+                {link.label}
+              </Link>
+            ))}
           </nav>
         </div>
 
         {/* Column 3: Address */}
-        <div style={{ marginRight: "5.5%", order: 3, position: "relative", width: "20.875%", zIndex: 2 }}>
+        <div className="relative z-[2] lg:mr-[5.5%]">
           {(addressLine1 || addressLine2) ? (
             <>
-              <div style={{ marginBottom: "20px" }}>
-                <MapPin
-                  style={{ color: "rgb(255, 255, 255)", width: "43px", height: "43px" }}
-                />
+              <div className="mb-[16px]">
+                <MapPin className="text-white w-[36px] h-[36px] md:w-[43px] md:h-[43px]" />
               </div>
-              <p
-                style={{
-                  color: "rgb(255, 255, 255)",
-                  fontSize: "22px",
-                  fontWeight: 300,
-                  lineHeight: "33px",
-                  margin: 0,
-                }}
-              >
-                <strong style={{ fontWeight: 700 }}>Address</strong>
+              <p className="text-white font-light text-[18px] md:text-[22px] leading-[33px] m-0">
+                <strong className="font-bold">Address</strong>
                 <br />
                 {addressLine1}
-                {addressLine2 ? (
-                  <>
-                    <br />
-                    {addressLine2}
-                  </>
-                ) : null}
+                {addressLine2 ? (<><br />{addressLine2}</>) : null}
               </p>
             </>
           ) : null}
         </div>
 
         {/* Column 4: Map */}
-        <div style={{ order: 4, position: "relative", width: "20.875%", zIndex: 2 }}>
+        <div className="relative z-[2]">
           {mapEmbedUrl ? (
             <iframe
               src={mapEmbedUrl}
               width="100%"
-              height="300"
+              height="250"
               allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
               title="Location Map"
-              style={{
-                borderRadius: "10px",
-                border: "none",
-                width: "100%",
-                height: "300px",
-                verticalAlign: "middle",
-              }}
+              className="w-full h-[250px] rounded-[10px] border-none align-middle"
             />
           ) : null}
         </div>
