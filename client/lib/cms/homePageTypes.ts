@@ -80,6 +80,8 @@ export interface PracticeAreaItem {
   image: string;
   imageAlt: string;
   link: string;
+  learnMoreText?: string;  // default "LEARN MORE"
+  featured?: boolean;      // featured card gets teal gradient overlay (middle card style)
 }
 
 export interface PracticeAreasIntroContent {

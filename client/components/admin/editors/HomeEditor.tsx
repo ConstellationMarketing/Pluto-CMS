@@ -470,7 +470,7 @@ function PracticeAreasItemsSection({ content, update }: SectionProps) {
         items={content.practiceAreas}
         onChange={(items) => update("practiceAreas", items)}
         itemLabel="Practice Area"
-        newItem={() => ({ title: "", image: "", imageAlt: "", link: "/practice-areas" })}
+        newItem={() => ({ title: "", image: "", imageAlt: "", link: "/practice-areas", learnMoreText: "LEARN MORE", featured: false })}
         renderItem={(item, _, upd) => (
           <div className="grid gap-3">
             <div>
@@ -497,6 +497,22 @@ function PracticeAreasItemsSection({ content, update }: SectionProps) {
             <div>
               <Label>Link</Label>
               <Input value={item.link} onChange={(e) => upd({ ...item, link: e.target.value })} />
+            </div>
+            <div>
+              <Label>Button Text (default: LEARN MORE)</Label>
+              <Input value={item.learnMoreText || ""} onChange={(e) => upd({ ...item, learnMoreText: e.target.value })} placeholder="LEARN MORE" />
+            </div>
+            <div className="flex items-center gap-2 pt-1">
+              <input
+                type="checkbox"
+                id={`featured-${item.title}`}
+                checked={item.featured ?? false}
+                onChange={(e) => upd({ ...item, featured: e.target.checked })}
+                className="h-4 w-4 cursor-pointer"
+              />
+              <Label htmlFor={`featured-${item.title}`} className="cursor-pointer">
+                Featured card (teal gradient overlay — middle card style)
+              </Label>
             </div>
           </div>
         )}

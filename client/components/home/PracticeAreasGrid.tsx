@@ -43,9 +43,9 @@ export default function PracticeAreasGrid({ areas }: Props) {
       >
         <div style={{ display: "flex", gap: "3%" }}>
           {items.map((area, index) => {
-            // Cards 0, 2, 4... are offset 100px down; card 1, 4, 7... (middle of each triplet) has teal gradient
-            const isOffset = index % 3 !== 1;
-            const isTeal = index % 3 === 1;
+            // If item has explicit featured flag use it, otherwise apply pattern: index % 3 === 1 gets teal gradient
+            const isTeal = area.featured ?? (index % 3 === 1);
+            const isOffset = !isTeal;
             const isHovered = hovered === index;
 
             const bgImage = isTeal
@@ -130,7 +130,7 @@ export default function PracticeAreasGrid({ areas }: Props) {
                         wordBreak: "break-word",
                       }}
                     >
-                      LEARN MORE
+                      {area.learnMoreText || "LEARN MORE"}
                     </p>
                   </div>
                 </Link>
