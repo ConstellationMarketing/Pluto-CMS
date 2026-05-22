@@ -467,7 +467,7 @@ function PracticeAreasItemsSection({ content, update }: SectionProps) {
   return (
     <Section title="Practice Areas Grid" defaultOpen={false}>
       <ArrayEditor
-        items={content.practiceAreas}
+        items={content.practiceAreas ?? []}
         onChange={(items) => update("practiceAreas", items)}
         itemLabel="Practice Area"
         newItem={() => ({ title: "", image: "", imageAlt: "", link: "/practice-areas", learnMoreText: "LEARN MORE", featured: false })}

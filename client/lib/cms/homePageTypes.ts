@@ -260,7 +260,11 @@ export const defaultHomeContent: HomePageContent = {
     buttonTextLine1: "",
     buttonTextLine2: "",
   },
-  practiceAreas: [],
+  practiceAreas: [
+    { title: "Practice Area", image: "https://design-pluto.netlify.app/images/practice-1.jpg", imageAlt: "Practice Area 1", link: "/practice-areas", learnMoreText: "LEARN MORE", featured: false },
+    { title: "Practice Area", image: "https://design-pluto.netlify.app/images/practice-2.jpg", imageAlt: "Practice Area 2", link: "/practice-areas", learnMoreText: "LEARN MORE", featured: true },
+    { title: "Practice Area", image: "https://design-pluto.netlify.app/images/practice-3.jpg", imageAlt: "Practice Area 3", link: "/practice-areas", learnMoreText: "LEARN MORE", featured: false },
+  ],
   awards: {
     sectionLabel: "",
     heading: "",
