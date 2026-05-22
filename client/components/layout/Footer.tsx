@@ -331,23 +331,36 @@ export default function Footer() {
       {copyrightText ? (
         <div
           style={{
-            borderTop: "1px solid #838383",
-            marginTop: "40px",
-            padding: "10px 30px",
-            textAlign: "center",
+            backgroundColor: "rgb(39, 71, 86)",
+            position: "relative",
           }}
         >
+          <div
+            style={{
+              marginLeft: "auto",
+              marginRight: "auto",
+              maxWidth: "1080px",
+              paddingBottom: "40px",
+              paddingTop: "15px",
+              width: "80%",
+            }}
+          >
           <p
             style={{
               color: "rgb(255, 255, 255)",
-              fontSize: "18px",
+              fontFamily: "Outfit, Helvetica, Arial, sans-serif",
+              fontSize: "20px",
               fontWeight: 300,
-              lineHeight: "27px",
+              lineHeight: "30px",
               margin: 0,
+              textAlign: "center",
+              overflowWrap: "anywhere",
+              wordBreak: "break-word",
             }}
           >
             {copyrightText}
           </p>
+          </div>
         </div>
       ) : null}
     </footer>
