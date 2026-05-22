@@ -183,6 +183,7 @@ export default function Footer() {
           marginRight: "auto",
           maxWidth: "2560px",
           paddingTop: "80px",
+          paddingBottom: "54px",
           position: "relative",
           width: "80%",
         }}
