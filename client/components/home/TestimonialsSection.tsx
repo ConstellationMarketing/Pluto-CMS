@@ -1,154 +1,313 @@
 import { useState } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import type { TestimonialsContent, TestimonialItem } from "@site/lib/cms/homePageTypes";
-import RichText from "@site/components/shared/RichText";
-import DynamicHeading from "@site/components/shared/DynamicHeading";
+import { ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
+import type { TestimonialsContent, PracticeAreasIntroContent } from "@site/lib/cms/homePageTypes";
 
-interface TestimonialsSectionProps {
-  content?: TestimonialsContent;
+interface Props {
+  content: TestimonialsContent;
+  practiceAreasIntro?: PracticeAreasIntroContent;
   headingTag?: string;
 }
 
-export default function TestimonialsSection({
-  content,
-  headingTag,
-}: TestimonialsSectionProps) {
+export default function TestimonialsSection({ content, practiceAreasIntro }: Props) {
   const [activeSlide, setActiveSlide] = useState(0);
+  const items = content?.items ?? [];
+  const total = items.length;
 
-  // Guard: if no testimonial items, don't render
-  if (!content || !content.items || content.items.length === 0) {
-    return null;
-  }
-
-  const data = content;
-  const testimonials = data.items;
-
-  const nextSlide = () => {
-    setActiveSlide((prev) => (prev + 1) % testimonials.length);
-  };
-
-  const prevSlide = () => {
-    setActiveSlide(
-      (prev) => (prev - 1 + testimonials.length) % testimonials.length,
-    );
-  };
-
-  const goToSlide = (index: number) => {
-    setActiveSlide(index);
-  };
+  const goTo = (i: number) => setActiveSlide((i + total) % total);
 
   return (
-    <div className="bg-white py-[30px] md:py-[54px]">
-      {/* Header Section */}
-      <div className="max-w-[1080px] mx-auto w-[95%] md:w-[85%] lg:w-[80%] py-[20px] md:py-[27px]">
-        {data.sectionLabel && (
-          <div className="text-center mb-[10px]">
-            <DynamicHeading
-              tag={headingTag}
-              defaultTag="h2"
-              className="font-outfit text-[18px] md:text-[24px] leading-tight md:leading-[36px]"
-              style={{ color: "#6b8d0c" }}
+    <section
+      style={{
+        backgroundColor: "rgb(255, 255, 255)",
+        backgroundImage: content.backgroundImage ? `url(${content.backgroundImage})` : undefined,
+        backgroundPosition: "50% 100%",
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "contain",
+        paddingTop: "56px",
+        position: "relative",
+        fontFamily: "Outfit, Helvetica, Arial, sans-serif",
+        fontSize: "16px",
+        fontWeight: 400,
+        lineHeight: "24px",
+      }}
+    >
+      {/* ── Header: heading + stars ── */}
+      <div
+        style={{
+          marginLeft: "auto",
+          marginRight: "auto",
+          maxWidth: "1080px",
+          paddingBottom: "28px",
+          paddingTop: "28px",
+          width: "80%",
+        }}
+      >
+        <div style={{ marginBottom: "2.75%" }}>
+          <div style={{ textAlign: "center" }}>
+            <h2
+              style={{
+                fontSize: "59.136px",
+                fontWeight: 300,
+                lineHeight: "59.136px",
+                overflowWrap: "anywhere",
+                paddingBottom: "10px",
+                textAlign: "center",
+                wordBreak: "break-word",
+              }}
             >
-              {data.sectionLabel}
-            </DynamicHeading>
-          </div>
-        )}
-        {data.heading && (
-          <div className="text-center">
-            <p className="font-playfair text-[32px] md:text-[48px] lg:text-[54px] leading-tight md:leading-[54px] text-black pb-[10px]">
-              {data.heading}
+              <strong style={{ display: "inline", fontWeight: 700 }}>
+                {content.heading || "Client Reviews & Testimonials"}
+              </strong>
+            </h2>
+            <p
+              style={{
+                color: "rgb(48, 48, 48)",
+                fontFamily: '"Crimson Pro", Georgia, serif',
+                fontSize: "32px",
+                fontWeight: 300,
+                lineHeight: "38.4px",
+                overflowWrap: "anywhere",
+                textAlign: "center",
+                wordBreak: "break-word",
+              }}
+            >
+              {content.sectionLabel || "OUR CLIENTS STORIES"}
             </p>
           </div>
-        )}
-      </div>
+        </div>
 
-      {/* Content Section */}
-      <div className="max-w-[1360px] mx-auto w-[90%] md:w-[85%] lg:w-[80%] py-[27px] flex flex-col lg:flex-row gap-8 lg:gap-[3%]">
-        {/* Left Side - Image */}
-        {data.backgroundImage && (
-          <div className="lg:w-[48.5%] flex items-center justify-center">
+        {/* Stars image */}
+        {content.starsImage && (
+          <div style={{ textAlign: "center" }}>
             <img
-              src={data.backgroundImage}
-              alt={data.backgroundImageAlt || "Testimonials"}
-              width={609}
-              height={530}
+              decoding="async"
+              width={186}
+              height={34}
+              alt={content.starsImageAlt || "5 Star Rating"}
               loading="lazy"
-              className="max-w-full"
+              src={content.starsImage}
+              style={{ width: "186px", maxWidth: "100%", verticalAlign: "middle", display: "inline" }}
             />
           </div>
         )}
+      </div>
 
-        {/* Right Side - Carousel */}
-        <div className={`${data.backgroundImage ? "lg:w-[48.5%]" : "w-full"} relative group`}>
-          {/* Carousel Container */}
-          <div className="relative min-h-[502px] overflow-hidden">
-            <div
-              className="flex transition-transform duration-500 ease-in-out"
-              style={{ transform: `translateX(-${activeSlide * 100}%)` }}
-            >
-              {testimonials.map((testimonial, index) => (
+      {/* ── Testimonial slider ── */}
+      {total > 0 && (
+        <div
+          style={{
+            marginBottom: "2.75%",
+            marginLeft: "auto",
+            marginRight: "auto",
+            maxWidth: "2560px",
+            width: "80%",
+          }}
+        >
+          {/* Slider track */}
+          <div style={{ overflow: "hidden", position: "relative" }}>
+            <div style={{ backgroundColor: "rgb(255, 255, 255)", paddingLeft: "6%", paddingRight: "6%" }}>
+              <div style={{ alignItems: "center", display: "flex", justifyContent: "center", minHeight: "414.8px" }}>
+                {/* Active slide */}
                 <div
-                  key={index}
-                  className="w-full flex-shrink-0 bg-white bg-[url('/images/backgrounds/quote-bg.png')] bg-no-repeat bg-[position:left_10%_top_10%] px-[6%]"
+                  style={{
+                    paddingBottom: "50px",
+                    paddingLeft: "8%",
+                    paddingRight: "8%",
+                    paddingTop: "50px",
+                    textAlign: "center",
+                    width: "100%",
+                  }}
                 >
-                  <div className="flex items-center min-h-[502px]">
-                    <div className="w-full p-[30px]">
-                      <RichText
-                        html={testimonial.text}
-                        className="font-outfit text-[24px] leading-[31.2px] text-black pb-[10px] text-left"
-                      />
-                      <div className="font-outfit text-[24px] font-semibold text-black text-left">
-                        {testimonial.ratingImage && (
-                          <img
-                            src={testimonial.ratingImage}
-                            alt={testimonial.ratingImageAlt || "Rating"}
-                            width={186}
-                            height={34}
-                            loading="lazy"
-                            className="max-w-full mb-1"
-                          />
-                        )}
-                        <br />
-                        Posted By {testimonial.author}
-                      </div>
-                    </div>
+                  {items[activeSlide]?.itemHeading && (
+                    <h2
+                      style={{
+                        fontSize: "48px",
+                        fontWeight: 600,
+                        lineHeight: "48px",
+                        overflowWrap: "anywhere",
+                        paddingBottom: "10px",
+                        textAlign: "center",
+                        wordBreak: "break-word",
+                      }}
+                    >
+                      {items[activeSlide].itemHeading}
+                    </h2>
+                  )}
+                  <div style={{ fontSize: "22px", lineHeight: "30.8px", marginBottom: "16px", textAlign: "center" }}>
+                    <p style={{ fontSize: "22px", lineHeight: "30.8px", overflowWrap: "anywhere", textAlign: "center", wordBreak: "break-word" }}>
+                      {items[activeSlide]?.text}
+                    </p>
                   </div>
+                  {items[activeSlide]?.author && (
+                    <div style={{ marginTop: "20px", textAlign: "center" }}>
+                      {items[activeSlide].authorUrl ? (
+                        <a
+                          href={items[activeSlide].authorUrl}
+                          style={{
+                            border: "1px solid rgb(0, 0, 0)",
+                            borderRadius: "3px",
+                            cursor: "pointer",
+                            display: "inline-block",
+                            fontFamily: '"Crimson Pro", Georgia, serif',
+                            fontSize: "36px",
+                            fontWeight: 700,
+                            lineHeight: "61.2px",
+                            overflowWrap: "anywhere",
+                            paddingBottom: "10.8px",
+                            paddingLeft: "36px",
+                            paddingRight: "36px",
+                            paddingTop: "10.8px",
+                            textAlign: "center",
+                            wordBreak: "break-word",
+                            textDecoration: "none",
+                            color: "inherit",
+                          }}
+                        >
+                          {items[activeSlide].author}
+                        </a>
+                      ) : (
+                        <span
+                          style={{
+                            border: "1px solid rgb(0, 0, 0)",
+                            borderRadius: "3px",
+                            display: "inline-block",
+                            fontFamily: '"Crimson Pro", Georgia, serif',
+                            fontSize: "36px",
+                            fontWeight: 700,
+                            lineHeight: "61.2px",
+                            paddingBottom: "10.8px",
+                            paddingLeft: "36px",
+                            paddingRight: "36px",
+                            paddingTop: "10.8px",
+                          }}
+                        >
+                          {items[activeSlide].author}
+                        </span>
+                      )}
+                    </div>
+                  )}
                 </div>
-              ))}
+              </div>
             </div>
+
+            {/* Dots */}
+            {total > 1 && (
+              <div
+                style={{
+                  bottom: "20px",
+                  left: "0px",
+                  position: "absolute",
+                  textAlign: "center",
+                  width: "100%",
+                  zIndex: 10,
+                }}
+              >
+                {items.map((_, i) => (
+                  <button
+                    key={i}
+                    aria-label={`Go to testimonial ${i + 1}`}
+                    onClick={() => goTo(i)}
+                    style={{
+                      backgroundColor: "rgb(29, 129, 128)",
+                      borderRadius: "9999px",
+                      cursor: "pointer",
+                      display: "inline-block",
+                      height: "7px",
+                      marginRight: i < total - 1 ? "10px" : "0",
+                      opacity: i === activeSlide ? 1 : 0.5,
+                      transition: "opacity 0.2s",
+                      width: "7px",
+                      border: "1px solid rgb(226, 232, 240)",
+                    }}
+                  />
+                ))}
+              </div>
+            )}
           </div>
 
-          {/* Navigation Buttons */}
-          <button
-            onClick={prevSlide}
-            className="absolute left-2 top-1/2 -translate-y-1/2 text-[rgb(95,99,104)] opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-[100] cursor-pointer bg-white/80 hover:bg-white p-2"
-            aria-label="Previous testimonial"
-          >
-            <ChevronLeft className="w-8 h-8" />
-          </button>
-          <button
-            onClick={nextSlide}
-            className="absolute right-2 top-1/2 -translate-y-1/2 text-[rgb(95,99,104)] opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-[100] cursor-pointer bg-white/80 hover:bg-white p-2"
-            aria-label="Next testimonial"
-          >
-            <ChevronRight className="w-8 h-8" />
-          </button>
-
-          {/* Pagination Dots */}
-          <div className="absolute bottom-[20px] left-0 w-full text-center z-10">
-            {testimonials.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => goToSlide(index)}
-                className={`inline-block w-[7px] h-[7px] bg-brand-accent-dark border border-brand-accent ${
-                  index === activeSlide ? "opacity-100" : "opacity-50"
-                } ${index < testimonials.length - 1 ? "mr-[10px]" : ""} cursor-pointer transition-opacity hover:opacity-100`}
-                aria-label={`Go to testimonial ${index + 1}`}
-              />
-            ))}
+          {/* VIEW ALL button */}
+          <div style={{ marginTop: "32px", textAlign: "center" }}>
+            <Link
+              to={content.viewAllUrl || "/testimonials"}
+              style={{
+                alignItems: "center",
+                backgroundColor: "rgb(238, 83, 14)",
+                border: "1px solid rgb(238, 83, 14)",
+                color: "rgb(255, 255, 255)",
+                cursor: "pointer",
+                display: "inline-flex",
+                fontSize: "24px",
+                gap: "12px",
+                lineHeight: "40.8px",
+                paddingBottom: "15px",
+                paddingLeft: "30px",
+                paddingRight: "30px",
+                paddingTop: "15px",
+                textDecoration: "none",
+                transition: "opacity 0.3s",
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.85")}
+              onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
+            >
+              {content.viewAllText || "VIEW ALL TESTIMONIALS"}
+              <ArrowRight width={20} height={20} aria-hidden="true" style={{ color: "rgb(255,255,255)", flexShrink: 0 }} />
+            </Link>
           </div>
         </div>
-      </div>
-    </div>
+      )}
+
+      {/* ── Practice Areas heading ── */}
+      {practiceAreasIntro && (
+        <div
+          style={{
+            marginLeft: "auto",
+            marginRight: "auto",
+            marginTop: "335px",
+            maxWidth: "1080px",
+            paddingBottom: "56px",
+            paddingTop: "28px",
+            width: "80%",
+          }}
+        >
+          <div style={{ textAlign: "center" }}>
+            <h2
+              style={{
+                fontSize: "59.136px",
+                fontWeight: 300,
+                lineHeight: "59.136px",
+                overflowWrap: "anywhere",
+                paddingBottom: "10px",
+                textAlign: "center",
+                wordBreak: "break-word",
+              }}
+            >
+              {practiceAreasIntro.heading}{" "}
+              {practiceAreasIntro.headingBold && (
+                <strong style={{ display: "inline", fontWeight: 700 }}>
+                  {practiceAreasIntro.headingBold}
+                </strong>
+              )}
+            </h2>
+            {practiceAreasIntro.sectionLabel && (
+              <p
+                style={{
+                  color: "rgb(48, 48, 48)",
+                  fontFamily: '"Crimson Pro", Georgia, serif',
+                  fontSize: "32px",
+                  fontWeight: 300,
+                  lineHeight: "38.4px",
+                  overflowWrap: "anywhere",
+                  textAlign: "center",
+                  wordBreak: "break-word",
+                }}
+              >
+                {practiceAreasIntro.sectionLabel}
+              </p>
+            )}
+          </div>
+        </div>
+      )}
+    </section>
   );
 }

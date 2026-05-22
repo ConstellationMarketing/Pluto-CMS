@@ -126,6 +126,12 @@ export default function Index() {
       {/* Attorney Section */}
       <AttorneySection content={content.aboutFirm} />
 
+      {/* Client Reviews & Testimonials + Practice Areas heading */}
+      <TestimonialsSection
+        content={content.testimonials}
+        practiceAreasIntro={content.practiceAreasIntro}
+      />
+
       {/* Contact Form Section - below hero */}
       <div className="max-w-[2560px] mx-auto w-[95%] py-[40px]">
         <ContactForm />
@@ -169,9 +175,6 @@ export default function Index() {
 
       {/* Awards & Membership Section */}
       <AwardsSection content={content.awards} headingTag={content.headingTags?.["awards.sectionLabel"]} />
-
-      {/* Testimonials Section */}
-      <TestimonialsSection content={content.testimonials} headingTag={content.headingTags?.["testimonials.sectionLabel"]} />
 
       {/* Process Section */}
       <ProcessSection content={content.process} headingTags={content.headingTags} />

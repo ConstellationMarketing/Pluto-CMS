@@ -84,7 +84,8 @@ export interface PracticeAreaItem {
 
 export interface PracticeAreasIntroContent {
   sectionLabel: string;
-  heading: string;
+  heading: string;       // light part, e.g. "Types Of"
+  headingBold: string;   // bold part, e.g. "Cases We Handle"
   buttonLink: string;
   buttonTextLine1: string;
   buttonTextLine2: string;
@@ -98,17 +99,23 @@ export interface AwardsContent {
 }
 
 export interface TestimonialItem {
+  itemHeading: string;   // e.g. "4.8 Star Review Rating on Google"
   text: string;
   author: string;
+  authorUrl?: string;
   ratingImage: string;
   ratingImageAlt?: string;
 }
 
 export interface TestimonialsContent {
-  sectionLabel: string;
-  heading: string;
+  sectionLabel: string;  // e.g. "OUR CLIENTS STORIES"
+  heading: string;       // e.g. "Client Reviews & Testimonials" (bold via strong)
+  starsImage: string;    // global 5-star image below heading
+  starsImageAlt?: string;
   backgroundImage: string;
   backgroundImageAlt?: string;
+  viewAllUrl: string;
+  viewAllText: string;
   items: TestimonialItem[];
 }
 
@@ -246,6 +253,7 @@ export const defaultHomeContent: HomePageContent = {
   practiceAreasIntro: {
     sectionLabel: "",
     heading: "",
+    headingBold: "",
     buttonLink: "",
     buttonTextLine1: "",
     buttonTextLine2: "",
@@ -258,10 +266,14 @@ export const defaultHomeContent: HomePageContent = {
     logos: [],
   },
   testimonials: {
-    sectionLabel: "",
-    heading: "",
-    backgroundImage: "",
+    sectionLabel: "OUR CLIENTS STORIES",
+    heading: "Client Reviews & Testimonials",
+    starsImage: "https://design-pluto.netlify.app/images/stars.png",
+    starsImageAlt: "5 Star Rating",
+    backgroundImage: "https://design-pluto.netlify.app/images/testimonials-bg.jpg",
     backgroundImageAlt: "",
+    viewAllUrl: "/testimonials",
+    viewAllText: "VIEW ALL TESTIMONIALS",
     items: [],
   },
   process: {

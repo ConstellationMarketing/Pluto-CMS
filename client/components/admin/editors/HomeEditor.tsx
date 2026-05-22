@@ -433,9 +433,15 @@ function PracticeAreasIntroSection({ content, update }: SectionProps) {
           tag={ht.get("practiceAreasIntro.sectionLabel")}
           onTagChange={(t) => ht.set("practiceAreasIntro.sectionLabel", t)}
         />
-        <div>
-          <Label>Text</Label>
-          <Input value={intro.heading} onChange={(e) => set({ heading: e.target.value })} />
+        <div className="grid grid-cols-2 gap-3">
+          <div>
+            <Label>Heading — Light Part (e.g. "Types Of")</Label>
+            <Input value={intro.heading} onChange={(e) => set({ heading: e.target.value })} placeholder="Types Of" />
+          </div>
+          <div>
+            <Label>Heading — Bold Part (e.g. "Cases We Handle")</Label>
+            <Input value={intro.headingBold || ""} onChange={(e) => set({ headingBold: e.target.value })} placeholder="Cases We Handle" />
+          </div>
         </div>
         <div className="grid grid-cols-2 gap-4">
           <div>
@@ -562,61 +568,64 @@ function TestimonialsSection({ content, update }: SectionProps) {
   return (
     <Section title="Testimonials" defaultOpen={false}>
       <div className="grid gap-4">
-        <HeadingField
-          label="Section Heading"
-          value={t.sectionLabel}
-          onChange={(v) => set({ sectionLabel: v })}
-          tag={ht.get("testimonials.sectionLabel")}
-          onTagChange={(t2) => ht.set("testimonials.sectionLabel", t2)}
-        />
         <div>
-          <Label>Subtitle</Label>
-          <Input value={t.heading} onChange={(e) => set({ heading: e.target.value })} />
+          <Label>Main Heading (bold, e.g. "Client Reviews & Testimonials")</Label>
+          <Input value={t.heading} onChange={(e) => set({ heading: e.target.value })} placeholder="Client Reviews & Testimonials" />
+        </div>
+        <div>
+          <Label>Sub-label (Crimson Pro, e.g. "OUR CLIENTS STORIES")</Label>
+          <Input value={t.sectionLabel} onChange={(e) => set({ sectionLabel: e.target.value })} placeholder="OUR CLIENTS STORIES" />
         </div>
         <ImageField
-          label="Background Image"
+          label="Stars Image (5-star rating image below heading)"
+          value={t.starsImage || ""}
+          onChange={(url) => set({ starsImage: url })}
+          altValue={t.starsImageAlt || ""}
+          onAltChange={(starsImageAlt) => set({ starsImageAlt })}
+          folder="logos"
+        />
+        <ImageField
+          label="Section Background Image"
           value={t.backgroundImage}
           onChange={(url) => set({ backgroundImage: url })}
           altValue={t.backgroundImageAlt || ""}
           onAltChange={(backgroundImageAlt) => set({ backgroundImageAlt })}
-          onSelectAsset={(asset) => set({
-            backgroundImage: asset.url,
-            backgroundImageAlt: asset.suggestedAltText || t.backgroundImageAlt || "",
-          })}
           folder="backgrounds"
         />
-        <div>
-          <Label>Background Image Alt Text</Label>
-          <Input value={t.backgroundImageAlt || ""} onChange={(e) => set({ backgroundImageAlt: e.target.value })} placeholder="Describe the background image" />
+        <div className="grid grid-cols-2 gap-3">
+          <div>
+            <Label>"View All" Button Text</Label>
+            <Input value={t.viewAllText || ""} onChange={(e) => set({ viewAllText: e.target.value })} placeholder="VIEW ALL TESTIMONIALS" />
+          </div>
+          <div>
+            <Label>"View All" Button URL</Label>
+            <Input value={t.viewAllUrl || ""} onChange={(e) => set({ viewAllUrl: e.target.value })} placeholder="/testimonials" />
+          </div>
         </div>
         <ArrayEditor
           items={t.items}
           onChange={(items) => set({ items })}
           itemLabel="Testimonial"
-          newItem={() => ({ text: "", author: "", ratingImage: "", ratingImageAlt: "" })}
+          newItem={() => ({ itemHeading: "", text: "", author: "", authorUrl: "", ratingImage: "", ratingImageAlt: "" })}
           renderItem={(item, _, upd) => (
             <div className="grid gap-3">
               <div>
-                <Label>Author</Label>
-                <Input value={item.author} onChange={(e) => upd({ ...item, author: e.target.value })} />
+                <Label>Testimonial Heading (e.g. "4.8 Star Review Rating on Google")</Label>
+                <Input value={item.itemHeading || ""} onChange={(e) => upd({ ...item, itemHeading: e.target.value })} placeholder="4.8 Star Review Rating on Google" />
               </div>
-              <RichTextField label="Text" value={item.text} onChange={(v) => upd({ ...item, text: v })} />
-              <ImageField
-                label="Rating Image"
-                value={item.ratingImage}
-                onChange={(url) => upd({ ...item, ratingImage: url })}
-                altValue={item.ratingImageAlt || ""}
-                onAltChange={(ratingImageAlt) => upd({ ...item, ratingImageAlt })}
-                onSelectAsset={(asset) => upd({
-                  ...item,
-                  ratingImage: asset.url,
-                  ratingImageAlt: asset.suggestedAltText || item.ratingImageAlt || "",
-                })}
-                folder="logos"
-              />
               <div>
-                <Label>Rating Image Alt Text</Label>
-                <Input value={item.ratingImageAlt || ""} onChange={(e) => upd({ ...item, ratingImageAlt: e.target.value })} placeholder="e.g. 5 star rating" />
+                <Label>Review Text</Label>
+                <Textarea value={item.text} onChange={(e) => upd({ ...item, text: e.target.value })} rows={4} />
+              </div>
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <Label>Author Name</Label>
+                  <Input value={item.author} onChange={(e) => upd({ ...item, author: e.target.value })} />
+                </div>
+                <div>
+                  <Label>Author URL (optional)</Label>
+                  <Input value={item.authorUrl || ""} onChange={(e) => upd({ ...item, authorUrl: e.target.value })} placeholder="https://..." />
+                </div>
               </div>
             </div>
           )}
