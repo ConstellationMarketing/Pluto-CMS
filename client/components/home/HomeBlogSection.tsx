@@ -37,7 +37,7 @@ export default function HomeBlogSection({ content }: Props) {
   const cards = posts.length > 0
     ? posts.map((p, i) => ({
         href: `/blog/${p.slug}`,
-        image: p.featured_image || FALLBACK_IMAGES[i % 3],
+        image: (p.featured_image && !p.featured_image.includes("placeholder")) ? p.featured_image : FALLBACK_IMAGES[i % 3],
         text: p.excerpt || p.title || "Read more",
       }))
     : FALLBACK_IMAGES.slice(0, count).map((img, i) => ({
