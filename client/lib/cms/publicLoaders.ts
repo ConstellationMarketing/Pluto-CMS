@@ -46,6 +46,13 @@ export interface SiteSettings {
   footerResourcesHeading: string;
   footerPracticeAreasHeading: string;
   footerTaglineHtml: string;
+  footerBgImage: string;
+  footerFormHeadingLight: string;
+  footerFormHeadingBold: string;
+  footerCtaHeadingLight: string;
+  footerCtaHeadingBold: string;
+  footerCtaButtonText: string;
+  footerCtaButtonUrl: string;
   addressLine1: string;
   addressLine2: string;
   mapEmbedUrl: string;
@@ -171,6 +178,13 @@ interface SiteSettingsRow {
   footer_resources_heading?: string | null;
   footer_practice_areas_heading?: string | null;
   footer_tagline_html?: string | null;
+  footer_bg_image?: string | null;
+  footer_form_heading_light?: string | null;
+  footer_form_heading_bold?: string | null;
+  footer_cta_heading_light?: string | null;
+  footer_cta_heading_bold?: string | null;
+  footer_cta_button_text?: string | null;
+  footer_cta_button_url?: string | null;
   address_line1?: string | null;
   address_line2?: string | null;
   map_embed_url?: string | null;
@@ -214,6 +228,13 @@ export const DEFAULT_SITE_SETTINGS: SiteSettings = {
   footerResourcesHeading: "",
   footerPracticeAreasHeading: "",
   footerTaglineHtml: "",
+  footerBgImage: "",
+  footerFormHeadingLight: "",
+  footerFormHeadingBold: "",
+  footerCtaHeadingLight: "",
+  footerCtaHeadingBold: "",
+  footerCtaButtonText: "",
+  footerCtaButtonUrl: "",
   addressLine1: "",
   addressLine2: "",
   mapEmbedUrl: "",
@@ -457,6 +478,13 @@ export function shapeSiteSettings(row?: SiteSettingsRow | null): SiteSettings {
     footerResourcesHeading: row.footer_resources_heading || DEFAULT_SITE_SETTINGS.footerResourcesHeading,
     footerPracticeAreasHeading: row.footer_practice_areas_heading || DEFAULT_SITE_SETTINGS.footerPracticeAreasHeading,
     footerTaglineHtml: row.footer_tagline_html || DEFAULT_SITE_SETTINGS.footerTaglineHtml,
+    footerBgImage: row.footer_bg_image || DEFAULT_SITE_SETTINGS.footerBgImage,
+    footerFormHeadingLight: row.footer_form_heading_light || DEFAULT_SITE_SETTINGS.footerFormHeadingLight,
+    footerFormHeadingBold: row.footer_form_heading_bold || DEFAULT_SITE_SETTINGS.footerFormHeadingBold,
+    footerCtaHeadingLight: row.footer_cta_heading_light || DEFAULT_SITE_SETTINGS.footerCtaHeadingLight,
+    footerCtaHeadingBold: row.footer_cta_heading_bold || DEFAULT_SITE_SETTINGS.footerCtaHeadingBold,
+    footerCtaButtonText: row.footer_cta_button_text || DEFAULT_SITE_SETTINGS.footerCtaButtonText,
+    footerCtaButtonUrl: row.footer_cta_button_url || DEFAULT_SITE_SETTINGS.footerCtaButtonUrl,
     addressLine1: row.address_line1 || DEFAULT_SITE_SETTINGS.addressLine1,
     addressLine2: row.address_line2 || DEFAULT_SITE_SETTINGS.addressLine2,
     mapEmbedUrl: row.map_embed_url || DEFAULT_SITE_SETTINGS.mapEmbedUrl,

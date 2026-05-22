@@ -82,6 +82,13 @@ CREATE TABLE public.site_settings (
   social_links jsonb DEFAULT '[]'::jsonb,
   copyright_text text,
   footer_tagline_html text,
+  footer_bg_image text,
+  footer_form_heading_light text,
+  footer_form_heading_bold text,
+  footer_cta_heading_light text,
+  footer_cta_heading_bold text,
+  footer_cta_button_text text,
+  footer_cta_button_url text,
   site_noindex boolean DEFAULT false,
   ga4_measurement_id text,
   google_ads_id text,
@@ -285,7 +292,10 @@ SELECT
   social_links, copyright_text, footer_tagline_html,
   site_noindex, ga4_measurement_id, google_ads_id,
   google_ads_conversion_label, head_scripts, footer_scripts,
-  site_url, updated_at, favicon_source_url, favicon_assets, global_schema
+  site_url, updated_at, favicon_source_url, favicon_assets, global_schema,
+  footer_bg_image, footer_form_heading_light, footer_form_heading_bold,
+  footer_cta_heading_light, footer_cta_heading_bold,
+  footer_cta_button_text, footer_cta_button_url
 FROM site_settings;
 
 -- =============================================

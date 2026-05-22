@@ -80,6 +80,15 @@ export interface SiteSettings {
   // Footer Tagline (Rich Text HTML)
   footerTaglineHtml: string;
 
+  // Footer Layout
+  footerBgImage: string;
+  footerFormHeadingLight: string;
+  footerFormHeadingBold: string;
+  footerCtaHeadingLight: string;
+  footerCtaHeadingBold: string;
+  footerCtaButtonText: string;
+  footerCtaButtonUrl: string;
+
   // SEO
   siteUrl: string;
   siteNoindex: boolean;
@@ -123,6 +132,13 @@ export interface SiteSettingsRow {
   social_links: SocialLink[];
   copyright_text: string | null;
   footer_tagline_html: string | null;
+  footer_bg_image: string | null;
+  footer_form_heading_light: string | null;
+  footer_form_heading_bold: string | null;
+  footer_cta_heading_light: string | null;
+  footer_cta_heading_bold: string | null;
+  footer_cta_button_text: string | null;
+  footer_cta_button_url: string | null;
   site_noindex: boolean;
   ga4_measurement_id: string | null;
   google_ads_id: string | null;
@@ -174,6 +190,13 @@ export const DEFAULT_SITE_SETTINGS: SiteSettings = {
   ],
   copyrightText: "",
   footerTaglineHtml: "",
+  footerBgImage: "",
+  footerFormHeadingLight: "",
+  footerFormHeadingBold: "",
+  footerCtaHeadingLight: "",
+  footerCtaHeadingBold: "",
+  footerCtaButtonText: "",
+  footerCtaButtonUrl: "",
   siteUrl: "",
   siteNoindex: false,
   globalSchema: "",
@@ -226,6 +249,13 @@ export function rowToSiteSettings(row: SiteSettingsRow): SiteSettings {
       : DEFAULT_SITE_SETTINGS.socialLinks,
     copyrightText: row.copyright_text || DEFAULT_SITE_SETTINGS.copyrightText,
     footerTaglineHtml: row.footer_tagline_html || DEFAULT_SITE_SETTINGS.footerTaglineHtml,
+    footerBgImage: row.footer_bg_image || DEFAULT_SITE_SETTINGS.footerBgImage,
+    footerFormHeadingLight: row.footer_form_heading_light || DEFAULT_SITE_SETTINGS.footerFormHeadingLight,
+    footerFormHeadingBold: row.footer_form_heading_bold || DEFAULT_SITE_SETTINGS.footerFormHeadingBold,
+    footerCtaHeadingLight: row.footer_cta_heading_light || DEFAULT_SITE_SETTINGS.footerCtaHeadingLight,
+    footerCtaHeadingBold: row.footer_cta_heading_bold || DEFAULT_SITE_SETTINGS.footerCtaHeadingBold,
+    footerCtaButtonText: row.footer_cta_button_text || DEFAULT_SITE_SETTINGS.footerCtaButtonText,
+    footerCtaButtonUrl: row.footer_cta_button_url || DEFAULT_SITE_SETTINGS.footerCtaButtonUrl,
     siteUrl: row.site_url || "",
     siteNoindex: row.site_noindex ?? DEFAULT_SITE_SETTINGS.siteNoindex,
     globalSchema: row.global_schema || "",
@@ -268,6 +298,13 @@ export function siteSettingsToRow(
     social_links: settings.socialLinks,
     copyright_text: settings.copyrightText,
     footer_tagline_html: settings.footerTaglineHtml || null,
+    ...(settings.footerBgImage ? { footer_bg_image: settings.footerBgImage } : {}),
+    ...(settings.footerFormHeadingLight ? { footer_form_heading_light: settings.footerFormHeadingLight } : {}),
+    ...(settings.footerFormHeadingBold ? { footer_form_heading_bold: settings.footerFormHeadingBold } : {}),
+    ...(settings.footerCtaHeadingLight ? { footer_cta_heading_light: settings.footerCtaHeadingLight } : {}),
+    ...(settings.footerCtaHeadingBold ? { footer_cta_heading_bold: settings.footerCtaHeadingBold } : {}),
+    ...(settings.footerCtaButtonText ? { footer_cta_button_text: settings.footerCtaButtonText } : {}),
+    ...(settings.footerCtaButtonUrl ? { footer_cta_button_url: settings.footerCtaButtonUrl } : {}),
     site_noindex: settings.siteNoindex,
     ga4_measurement_id: settings.ga4MeasurementId || null,
     google_ads_id: settings.googleAdsId || null,

@@ -122,21 +122,36 @@ export default function AdminSiteSettings() {
     setSaving(true);
 
     const rowData = siteSettingsToRow(settings);
+    const newFooterKeys = [
+      "footer_bg_image",
+      "footer_form_heading_light",
+      "footer_form_heading_bold",
+      "footer_cta_heading_light",
+      "footer_cta_heading_bold",
+      "footer_cta_button_text",
+      "footer_cta_button_url",
+    ] as const;
 
-    let error;
-    if (settingsId) {
-      // Update existing
-      const result = await supabase
-        .from("site_settings")
-        .update(rowData)
-        .eq("id", settingsId);
-      error = result.error;
-    } else {
-      // Insert new
-      const result = await supabase
-        .from("site_settings")
-        .insert({ ...rowData, settings_key: "global" });
-      error = result.error;
+    const doUpdate = async (data: typeof rowData) => {
+      if (settingsId) {
+        return supabase.from("site_settings").update(data).eq("id", settingsId);
+      }
+      return supabase.from("site_settings").insert({ ...data, settings_key: "global" });
+    };
+
+    let { error } = await doUpdate(rowData);
+
+    if (error && error.message?.includes("column")) {
+      // New footer columns may not exist in DB yet — retry without them
+      const fallbackData = { ...rowData };
+      for (const k of newFooterKeys) delete (fallbackData as Record<string, unknown>)[k];
+      const fallback = await doUpdate(fallbackData);
+      error = fallback.error;
+      if (!fallback.error) {
+        toast.warning(
+          "Settings saved, but the new footer fields require a database migration to persist. Run the SQL from the Supabase dashboard."
+        );
+      }
     }
 
     if (error) {
@@ -757,57 +772,123 @@ export default function AdminSiteSettings() {
 
         {/* Footer Tab */}
         <TabsContent value="footer" className="mt-6 space-y-6">
+
+          {/* Background Image */}
           <Card>
             <CardHeader>
-              <CardTitle>Footer Tagline</CardTitle>
+              <CardTitle>Footer Background Image</CardTitle>
               <CardDescription>
-                Rich text tagline displayed in the footer area
+                Decorative background image displayed in the top-right of the footer
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="space-y-4">
-                <div className="space-y-2">
-                  <Label htmlFor="footerResourcesHeading">Resources Column Title</Label>
-                  <Input
-                    id="footerResourcesHeading"
-                    value={settings.footerResourcesHeading}
-                    onChange={(e) => updateSettings({ footerResourcesHeading: e.target.value })}
-                    placeholder="Resources"
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="footerPracticeAreasHeading">Practice Areas Column Title</Label>
-                  <Input
-                    id="footerPracticeAreasHeading"
-                    value={settings.footerPracticeAreasHeading}
-                    onChange={(e) => updateSettings({ footerPracticeAreasHeading: e.target.value })}
-                    placeholder="Practice Areas"
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label>Tagline (HTML)</Label>
-                  <RichTextEditor
-                    value={settings.footerTaglineHtml}
-                    onChange={(html) => updateSettings({ footerTaglineHtml: html })}
-                    placeholder="Enter footer tagline..."
-                  />
-                  <p className="text-xs text-gray-500">
-                    Use the <strong>paint brush</strong> button to highlight text with the accent color.
-                  </p>
-                </div>
+              <div className="space-y-2">
+                <Label htmlFor="footerBgImage">Background Image URL</Label>
+                <Input
+                  id="footerBgImage"
+                  value={settings.footerBgImage}
+                  onChange={(e) => updateSettings({ footerBgImage: e.target.value })}
+                  placeholder="https://..."
+                />
+              </div>
+            </CardContent>
+          </Card>
 
-                {/* Live preview */}
-                {settings.footerTaglineHtml && (
-                  <div className="space-y-2">
-                    <Label className="text-xs text-gray-500">Preview (as it appears in footer)</Label>
-                    <div className="bg-[#1a1a2e] rounded-lg p-6">
-                      <div
-                        className="font-playfair text-[24px] md:text-[32px] leading-tight text-white [&_.text-law-accent]:text-[#c8b560]"
-                        dangerouslySetInnerHTML={{ __html: settings.footerTaglineHtml }}
-                      />
-                    </div>
-                  </div>
-                )}
+          {/* Contact Form Box */}
+          <Card>
+            <CardHeader>
+              <CardTitle>Contact Form Box Heading</CardTitle>
+              <CardDescription>
+                Heading shown above the contact form in the footer (left dark box)
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="footerFormHeadingLight">Heading Line 1 (light, smaller)</Label>
+                <Input
+                  id="footerFormHeadingLight"
+                  value={settings.footerFormHeadingLight}
+                  onChange={(e) => updateSettings({ footerFormHeadingLight: e.target.value })}
+                  placeholder="REQUEST A FREE CASE"
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="footerFormHeadingBold">Heading Line 2 (large)</Label>
+                <Input
+                  id="footerFormHeadingBold"
+                  value={settings.footerFormHeadingBold}
+                  onChange={(e) => updateSettings({ footerFormHeadingBold: e.target.value })}
+                  placeholder="EVALUATION"
+                />
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* CTA Box */}
+          <Card>
+            <CardHeader>
+              <CardTitle>CTA Box (Right Side)</CardTitle>
+              <CardDescription>
+                The "Trusted Counsel" call-to-action box displayed to the right of the form
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="footerCtaHeadingLight">Heading (light part)</Label>
+                <Input
+                  id="footerCtaHeadingLight"
+                  value={settings.footerCtaHeadingLight}
+                  onChange={(e) => updateSettings({ footerCtaHeadingLight: e.target.value })}
+                  placeholder="Trusted Counsel When You"
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="footerCtaHeadingBold">Heading (bold part)</Label>
+                <Input
+                  id="footerCtaHeadingBold"
+                  value={settings.footerCtaHeadingBold}
+                  onChange={(e) => updateSettings({ footerCtaHeadingBold: e.target.value })}
+                  placeholder="Need it Most"
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="footerCtaButtonText">Button Text</Label>
+                <Input
+                  id="footerCtaButtonText"
+                  value={settings.footerCtaButtonText}
+                  onChange={(e) => updateSettings({ footerCtaButtonText: e.target.value })}
+                  placeholder="SCHEDULE A CONSULTATION"
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="footerCtaButtonUrl">Button URL</Label>
+                <Input
+                  id="footerCtaButtonUrl"
+                  value={settings.footerCtaButtonUrl}
+                  onChange={(e) => updateSettings({ footerCtaButtonUrl: e.target.value })}
+                  placeholder="/contact"
+                />
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Quick Links Column */}
+          <Card>
+            <CardHeader>
+              <CardTitle>Quick Links Column</CardTitle>
+              <CardDescription>
+                Navigation links column heading and links in the footer bottom section
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-2">
+                <Label htmlFor="footerResourcesHeading">Column Heading</Label>
+                <Input
+                  id="footerResourcesHeading"
+                  value={settings.footerResourcesHeading}
+                  onChange={(e) => updateSettings({ footerResourcesHeading: e.target.value })}
+                  placeholder="Quick Links"
+                />
               </div>
             </CardContent>
           </Card>
