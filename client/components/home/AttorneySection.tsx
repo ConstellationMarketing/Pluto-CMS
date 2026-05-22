@@ -17,152 +17,119 @@ export default function AttorneySection({ content }: Props) {
         backgroundImage: content.bgDecorImage ? `url(${content.bgDecorImage})` : undefined,
         backgroundPosition: "0% 100%",
         backgroundRepeat: "no-repeat",
-        position: "relative",
         fontFamily: "Outfit, Helvetica, Arial, sans-serif",
-        fontSize: "16px",
-        fontWeight: 400,
-        lineHeight: "24px",
+        position: "relative",
       }}
     >
-      <div
-        style={{
-          marginLeft: "auto",
-          marginRight: "auto",
-          maxWidth: "2560px",
-          position: "relative",
-          width: "80%",
-        }}
-      >
-        <div style={{ display: "flex", gap: "32px" }}>
-          {/* Left column: text + actions */}
-          <div style={{ marginRight: "5.5%", width: "64.833%" }}>
-            {/* Bio block */}
-            <div style={{ paddingTop: "4.2415%", paddingBottom: "4.2415%" }}>
-              <div style={{ fontSize: "22px", lineHeight: "33px" }}>
-                <h2
-                  style={{
-                    fontFamily: '"Crimson Pro", Georgia, serif',
-                    fontSize: "68.8128px",
-                    fontWeight: 300,
-                    lineHeight: "75.6941px",
-                    overflowWrap: "anywhere",
-                    paddingBottom: "10px",
-                    wordBreak: "break-word",
-                  }}
-                >
-                  {content.attorneyName}
-                </h2>
-                <h3
-                  style={{
-                    color: "rgb(48, 48, 48)",
-                    fontFamily: "Poppins, Helvetica, Arial, sans-serif",
-                    fontSize: "40px",
-                    fontStyle: "italic",
-                    lineHeight: "40px",
-                    overflowWrap: "anywhere",
-                    paddingBottom: "10px",
-                    wordBreak: "break-word",
-                  }}
-                >
-                  {content.attorneyTitle}
-                </h3>
-                {content.attorneyBio1 && (
-                  <p style={{ fontSize: "22px", lineHeight: "33px", overflowWrap: "anywhere", paddingBottom: "22px", wordBreak: "break-word" }}>
-                    {content.attorneyBio1}
-                  </p>
-                )}
-                {content.attorneyBio2 && (
-                  <p style={{ fontSize: "22px", lineHeight: "33px", overflowWrap: "anywhere", wordBreak: "break-word" }}>
-                    {content.attorneyBio2}
-                  </p>
-                )}
-              </div>
+      <div className="mx-auto w-[90%] md:w-[80%] max-w-[2560px] relative">
+        <div className="flex flex-col lg:flex-row gap-[32px]">
+
+          {/* Left: text + actions */}
+          <div className="w-full lg:w-[64.833%] lg:mr-[5.5%]">
+            <div className="py-[32px] md:py-[4.2415%]">
+              <h2
+                style={{
+                  fontFamily: '"Crimson Pro", Georgia, serif',
+                  fontSize: "clamp(32px, 6vw, 68px)",
+                  fontWeight: 300,
+                  lineHeight: 1.1,
+                  overflowWrap: "anywhere",
+                  paddingBottom: "10px",
+                  wordBreak: "break-word",
+                }}
+              >
+                {content.attorneyName}
+              </h2>
+              <h3
+                style={{
+                  color: "rgb(48, 48, 48)",
+                  fontFamily: "Poppins, Helvetica, Arial, sans-serif",
+                  fontSize: "clamp(18px, 3.5vw, 40px)",
+                  fontStyle: "italic",
+                  lineHeight: 1.2,
+                  overflowWrap: "anywhere",
+                  paddingBottom: "16px",
+                  wordBreak: "break-word",
+                }}
+              >
+                {content.attorneyTitle}
+              </h3>
+              {content.attorneyBio1 && (
+                <p style={{ fontSize: "clamp(15px, 1.8vw, 22px)", lineHeight: 1.6, paddingBottom: "20px", overflowWrap: "anywhere", wordBreak: "break-word" }}>
+                  {content.attorneyBio1}
+                </p>
+              )}
+              {content.attorneyBio2 && (
+                <p style={{ fontSize: "clamp(15px, 1.8vw, 22px)", lineHeight: 1.6, overflowWrap: "anywhere", wordBreak: "break-word" }}>
+                  {content.attorneyBio2}
+                </p>
+              )}
             </div>
 
-            {/* CTA + Phone block */}
-            <div style={{ paddingTop: "4.2415%", paddingBottom: "4.2415%" }}>
-              <div style={{ display: "flex", gap: "8.483%" }}>
+            {/* CTA + Phone */}
+            <div className="pb-[32px] md:pb-[4.2415%]">
+              <div className="flex flex-col sm:flex-row gap-[24px] sm:gap-[8.483%]">
                 {/* CTA button */}
-                <div style={{ width: "45.758%" }}>
+                <div className="w-full sm:w-auto">
                   <Link
                     to={content.meetCtaUrl || "/about-us"}
+                    className="inline-flex items-center gap-[10px] no-underline transition-opacity hover:opacity-85"
                     style={{
-                      alignItems: "center",
                       backgroundColor: "rgb(238, 83, 14)",
                       border: "1px solid rgb(238, 83, 14)",
                       color: "rgb(255, 255, 255)",
-                      cursor: "pointer",
-                      display: "inline-flex",
-                      fontSize: "24px",
-                      gap: "12px",
-                      lineHeight: "40.8px",
-                      paddingBottom: "15px",
-                      paddingLeft: "30px",
-                      paddingRight: "30px",
-                      paddingTop: "15px",
-                      textDecoration: "none",
-                      transition: "opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+                      fontSize: "clamp(14px, 2vw, 24px)",
+                      lineHeight: 1.5,
+                      padding: "12px 20px",
                     }}
-                    onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.85")}
-                    onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
                   >
                     {content.meetCtaText || "MEET THE ATTORNEY"}
-                    <ArrowRight
-                      width={20}
-                      height={20}
-                      aria-hidden="true"
-                      style={{ color: "rgb(255, 255, 255)", stroke: "rgb(255, 255, 255)", flexShrink: 0 }}
-                    />
+                    <ArrowRight width={18} height={18} aria-hidden="true" style={{ flexShrink: 0 }} />
                   </Link>
                 </div>
 
                 {/* Phone block */}
-                <div style={{ width: "45.758%" }}>
-                  <div style={{ alignItems: "flex-start", display: "flex", maxWidth: "550px" }}>
-                    {content.phoneIconUrl && (
-                      <div style={{ paddingTop: "10px", width: "48px" }}>
-                        <img
-                          decoding="async"
-                          width={42}
-                          height={42}
-                          alt="Phone icon"
-                          loading="lazy"
-                          src={content.phoneIconUrl}
-                          style={{ width: "48px", maxWidth: "100%", verticalAlign: "middle" }}
-                        />
-                      </div>
+                <div className="flex items-start gap-[12px]">
+                  {content.phoneIconUrl && (
+                    <img
+                      decoding="async"
+                      width={42}
+                      height={42}
+                      alt="Phone icon"
+                      loading="lazy"
+                      src={content.phoneIconUrl}
+                      className="w-[36px] h-[36px] md:w-[42px] md:h-[42px] mt-[6px] shrink-0"
+                    />
+                  )}
+                  <div>
+                    <h4 style={{ fontSize: "clamp(14px, 2vw, 24px)", paddingBottom: "6px", overflowWrap: "anywhere", wordBreak: "break-word" }}>
+                      {content.callLabel || "Call For A Consultation"}
+                    </h4>
+                    {phoneNumber && (
+                      <a
+                        href={`tel:${phoneNumber.replace(/\D/g, "")}`}
+                        style={{
+                          fontFamily: '"Crimson Text", serif',
+                          fontSize: "clamp(24px, 4vw, 48px)",
+                          lineHeight: 1.2,
+                          textDecoration: "none",
+                          color: "inherit",
+                          overflowWrap: "anywhere",
+                          wordBreak: "break-word",
+                        }}
+                      >
+                        {phoneDisplay}
+                      </a>
                     )}
-                    <div style={{ flexGrow: 1, paddingLeft: "15px" }}>
-                      <h4 style={{ fontSize: "24px", overflowWrap: "anywhere", paddingBottom: "10px", wordBreak: "break-word" }}>
-                        {content.callLabel || "Call For A Consultation"}
-                      </h4>
-                      {phoneNumber && (
-                        <a
-                          href={`tel:${phoneNumber.replace(/\D/g, "")}`}
-                          style={{
-                            display: "inline",
-                            fontFamily: '"Crimson Text", serif',
-                            fontSize: "48px",
-                            lineHeight: "57.6px",
-                            overflowWrap: "anywhere",
-                            wordBreak: "break-word",
-                            textDecoration: "none",
-                            color: "inherit",
-                          }}
-                        >
-                          {phoneDisplay}
-                        </a>
-                      )}
-                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Right column: attorney photo */}
+          {/* Right: attorney photo */}
           {content.attorneyPhoto && (
-            <div style={{ paddingTop: "2.855%", paddingBottom: "2.855%", width: "29.6667%" }}>
+            <div className="w-full lg:w-[29.6667%] py-0 lg:py-[2.855%]">
               <img
                 decoding="async"
                 width={568}
@@ -171,7 +138,7 @@ export default function AttorneySection({ content }: Props) {
                 title={content.attorneyPhotoAlt}
                 loading="lazy"
                 src={content.attorneyPhoto}
-                style={{ width: "100%", maxWidth: "100%", verticalAlign: "middle" }}
+                className="w-full max-w-[400px] mx-auto lg:max-w-full lg:mx-0 align-middle"
               />
             </div>
           )}

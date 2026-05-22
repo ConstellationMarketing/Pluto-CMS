@@ -12,32 +12,20 @@ export default function AboutFirmSection({ content }: Props) {
         backgroundColor: "rgb(239, 240, 235)",
         paddingTop: "56px",
         fontFamily: "Outfit, Helvetica, Arial, sans-serif",
-        fontSize: "16px",
-        fontWeight: 400,
-        lineHeight: "24px",
       }}
     >
       {/* Top: Label + Heading + Badge */}
-      <div
-        style={{
-          marginLeft: "auto",
-          marginRight: "auto",
-          maxWidth: "2560px",
-          paddingBottom: "28px",
-          paddingTop: "28px",
-          width: "90%",
-        }}
-      >
-        <div style={{ alignItems: "center", display: "flex", marginBottom: "28px" }}>
+      <div className="mx-auto w-[90%] max-w-[2560px] py-[28px]">
+        <div className="flex flex-col md:flex-row md:items-center mb-[28px] gap-[24px]">
           {/* Left: label + h2 */}
-          <div style={{ marginRight: "5.5%", width: "73.625%" }}>
+          <div className="w-full md:w-[73.625%] md:mr-[5.5%]">
             <p
               style={{
                 color: "rgb(48, 48, 48)",
                 fontFamily: '"Crimson Pro", Georgia, serif',
-                fontSize: "32px",
+                fontSize: "clamp(18px, 3vw, 32px)",
                 fontWeight: 300,
-                lineHeight: "38.4px",
+                lineHeight: 1.3,
                 marginBottom: "8px",
               }}
             >
@@ -45,55 +33,42 @@ export default function AboutFirmSection({ content }: Props) {
             </p>
             <h2
               style={{
-                fontSize: "59.136px",
+                fontSize: "clamp(28px, 5vw, 59.136px)",
                 fontWeight: 300,
-                lineHeight: "59.136px",
-                overflowWrap: "anywhere",
+                lineHeight: 1.05,
                 paddingBottom: "10px",
+                overflowWrap: "anywhere",
                 wordBreak: "break-word",
               }}
             >
-              <strong style={{ display: "inline", fontWeight: 700 }}>
-                {content.headingBold}
-              </strong>{" "}
+              <strong style={{ fontWeight: 700 }}>{content.headingBold}</strong>{" "}
               {content.headingLight}
             </h2>
           </div>
 
           {/* Right: badge */}
           {content.badgeImage && (
-            <div style={{ width: "20.875%" }}>
-              <div style={{ marginLeft: "auto", marginRight: "auto", textAlign: "center" }}>
-                <img
-                  decoding="async"
-                  width={199}
-                  height={201}
-                  alt={content.badgeImageAlt}
-                  loading="lazy"
-                  src={content.badgeImage}
-                  style={{ width: "199px", maxWidth: "100%", verticalAlign: "middle" }}
-                />
-              </div>
+            <div className="w-full md:w-[20.875%] text-center">
+              <img
+                decoding="async"
+                width={199}
+                height={201}
+                alt={content.badgeImageAlt}
+                loading="lazy"
+                src={content.badgeImage}
+                className="inline-block max-w-full w-[120px] md:w-[160px] lg:w-[199px]"
+              />
             </div>
           )}
         </div>
       </div>
 
       {/* Bottom: Photo + Text */}
-      <div
-        style={{
-          marginLeft: "auto",
-          marginRight: "auto",
-          maxWidth: "2560px",
-          paddingBottom: "56px",
-          paddingTop: "28px",
-          width: "90%",
-        }}
-      >
-        <div style={{ display: "flex", gap: "3%" }}>
+      <div className="mx-auto w-[90%] max-w-[2560px] pt-[28px] pb-[56px]">
+        <div className="flex flex-col md:flex-row gap-[32px] md:gap-[3%]">
           {/* Left: photo */}
           {content.photo && (
-            <div style={{ width: "48.5%" }}>
+            <div className="w-full md:w-[48.5%]">
               <img
                 decoding="async"
                 width={948}
@@ -101,58 +76,47 @@ export default function AboutFirmSection({ content }: Props) {
                 alt={content.photoAlt}
                 loading="lazy"
                 src={content.photo}
-                style={{ width: "100%", maxWidth: "100%", verticalAlign: "middle" }}
+                className="w-full max-w-full align-middle"
               />
             </div>
           )}
 
           {/* Right: text */}
-          <div style={{ width: content.photo ? "48.5%" : "100%" }}>
+          <div className={content.photo ? "w-full md:w-[48.5%]" : "w-full"}>
             <div
-              style={{
-                backgroundColor: content.accentBarColor || "rgb(43, 166, 163)",
-                height: "4px",
-                marginBottom: "32px",
-                width: "96px",
-              }}
+              className="h-[4px] w-[96px] mb-[24px] md:mb-[32px]"
+              style={{ backgroundColor: content.accentBarColor || "rgb(43, 166, 163)" }}
             />
-            <div style={{ fontSize: "22px", lineHeight: "33px" }}>
-              {content.subHeading && (
-                <h2
+            {content.subHeading && (
+              <h2
+                style={{
+                  fontSize: "clamp(22px, 4vw, 48px)",
+                  fontWeight: 300,
+                  lineHeight: 1.15,
+                  marginBottom: "16px",
+                  overflowWrap: "anywhere",
+                  wordBreak: "break-word",
+                }}
+              >
+                {content.subHeading}
+              </h2>
+            )}
+            {[content.paragraph1, content.paragraph2, content.paragraph3, content.paragraph4]
+              .filter(Boolean)
+              .map((p, i, arr) => (
+                <p
+                  key={i}
                   style={{
-                    fontSize: "48px",
-                    fontWeight: 300,
-                    lineHeight: "52.8px",
-                    marginBottom: "16px",
+                    fontSize: "clamp(15px, 1.8vw, 22px)",
+                    lineHeight: 1.6,
                     overflowWrap: "anywhere",
-                    paddingBottom: "10px",
                     wordBreak: "break-word",
+                    paddingBottom: i < arr.length - 1 ? "20px" : 0,
                   }}
                 >
-                  {content.subHeading}
-                </h2>
-              )}
-              {content.paragraph1 && (
-                <p style={{ fontSize: "22px", lineHeight: "33px", overflowWrap: "anywhere", paddingBottom: "22px", wordBreak: "break-word" }}>
-                  {content.paragraph1}
+                  {p}
                 </p>
-              )}
-              {content.paragraph2 && (
-                <p style={{ fontSize: "22px", lineHeight: "33px", overflowWrap: "anywhere", paddingBottom: "22px", wordBreak: "break-word" }}>
-                  {content.paragraph2}
-                </p>
-              )}
-              {content.paragraph3 && (
-                <p style={{ fontSize: "22px", lineHeight: "33px", overflowWrap: "anywhere", paddingBottom: "22px", wordBreak: "break-word" }}>
-                  {content.paragraph3}
-                </p>
-              )}
-              {content.paragraph4 && (
-                <p style={{ fontSize: "22px", lineHeight: "33px", overflowWrap: "anywhere", wordBreak: "break-word" }}>
-                  {content.paragraph4}
-                </p>
-              )}
-            </div>
+              ))}
           </div>
         </div>
       </div>

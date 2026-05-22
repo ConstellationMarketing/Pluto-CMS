@@ -21,29 +21,15 @@ export default function PracticeAreasGrid({ areas }: Props) {
       style={{
         backgroundColor: "rgb(255, 255, 255)",
         backgroundImage: "linear-gradient(rgb(225, 225, 225) 39%, rgb(255, 255, 255) 39%)",
-        backgroundPosition: "50% 50%",
         backgroundSize: "cover",
         paddingTop: "56px",
         position: "relative",
         fontFamily: "Outfit, Helvetica, Arial, sans-serif",
-        fontSize: "16px",
-        fontWeight: 400,
-        lineHeight: "24px",
       }}
     >
-      <div
-        style={{
-          marginLeft: "auto",
-          marginRight: "auto",
-          maxWidth: "2560px",
-          paddingBottom: "28px",
-          paddingTop: "28px",
-          width: "100%",
-        }}
-      >
-        <div style={{ display: "flex", gap: "3%" }}>
+      <div className="mx-auto w-full max-w-[2560px] py-[28px]">
+        <div className="flex flex-col sm:flex-row gap-[16px] sm:gap-[3%] px-[16px] sm:px-0">
           {items.map((area, index) => {
-            // If item has explicit featured flag use it, otherwise apply pattern: index % 3 === 1 gets teal gradient
             const isTeal = area.featured ?? (index % 3 === 1);
             const isOffset = !isTeal;
             const isHovered = hovered === index;
@@ -55,10 +41,8 @@ export default function PracticeAreasGrid({ areas }: Props) {
             return (
               <div
                 key={index}
-                style={{
-                  paddingTop: isOffset ? "100px" : "0",
-                  width: "31.3333%",
-                }}
+                className="w-full sm:w-[31.3333%]"
+                style={{ paddingTop: isOffset ? "clamp(0px, 8vw, 100px)" : "0" }}
               >
                 <Link
                   to={area.link}
@@ -71,10 +55,10 @@ export default function PracticeAreasGrid({ areas }: Props) {
                     backgroundSize: "cover",
                     cursor: "pointer",
                     display: "block",
-                    minHeight: "485px",
+                    minHeight: "clamp(240px, 40vw, 485px)",
                     overflow: "hidden",
-                    paddingBottom: "50px",
-                    paddingTop: "300px",
+                    paddingBottom: "32px",
+                    paddingTop: "clamp(120px, 22vw, 300px)",
                     position: "relative",
                     textDecoration: "none",
                   }}
@@ -83,35 +67,23 @@ export default function PracticeAreasGrid({ areas }: Props) {
                   <div
                     style={{
                       backgroundColor: "rgba(238, 83, 14, 0.6)",
-                      bottom: "0",
-                      left: "0",
+                      bottom: 0, left: 0, right: 0, top: 0,
                       opacity: isHovered ? 1 : 0,
                       position: "absolute",
-                      right: "0",
-                      top: "0",
-                      transition: "opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+                      transition: "opacity 0.3s",
                       zIndex: 0,
                     }}
                   />
-
-                  {/* Text content */}
-                  <div
-                    style={{
-                      color: "rgb(255, 255, 255)",
-                      position: "relative",
-                      textAlign: "center",
-                      zIndex: 10,
-                    }}
-                  >
+                  <div className="relative text-center z-10">
                     <h3
                       style={{
                         color: "rgb(255, 255, 255)",
                         fontFamily: '"Crimson Pro", Georgia, serif',
-                        fontSize: "64px",
+                        fontSize: "clamp(28px, 5vw, 64px)",
                         fontWeight: 300,
-                        lineHeight: "64px",
+                        lineHeight: 1.1,
                         overflowWrap: "anywhere",
-                        paddingBottom: "10px",
+                        paddingBottom: "8px",
                         textAlign: "center",
                         textTransform: "uppercase",
                         wordBreak: "break-word",
@@ -122,12 +94,10 @@ export default function PracticeAreasGrid({ areas }: Props) {
                     <p
                       style={{
                         color: "rgb(255, 255, 255)",
-                        fontSize: "24px",
+                        fontSize: "clamp(13px, 2vw, 24px)",
                         fontWeight: 300,
-                        lineHeight: "36px",
-                        overflowWrap: "anywhere",
+                        lineHeight: 1.5,
                         textAlign: "center",
-                        wordBreak: "break-word",
                       }}
                     >
                       {area.learnMoreText || "LEARN MORE"}
