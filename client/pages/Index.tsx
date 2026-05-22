@@ -1,6 +1,5 @@
 import Seo from "@site/components/Seo";
 import Layout from "@site/components/layout/Layout";
-import ContactForm from "@site/components/home/ContactForm";
 import AboutFirmSection from "@site/components/home/AboutFirmSection";
 import AttorneySection from "@site/components/home/AttorneySection";
 import HomeBlogSection from "@site/components/home/HomeBlogSection";
@@ -141,11 +140,6 @@ export default function Index() {
 
       {/* Blog Preview Section */}
       <HomeBlogSection content={content.blogPreview} />
-
-      {/* Contact Form Section - below hero */}
-      <div className="max-w-[2560px] mx-auto w-[95%] py-[40px]">
-        <ContactForm />
-      </div>
 
       {/* Partner Badges Section - Bottom of Hero */}
       {partnerLogos.length > 0 && (
