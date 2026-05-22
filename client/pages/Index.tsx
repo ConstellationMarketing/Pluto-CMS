@@ -132,6 +132,9 @@ export default function Index() {
         practiceAreasIntro={content.practiceAreasIntro}
       />
 
+      {/* Practice Areas Grid */}
+      <PracticeAreasGrid areas={content.practiceAreas} />
+
       {/* Contact Form Section - below hero */}
       <div className="max-w-[2560px] mx-auto w-[95%] py-[40px]">
         <ContactForm />
@@ -166,12 +169,6 @@ export default function Index() {
 
       {/* About Us Section */}
       <AboutSection content={content.about} headingTag={content.headingTags?.["about.sectionLabel"]} />
-
-      {/* Practice Areas Section */}
-      <PracticeAreasSection content={content.practiceAreasIntro} />
-
-      {/* Practice Areas Grid */}
-      <PracticeAreasGrid areas={content.practiceAreas} />
 
       {/* Awards & Membership Section */}
       <AwardsSection content={content.awards} headingTag={content.headingTags?.["awards.sectionLabel"]} />
