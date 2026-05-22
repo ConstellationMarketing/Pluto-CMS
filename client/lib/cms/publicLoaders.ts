@@ -256,6 +256,7 @@ const HOME_CONTENT_KEYS: (keyof HomePageContent)[] = [
   "testimonials",
   "process",
   "googleReviews",
+  "blogPreview",
   "faq",
   "contact",
 ];
@@ -540,6 +541,7 @@ export function mergeHomeContentWithDefaults(cmsContent: Partial<HomePageContent
       ...cmsContent.googleReviews,
       reviews: cmsContent.googleReviews?.reviews?.length ? cmsContent.googleReviews.reviews : defaults.googleReviews.reviews,
     },
+    blogPreview: { ...defaults.blogPreview, ...cmsContent.blogPreview },
     faq: {
       ...defaults.faq,
       ...cmsContent.faq,

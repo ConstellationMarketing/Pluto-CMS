@@ -185,6 +185,14 @@ export interface ContactContent {
   backgroundImageAlt?: string;
 }
 
+export interface BlogPreviewContent {
+  headingLight: string;  // "News and"
+  headingBold: string;   // "Updates From Our Blogs"
+  viewAllUrl: string;
+  viewAllText: string;
+  postCount: number;
+}
+
 // Complete homepage content structure
 export interface HomePageContent {
   hero: HeroContent;
@@ -197,6 +205,7 @@ export interface HomePageContent {
   testimonials: TestimonialsContent;
   process: ProcessContent;
   googleReviews: GoogleReviewsContent;
+  blogPreview: BlogPreviewContent;
   faq: FaqContent;
   contact: ContactContent;
   /** Maps heading keys (e.g. "about.heading") to HTML tag names (e.g. "h2") */
@@ -338,6 +347,13 @@ export const defaultHomeContent: HomePageContent = {
     heading: "",
     description: "",
     reviews: [],
+  },
+  blogPreview: {
+    headingLight: "News and",
+    headingBold: "Updates From Our Blogs",
+    viewAllUrl: "/blog",
+    viewAllText: "VIEW ALL BLOG POSTS",
+    postCount: 3,
   },
   faq: {
     heading: "",

@@ -3,6 +3,7 @@ import Layout from "@site/components/layout/Layout";
 import ContactForm from "@site/components/home/ContactForm";
 import AboutFirmSection from "@site/components/home/AboutFirmSection";
 import AttorneySection from "@site/components/home/AttorneySection";
+import HomeBlogSection from "@site/components/home/HomeBlogSection";
 import AboutSection from "@site/components/home/AboutSection";
 import PracticeAreasSection from "@site/components/home/PracticeAreasSection";
 import PracticeAreasGrid from "@site/components/home/PracticeAreasGrid";
@@ -137,6 +138,9 @@ export default function Index() {
 
       {/* Awards & Membership Section */}
       <AwardsSection content={content.awards} headingTag={content.headingTags?.["awards.sectionLabel"]} />
+
+      {/* Blog Preview Section */}
+      <HomeBlogSection content={content.blogPreview} />
 
       {/* Contact Form Section - below hero */}
       <div className="max-w-[2560px] mx-auto w-[95%] py-[40px]">

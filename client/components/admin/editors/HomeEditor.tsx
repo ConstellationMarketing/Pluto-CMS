@@ -24,6 +24,7 @@ export default function HomeEditor({ content, onChange }: HomeEditorProps) {
       <TestimonialsSection content={content} update={update} />
       <ProcessSection content={content} update={update} />
       <GoogleReviewsSection content={content} update={update} />
+      <BlogPreviewSectionEditor content={content} update={update} />
       <FaqSectionEditor content={content} update={update} />
       <ContactSectionEditor content={content} update={update} />
     </div>
@@ -774,6 +775,50 @@ function GoogleReviewsSection({ content, update }: SectionProps) {
             </div>
           )}
         />
+      </div>
+    </Section>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+function BlogPreviewSectionEditor({ content, update }: SectionProps) {
+  const blog = content.blogPreview;
+  const set = (patch: Partial<typeof blog>) => update("blogPreview", { ...blog, ...patch });
+
+  return (
+    <Section title="Blog Preview Section" defaultOpen={false}>
+      <div className="grid gap-4">
+        <div className="grid grid-cols-2 gap-3">
+          <div>
+            <Label>Heading — Light Part</Label>
+            <Input value={blog.headingLight} onChange={(e) => set({ headingLight: e.target.value })} placeholder="News and" />
+          </div>
+          <div>
+            <Label>Heading — Bold Part</Label>
+            <Input value={blog.headingBold} onChange={(e) => set({ headingBold: e.target.value })} placeholder="Updates From Our Blogs" />
+          </div>
+        </div>
+        <div className="grid grid-cols-2 gap-3">
+          <div>
+            <Label>"View All" Button Text</Label>
+            <Input value={blog.viewAllText} onChange={(e) => set({ viewAllText: e.target.value })} placeholder="VIEW ALL BLOG POSTS" />
+          </div>
+          <div>
+            <Label>"View All" Button URL</Label>
+            <Input value={blog.viewAllUrl} onChange={(e) => set({ viewAllUrl: e.target.value })} placeholder="/blog" />
+          </div>
+        </div>
+        <div>
+          <Label>Number of posts to show</Label>
+          <Input
+            type="number"
+            min="1"
+            max="6"
+            value={blog.postCount}
+            onChange={(e) => set({ postCount: parseInt(e.target.value) || 3 })}
+          />
+        </div>
+        <p className="text-xs text-gray-500 italic">Posts are loaded automatically from the latest published blog posts.</p>
       </div>
     </Section>
   );
