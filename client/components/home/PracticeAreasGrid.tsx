@@ -82,7 +82,7 @@ export default function PracticeAreasGrid({ areas }: Props) {
                   {/* Orange hover overlay */}
                   <div
                     style={{
-                      backgroundColor: "rgb(238, 83, 14)",
+                      backgroundColor: "rgba(238, 83, 14, 0.6)",
                       bottom: "0",
                       left: "0",
                       opacity: isHovered ? 1 : 0,
