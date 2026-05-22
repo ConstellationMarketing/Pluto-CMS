@@ -254,6 +254,68 @@ function AboutFirmSectionEditor({ content, update }: SectionProps) {
           <Label>Paragraph 4</Label>
           <Textarea value={firm.paragraph4} onChange={(e) => set({ paragraph4: e.target.value })} rows={3} />
         </div>
+
+        <hr className="my-2" />
+        <p className="text-sm font-semibold text-gray-700">Attorney Sub-Section</p>
+
+        <div className="grid grid-cols-2 gap-3">
+          <div>
+            <Label>Attorney Name (h2)</Label>
+            <Input value={firm.attorneyName} onChange={(e) => set({ attorneyName: e.target.value })} placeholder="Meet Joanna Black" />
+          </div>
+          <div>
+            <Label>Attorney Title (h3, italic)</Label>
+            <Input value={firm.attorneyTitle} onChange={(e) => set({ attorneyTitle: e.target.value })} placeholder="A TRUSTED ATTORNEY" />
+          </div>
+        </div>
+        <div>
+          <Label>Attorney Bio — Paragraph 1</Label>
+          <Textarea value={firm.attorneyBio1} onChange={(e) => set({ attorneyBio1: e.target.value })} rows={4} />
+        </div>
+        <div>
+          <Label>Attorney Bio — Paragraph 2</Label>
+          <Textarea value={firm.attorneyBio2} onChange={(e) => set({ attorneyBio2: e.target.value })} rows={4} />
+        </div>
+        <div className="grid grid-cols-2 gap-3">
+          <div>
+            <Label>CTA Button Text</Label>
+            <Input value={firm.meetCtaText} onChange={(e) => set({ meetCtaText: e.target.value })} placeholder="MEET THE ATTORNEY" />
+          </div>
+          <div>
+            <Label>CTA Button URL</Label>
+            <Input value={firm.meetCtaUrl} onChange={(e) => set({ meetCtaUrl: e.target.value })} placeholder="/about-us" />
+          </div>
+        </div>
+        <div>
+          <Label>Call Label (above phone number)</Label>
+          <Input value={firm.callLabel} onChange={(e) => set({ callLabel: e.target.value })} placeholder="Call For A Consultation" />
+        </div>
+        <p className="text-xs text-gray-500 italic">Phone number is managed in Site Settings &gt; Contact Info</p>
+        <ImageField
+          label="Phone Icon"
+          value={firm.phoneIconUrl}
+          onChange={(url) => set({ phoneIconUrl: url })}
+          folder="about"
+        />
+        <ImageField
+          label="Attorney Photo"
+          value={firm.attorneyPhoto}
+          onChange={(url) => set({ attorneyPhoto: url })}
+          altValue={firm.attorneyPhotoAlt}
+          onAltChange={(attorneyPhotoAlt) => set({ attorneyPhotoAlt })}
+          onSelectAsset={(asset) => set({ attorneyPhoto: asset.url, attorneyPhotoAlt: asset.suggestedAltText || firm.attorneyPhotoAlt })}
+          folder="about"
+        />
+        <div>
+          <Label>Attorney Photo Alt Text</Label>
+          <Input value={firm.attorneyPhotoAlt} onChange={(e) => set({ attorneyPhotoAlt: e.target.value })} placeholder="Joanna Black, Attorney" />
+        </div>
+        <ImageField
+          label="Background Decorative Image (bottom-left)"
+          value={firm.bgDecorImage}
+          onChange={(url) => set({ bgDecorImage: url })}
+          folder="about"
+        />
       </div>
     </Section>
   );

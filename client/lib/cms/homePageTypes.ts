@@ -31,6 +31,18 @@ export interface AboutFirmContent {
   paragraph2: string;
   paragraph3: string;
   paragraph4: string;
+  // Attorney sub-section
+  attorneyName: string;       // "Meet Joanna Black"
+  attorneyTitle: string;      // "A TRUSTED ATTORNEY"
+  attorneyBio1: string;
+  attorneyBio2: string;
+  meetCtaText: string;        // "MEET THE ATTORNEY"
+  meetCtaUrl: string;
+  callLabel: string;          // "Call For A Consultation"
+  phoneIconUrl: string;
+  attorneyPhoto: string;
+  attorneyPhotoAlt: string;
+  bgDecorImage: string;       // bottom-left decorative background image
 }
 
 export interface PartnerLogo {
@@ -206,6 +218,17 @@ export const defaultHomeContent: HomePageContent = {
     paragraph2: "No matter where our clients are in their journey, we are here to guide them forward with clarity and care.",
     paragraph3: "While not every situation calls for legal intervention, when it does, the right approach can be truly life-changing. Whether facing personal, financial, or family-related matters, we help individuals understand their options and take confident steps toward resolution.",
     paragraph4: "Many of our clients come to us during times of significant change—and we're here to help them move forward with peace of mind.",
+    attorneyName: "Meet Joanna Black",
+    attorneyTitle: "A TRUSTED ATTORNEY",
+    attorneyBio1: "As your attorney, my goal is to provide legal solutions tailored to your unique needs and circumstances. I work closely with you to fully understand your situation—whether it involves your personal, financial, or professional life. Based on this assessment, I present thoughtful, strategic options designed to serve your best interests.",
+    attorneyBio2: "With the knowledge and experience to guide you through every step, I help you choose the path that offers clarity, security, and confidence for the future. My commitment is to ensure you have a solid plan in place—one that protects what matters most.",
+    meetCtaText: "MEET THE ATTORNEY",
+    meetCtaUrl: "/about-us",
+    callLabel: "Call For A Consultation",
+    phoneIconUrl: "https://design-pluto.netlify.app/images/phone-icon.png",
+    attorneyPhoto: "https://design-pluto.netlify.app/images/attorney-photo.jpg",
+    attorneyPhotoAlt: "Joanna Black, Attorney",
+    bgDecorImage: "https://design-pluto.netlify.app/images/rectangle-143.png",
   },
   about: {
     sectionLabel: "",
