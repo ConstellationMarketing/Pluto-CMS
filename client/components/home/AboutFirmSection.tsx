@@ -1,4 +1,5 @@
 import type { AboutFirmContent } from "@site/lib/cms/homePageTypes";
+import RichText from "@site/components/shared/RichText";
 
 interface Props {
   content: AboutFirmContent;
@@ -101,22 +102,30 @@ export default function AboutFirmSection({ content }: Props) {
                 {content.subHeading}
               </h2>
             )}
-            {[content.paragraph1, content.paragraph2, content.paragraph3, content.paragraph4]
-              .filter(Boolean)
-              .map((p, i, arr) => (
-                <p
-                  key={i}
-                  style={{
-                    fontSize: "clamp(15px, 1.8vw, 22px)",
-                    lineHeight: 1.6,
-                    overflowWrap: "anywhere",
-                    wordBreak: "break-word",
-                    paddingBottom: i < arr.length - 1 ? "20px" : 0,
-                  }}
-                >
-                  {p}
-                </p>
-              ))}
+            {content.bodyHtml ? (
+              <RichText
+                html={content.bodyHtml}
+                style={{ fontSize: "clamp(15px, 1.8vw, 22px)", lineHeight: 1.6 }}
+                className="[&_p]:pb-[20px] [&_p:last-child]:pb-0 [&_p]:overflow-wrap-anywhere"
+              />
+            ) : (
+              [content.paragraph1, content.paragraph2, content.paragraph3, content.paragraph4]
+                .filter(Boolean)
+                .map((p, i, arr) => (
+                  <p
+                    key={i}
+                    style={{
+                      fontSize: "clamp(15px, 1.8vw, 22px)",
+                      lineHeight: 1.6,
+                      overflowWrap: "anywhere",
+                      wordBreak: "break-word",
+                      paddingBottom: i < arr.length - 1 ? "20px" : 0,
+                    }}
+                  >
+                    {p}
+                  </p>
+                ))
+            )}
           </div>
         </div>
       </div>

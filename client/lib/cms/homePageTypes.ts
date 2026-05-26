@@ -28,7 +28,8 @@ export interface AboutFirmContent {
   photoAlt: string;
   accentBarColor: string;
   subHeading: string;         // "Providing Legal Services Throughout Atlanta"
-  paragraph1: string;
+  bodyHtml: string;          // rich text, replaces paragraph1-4
+  paragraph1: string;        // legacy fallback
   paragraph2: string;
   paragraph3: string;
   paragraph4: string;
@@ -242,6 +243,7 @@ export const defaultHomeContent: HomePageContent = {
     photoAlt: "Constellation Law Attorneys",
     accentBarColor: "#2ba6a3",
     subHeading: "Providing Legal Services Throughout Atlanta",
+    bodyHtml: "",
     paragraph1: "We founded Constellation Law with a shared vision: to support our clients through the many challenges and transitions life brings.",
     paragraph2: "No matter where our clients are in their journey, we are here to guide them forward with clarity and care.",
     paragraph3: "While not every situation calls for legal intervention, when it does, the right approach can be truly life-changing. Whether facing personal, financial, or family-related matters, we help individuals understand their options and take confident steps toward resolution.",

@@ -219,22 +219,12 @@ function AboutFirmSectionEditor({ content, update }: SectionProps) {
           <Label>Sub-heading (h2 in right column)</Label>
           <Input value={firm.subHeading} onChange={(e) => set({ subHeading: e.target.value })} placeholder="Providing Legal Services Throughout Atlanta" />
         </div>
-        <div>
-          <Label>Paragraph 1</Label>
-          <Textarea value={firm.paragraph1} onChange={(e) => set({ paragraph1: e.target.value })} rows={3} />
-        </div>
-        <div>
-          <Label>Paragraph 2</Label>
-          <Textarea value={firm.paragraph2} onChange={(e) => set({ paragraph2: e.target.value })} rows={3} />
-        </div>
-        <div>
-          <Label>Paragraph 3</Label>
-          <Textarea value={firm.paragraph3} onChange={(e) => set({ paragraph3: e.target.value })} rows={4} />
-        </div>
-        <div>
-          <Label>Paragraph 4</Label>
-          <Textarea value={firm.paragraph4} onChange={(e) => set({ paragraph4: e.target.value })} rows={3} />
-        </div>
+        <RichTextField
+          label="Body Text"
+          value={firm.bodyHtml}
+          onChange={(html) => set({ bodyHtml: html })}
+          placeholder="Enter the firm description..."
+        />
 
         <hr className="my-2" />
         <p className="text-sm font-semibold text-gray-700">Attorney Sub-Section</p>
