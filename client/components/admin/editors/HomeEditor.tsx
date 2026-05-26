@@ -70,6 +70,12 @@ function HeroSection({ content, update }: SectionProps) {
           />
         </div>
 
+        <div>
+          <Label>H1 Title — below accent bar</Label>
+          <p className="text-xs text-gray-500 mb-1">Rendered as the &lt;h1&gt; below the accent line (e.g. "Trusted & Experienced Lawyers in Atlanta.")</p>
+          <Input value={hero.h1Title} onChange={(e) => set({ h1Title: e.target.value })} placeholder="Trusted & Experienced Lawyers in Atlanta." />
+        </div>
+
         <div className="space-y-2">
           <RichTextField
             label="Tagline — decorative text (p tag)"
@@ -107,12 +113,6 @@ function HeroSection({ content, update }: SectionProps) {
               className="font-mono text-sm"
             />
           </div>
-        </div>
-
-        <div>
-          <Label>H1 Title — below accent bar</Label>
-          <p className="text-xs text-gray-500 mb-1">Rendered as the &lt;h1&gt; below the accent line (e.g. "Trusted & Experienced Lawyers in Atlanta.")</p>
-          <Input value={hero.h1Title} onChange={(e) => set({ h1Title: e.target.value })} placeholder="Trusted & Experienced Lawyers in Atlanta." />
         </div>
         <div>
           <Label>Full Headline</Label>
