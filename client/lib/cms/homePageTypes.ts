@@ -36,7 +36,8 @@ export interface AboutFirmContent {
   // Attorney sub-section
   attorneyName: string;       // "Meet Joanna Black"
   attorneyTitle: string;      // "A TRUSTED ATTORNEY"
-  attorneyBio1: string;
+  attorneyBioHtml: string;    // rich text, replaces bio1+bio2
+  attorneyBio1: string;        // legacy fallback
   attorneyBio2: string;
   meetCtaText: string;        // "MEET THE ATTORNEY"
   meetCtaUrl: string;
@@ -250,6 +251,7 @@ export const defaultHomeContent: HomePageContent = {
     paragraph4: "Many of our clients come to us during times of significant change—and we're here to help them move forward with peace of mind.",
     attorneyName: "Meet Joanna Black",
     attorneyTitle: "A TRUSTED ATTORNEY",
+    attorneyBioHtml: "",
     attorneyBio1: "As your attorney, my goal is to provide legal solutions tailored to your unique needs and circumstances. I work closely with you to fully understand your situation—whether it involves your personal, financial, or professional life. Based on this assessment, I present thoughtful, strategic options designed to serve your best interests.",
     attorneyBio2: "With the knowledge and experience to guide you through every step, I help you choose the path that offers clarity, security, and confidence for the future. My commitment is to ensure you have a solid plan in place—one that protects what matters most.",
     meetCtaText: "MEET THE ATTORNEY",

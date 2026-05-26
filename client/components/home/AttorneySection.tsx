@@ -1,6 +1,7 @@
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import type { AboutFirmContent } from "@site/lib/cms/homePageTypes";
+import RichText from "@site/components/shared/RichText";
 import { useGlobalPhone } from "@site/contexts/SiteSettingsContext";
 
 interface Props {
@@ -54,15 +55,25 @@ export default function AttorneySection({ content }: Props) {
               >
                 {content.attorneyTitle}
               </h3>
-              {content.attorneyBio1 && (
-                <p style={{ fontSize: "clamp(15px, 1.8vw, 22px)", lineHeight: 1.6, paddingBottom: "20px", overflowWrap: "anywhere", wordBreak: "break-word" }}>
-                  {content.attorneyBio1}
-                </p>
-              )}
-              {content.attorneyBio2 && (
-                <p style={{ fontSize: "clamp(15px, 1.8vw, 22px)", lineHeight: 1.6, overflowWrap: "anywhere", wordBreak: "break-word" }}>
-                  {content.attorneyBio2}
-                </p>
+              {content.attorneyBioHtml ? (
+                <RichText
+                  html={content.attorneyBioHtml}
+                  style={{ fontSize: "clamp(15px, 1.8vw, 22px)", lineHeight: 1.6 }}
+                  className="[&_p]:pb-[20px] [&_p:last-child]:pb-0 [&_p]:overflow-wrap-anywhere"
+                />
+              ) : (
+                <>
+                  {content.attorneyBio1 && (
+                    <p style={{ fontSize: "clamp(15px, 1.8vw, 22px)", lineHeight: 1.6, paddingBottom: "20px", overflowWrap: "anywhere", wordBreak: "break-word" }}>
+                      {content.attorneyBio1}
+                    </p>
+                  )}
+                  {content.attorneyBio2 && (
+                    <p style={{ fontSize: "clamp(15px, 1.8vw, 22px)", lineHeight: 1.6, overflowWrap: "anywhere", wordBreak: "break-word" }}>
+                      {content.attorneyBio2}
+                    </p>
+                  )}
+                </>
               )}
             </div>
 

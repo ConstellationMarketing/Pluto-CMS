@@ -239,14 +239,12 @@ function AboutFirmSectionEditor({ content, update }: SectionProps) {
             <Input value={firm.attorneyTitle} onChange={(e) => set({ attorneyTitle: e.target.value })} placeholder="A TRUSTED ATTORNEY" />
           </div>
         </div>
-        <div>
-          <Label>Attorney Bio — Paragraph 1</Label>
-          <Textarea value={firm.attorneyBio1} onChange={(e) => set({ attorneyBio1: e.target.value })} rows={4} />
-        </div>
-        <div>
-          <Label>Attorney Bio — Paragraph 2</Label>
-          <Textarea value={firm.attorneyBio2} onChange={(e) => set({ attorneyBio2: e.target.value })} rows={4} />
-        </div>
+        <RichTextField
+          label="Attorney Bio"
+          value={firm.attorneyBioHtml}
+          onChange={(html) => set({ attorneyBioHtml: html })}
+          placeholder="Enter the attorney bio..."
+        />
         <div className="grid grid-cols-2 gap-3">
           <div>
             <Label>CTA Button Text</Label>
