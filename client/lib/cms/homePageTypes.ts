@@ -106,8 +106,9 @@ export interface AwardsFeature {
 
 export interface AwardsContent {
   sectionLabel: string;
-  heading: string;       // light part, e.g. "Over The Years,"
-  headingBold: string;   // bold part, e.g. "Our dedication to excellence..."
+  headingHtml: string;   // rich text, replaces heading+headingBold
+  heading: string;       // legacy fallback
+  headingBold: string;   // legacy fallback
   description: string;
   logos: Array<{ src: string; alt: string }>;
   features: AwardsFeature[];
@@ -294,6 +295,7 @@ export const defaultHomeContent: HomePageContent = {
   ],
   awards: {
     sectionLabel: "",
+    headingHtml: "",
     heading: "Over The Years,",
     headingBold: "Our dedication to excellence and client care has earned recognition.",
     description: "",

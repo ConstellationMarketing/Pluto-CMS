@@ -492,14 +492,12 @@ function AwardsSection({ content, update }: SectionProps) {
   return (
     <Section title="Awards & Memberships" defaultOpen={false}>
       <div className="grid gap-4">
-        <div>
-          <Label>Heading — Light Part (e.g. "Over The Years,")</Label>
-          <Input value={awards.heading} onChange={(e) => set({ heading: e.target.value })} placeholder="Over The Years," />
-        </div>
-        <div>
-          <Label>Heading — Bold Part</Label>
-          <Textarea value={awards.headingBold || ""} onChange={(e) => set({ headingBold: e.target.value })} rows={2} placeholder="Our dedication to excellence and client care has earned recognition." />
-        </div>
+        <RichTextField
+          label="Heading"
+          value={awards.headingHtml}
+          onChange={(html) => set({ headingHtml: html })}
+          placeholder="Over The Years, Our dedication to excellence... — use Bold for emphasis"
+        />
 
         <h4 className="font-medium pt-2">Award Logos (full-width row)</h4>
         <ArrayEditor

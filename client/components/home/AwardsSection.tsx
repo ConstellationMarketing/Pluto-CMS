@@ -1,4 +1,5 @@
 import type { AwardsContent } from "@site/lib/cms/homePageTypes";
+import RichText from "@site/components/shared/RichText";
 
 interface Props {
   content?: AwardsContent;
@@ -23,22 +24,37 @@ export default function AwardsSection({ content }: Props) {
     >
       {/* Heading */}
       <div className="mx-auto w-[90%] md:w-[80%] max-w-[2560px] py-[28px] text-center">
-        <h2
-          style={{
-            fontSize: "clamp(26px, 5vw, 59.136px)",
-            fontWeight: 300,
-            lineHeight: 1.05,
-            overflowWrap: "anywhere",
-            paddingBottom: "10px",
-            wordBreak: "break-word",
-          }}
-        >
-          {content.heading || "Over The Years,"}
-          <br />
-          <strong style={{ fontWeight: 700 }}>
-            {content.headingBold || "Our dedication to excellence and client care has earned recognition."}
-          </strong>
-        </h2>
+        {content.headingHtml ? (
+          <h2
+            style={{
+              fontSize: "clamp(26px, 5vw, 59.136px)",
+              fontWeight: 300,
+              lineHeight: 1.05,
+              overflowWrap: "anywhere",
+              paddingBottom: "10px",
+              wordBreak: "break-word",
+            }}
+            className="[&_strong]:font-bold [&_p]:m-0"
+            dangerouslySetInnerHTML={{ __html: content.headingHtml }}
+          />
+        ) : (
+          <h2
+            style={{
+              fontSize: "clamp(26px, 5vw, 59.136px)",
+              fontWeight: 300,
+              lineHeight: 1.05,
+              overflowWrap: "anywhere",
+              paddingBottom: "10px",
+              wordBreak: "break-word",
+            }}
+          >
+            {content.heading || "Over The Years,"}
+            <br />
+            <strong style={{ fontWeight: 700 }}>
+              {content.headingBold || "Our dedication to excellence and client care has earned recognition."}
+            </strong>
+          </h2>
+        )}
       </div>
 
       {/* Logos row */}
