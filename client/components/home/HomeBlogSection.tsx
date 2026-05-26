@@ -91,7 +91,7 @@ export default function HomeBlogSection({ content }: Props) {
 
       {/* Blog cards */}
       <div className="mx-auto w-[95%] md:w-[90%] max-w-[2560px] py-[28px]">
-        <div className="flex flex-col sm:flex-row gap-[24px] sm:gap-[3%]">
+        <div className="flex flex-col sm:flex-row sm:items-start gap-[24px] sm:gap-[3%]">
           {cards.map((card, i) => (
             <Link
               key={i}
