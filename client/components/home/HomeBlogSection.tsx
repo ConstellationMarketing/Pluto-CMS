@@ -16,24 +16,33 @@ function extractIntro(html: string | null): string {
   if (!html) return "";
   const div = document.createElement("div");
   div.innerHTML = html;
+
+  // Try to find paragraph after an "Introduction" heading first
   const headings = div.querySelectorAll("h1,h2,h3,h4,h5,h6");
   for (const h of headings) {
-    const text = h.textContent?.trim().toLowerCase() ?? "";
-    if (text.includes("introduction")) {
+    if ((h.textContent?.trim().toLowerCase() ?? "").includes("introduction")) {
       let sibling = h.nextElementSibling;
       while (sibling) {
-        const tag = sibling.tagName.toLowerCase();
-        if (tag.match(/^h[1-6]$/)) break;
+        if (sibling.tagName.toLowerCase().match(/^h[1-6]$/)) break;
         const content = sibling.textContent?.trim();
-        if (content) {
-          const sentence = content.match(/^[^.!?]+[.!?]/);
-          return sentence ? sentence[0].trim() : content.split(/\s+/).slice(0, 20).join(" ") + "...";
-        }
+        if (content) return firstSentence(content);
         sibling = sibling.nextElementSibling;
       }
     }
   }
+
+  // Fallback: first non-empty paragraph in the whole body
+  for (const p of div.querySelectorAll("p")) {
+    const content = p.textContent?.trim();
+    if (content) return firstSentence(content);
+  }
+
   return "";
+}
+
+function firstSentence(text: string): string {
+  const match = text.match(/^[^.!?]+[.!?]/);
+  return match ? match[0].trim() : text.split(/\s+/).slice(0, 20).join(" ") + "...";
 }
 
 const FALLBACK_IMAGES = [
@@ -52,7 +61,7 @@ export default function HomeBlogSection({ content }: Props) {
 
   useEffect(() => {
     fetchRestRows<PostRow>(
-      `posts?select=slug,title,excerpt,featured_image,body&order=published_at.desc&limit=${count}`
+      `posts?select=slug,title,excerpt,featured_image,body&status=eq.published&order=published_at.desc&limit=${count}`
     )
       .then((rows) => setPosts(rows))
       .catch(() => setPosts([]));
