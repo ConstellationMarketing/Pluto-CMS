@@ -395,16 +395,16 @@ function PracticeAreasIntroSection({ content, update }: SectionProps) {
   return (
     <Section title="Practice Areas Intro" defaultOpen={false}>
       <div className="grid gap-4">
-        <div>
-          <Label>Section Label (small text, e.g. "OUR PRACTICE AREAS")</Label>
-          <Input value={intro.sectionLabel} onChange={(e) => set({ sectionLabel: e.target.value })} placeholder="OUR PRACTICE AREAS" />
-        </div>
         <RichTextField
           label="Heading"
           value={intro.headingHtml}
           onChange={(html) => set({ headingHtml: html })}
           placeholder="Types Of Cases We Handle — use Bold for emphasis"
         />
+        <div>
+          <Label>Section Label (small text below heading, e.g. "OUR PRACTICE AREAS")</Label>
+          <Input value={intro.sectionLabel} onChange={(e) => set({ sectionLabel: e.target.value })} placeholder="OUR PRACTICE AREAS" />
+        </div>
         <div className="grid grid-cols-2 gap-4">
           <div>
             <Label>Button Text Line 1</Label>
