@@ -243,12 +243,6 @@ export default function TestimonialsSection({ content, practiceAreasIntro }: Pro
                 {practiceAreasIntro.sectionLabel}
               </p>
             )}
-            {practiceAreasIntro.descriptionHtml && (
-              <RichText
-                html={practiceAreasIntro.descriptionHtml}
-                style={{ fontSize: "clamp(14px, 1.8vw, 20px)", lineHeight: 1.6, marginTop: "16px" }}
-              />
-            )}
           </div>
         </div>
       )}
