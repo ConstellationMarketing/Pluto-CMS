@@ -101,7 +101,7 @@ export default function Footer() {
       </div>
 
       {/* Bottom Section — outer padding gap lets image show through; inner grid has matching bg to cover the rest */}
-      <div className="pt-[40px] md:pt-[60px] lg:pt-[80px] pb-[40px] md:pb-[54px]">
+      <div className="pt-[20px] md:pt-[30px] lg:pt-[40px] pb-[40px] md:pb-[54px]">
       <div className="relative mx-auto w-[90%] max-w-[2560px] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[32px] lg:gap-0" style={{zIndex: 2, backgroundColor: "rgb(29, 129, 128)", paddingBottom: "40px"}}>
 
         {/* Column 1: Logo + Phone */}
