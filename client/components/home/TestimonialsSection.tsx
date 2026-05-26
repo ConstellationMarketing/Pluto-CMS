@@ -198,21 +198,36 @@ export default function TestimonialsSection({ content, practiceAreasIntro }: Pro
       {practiceAreasIntro && (
         <div className="mx-auto w-[90%] md:w-[80%] max-w-[1080px] pt-[40px] md:pt-[80px] lg:pt-[335px] pb-[56px]">
           <div className="text-center">
-            <h2
-              style={{
-                fontSize: "clamp(26px, 5vw, 59.136px)",
-                fontWeight: 300,
-                lineHeight: 1.05,
-                overflowWrap: "anywhere",
-                paddingBottom: "10px",
-                wordBreak: "break-word",
-              }}
-            >
-              {practiceAreasIntro.heading || "Types Of"}{" "}
-              <strong style={{ fontWeight: 700 }}>
-                {practiceAreasIntro.headingBold || "Cases We Handle"}
-              </strong>
-            </h2>
+            {practiceAreasIntro.headingHtml ? (
+              <h2
+                style={{
+                  fontSize: "clamp(26px, 5vw, 59.136px)",
+                  fontWeight: 300,
+                  lineHeight: 1.05,
+                  overflowWrap: "anywhere",
+                  paddingBottom: "10px",
+                  wordBreak: "break-word",
+                }}
+                className="[&_strong]:font-bold"
+                dangerouslySetInnerHTML={{ __html: practiceAreasIntro.headingHtml }}
+              />
+            ) : (
+              <h2
+                style={{
+                  fontSize: "clamp(26px, 5vw, 59.136px)",
+                  fontWeight: 300,
+                  lineHeight: 1.05,
+                  overflowWrap: "anywhere",
+                  paddingBottom: "10px",
+                  wordBreak: "break-word",
+                }}
+              >
+                {practiceAreasIntro.heading || "Types Of"}{" "}
+                <strong style={{ fontWeight: 700 }}>
+                  {practiceAreasIntro.headingBold || "Cases We Handle"}
+                </strong>
+              </h2>
+            )}
             <p
               style={{
                 color: "rgb(48, 48, 48)",
@@ -226,6 +241,12 @@ export default function TestimonialsSection({ content, practiceAreasIntro }: Pro
             >
               {practiceAreasIntro.sectionLabel || "OUR PRACTICE AREAS"}
             </p>
+            {practiceAreasIntro.descriptionHtml && (
+              <RichText
+                html={practiceAreasIntro.descriptionHtml}
+                style={{ fontSize: "clamp(14px, 1.8vw, 20px)", lineHeight: 1.6, marginTop: "16px" }}
+              />
+            )}
           </div>
         </div>
       )}

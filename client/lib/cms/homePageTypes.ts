@@ -89,8 +89,10 @@ export interface PracticeAreaItem {
 
 export interface PracticeAreasIntroContent {
   sectionLabel: string;
-  heading: string;       // light part, e.g. "Types Of"
-  headingBold: string;   // bold part, e.g. "Cases We Handle"
+  headingHtml: string;        // rich text heading
+  descriptionHtml: string;   // rich text paragraph below heading
+  heading: string;           // legacy fallback
+  headingBold: string;       // legacy fallback
   buttonLink: string;
   buttonTextLine1: string;
   buttonTextLine2: string;
@@ -277,6 +279,8 @@ export const defaultHomeContent: HomePageContent = {
   },
   practiceAreasIntro: {
     sectionLabel: "OUR PRACTICE AREAS",
+    headingHtml: "",
+    descriptionHtml: "",
     heading: "Types Of",
     headingBold: "Cases We Handle",
     buttonLink: "/practice-areas",

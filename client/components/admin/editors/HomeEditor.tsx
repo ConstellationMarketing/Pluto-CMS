@@ -395,23 +395,22 @@ function PracticeAreasIntroSection({ content, update }: SectionProps) {
   return (
     <Section title="Practice Areas Intro" defaultOpen={false}>
       <div className="grid gap-4">
-        <HeadingField
-          label="Title"
-          value={intro.sectionLabel}
-          onChange={(v) => set({ sectionLabel: v })}
-          tag={ht.get("practiceAreasIntro.sectionLabel")}
-          onTagChange={(t) => ht.set("practiceAreasIntro.sectionLabel", t)}
-        />
-        <div className="grid grid-cols-2 gap-3">
-          <div>
-            <Label>Heading — Light Part (e.g. "Types Of")</Label>
-            <Input value={intro.heading} onChange={(e) => set({ heading: e.target.value })} placeholder="Types Of" />
-          </div>
-          <div>
-            <Label>Heading — Bold Part (e.g. "Cases We Handle")</Label>
-            <Input value={intro.headingBold || ""} onChange={(e) => set({ headingBold: e.target.value })} placeholder="Cases We Handle" />
-          </div>
+        <div>
+          <Label>Section Label (small text, e.g. "OUR PRACTICE AREAS")</Label>
+          <Input value={intro.sectionLabel} onChange={(e) => set({ sectionLabel: e.target.value })} placeholder="OUR PRACTICE AREAS" />
         </div>
+        <RichTextField
+          label="Heading"
+          value={intro.headingHtml}
+          onChange={(html) => set({ headingHtml: html })}
+          placeholder="Types Of Cases We Handle — use Bold for emphasis"
+        />
+        <RichTextField
+          label="Description"
+          value={intro.descriptionHtml}
+          onChange={(html) => set({ descriptionHtml: html })}
+          placeholder="Optional paragraph below the heading..."
+        />
         <div className="grid grid-cols-2 gap-4">
           <div>
             <Label>Button Text Line 1</Label>
