@@ -46,7 +46,7 @@ export default function Footer() {
       }}
     >
       {/* Decorative background image - top right absolute, hidden on mobile */}
-      <div className="absolute top-0 right-0 w-full overflow-hidden pointer-events-none hidden md:block">
+      <div className="absolute top-0 right-0 w-full overflow-hidden pointer-events-none hidden md:block z-[1]">
         <div className="flex justify-end pointer-events-none">
           <img
             src={bgImage}
@@ -101,7 +101,7 @@ export default function Footer() {
       </div>
 
       {/* Bottom Section: 4 columns — stack on mobile, 2-col on sm, 4-col on lg */}
-      <div className="relative mx-auto w-[90%] max-w-[2560px] pt-[40px] md:pt-[60px] lg:pt-[80px] pb-[40px] md:pb-[54px] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[32px] lg:gap-0">
+      <div className="relative z-[2] mx-auto w-[90%] max-w-[2560px] pt-[40px] md:pt-[60px] lg:pt-[80px] pb-[40px] md:pb-[54px] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[32px] lg:gap-0">
 
         {/* Column 1: Logo + Phone */}
         <div className="relative z-[2] lg:mr-[5.5%]">
