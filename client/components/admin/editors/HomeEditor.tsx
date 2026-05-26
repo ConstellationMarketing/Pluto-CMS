@@ -72,12 +72,12 @@ function HeroSection({ content, update }: SectionProps) {
 
         <div className="space-y-2">
           <RichTextField
-            label="Tagline — dekorativni tekst (p)"
+            label="Tagline — decorative text (p tag)"
             value={hero.taglineHtml}
             onChange={(html) => set({ taglineHtml: html })}
-            placeholder="TRUSTED TESTED READY — koristi Bold za srednju reč"
+            placeholder="TRUSTED TESTED READY — use Bold for the main word"
           />
-          <p className="text-xs text-gray-500">Prikazuje se kao veliki dekorativni tekst u hero sekciji. Koristi <strong>Bold</strong> za naglašenu reč.</p>
+          <p className="text-xs text-gray-500">Rendered as large decorative text in the hero. Use <strong>Bold</strong> to emphasise the main word.</p>
         </div>
 
         <div className="grid grid-cols-2 gap-3">
@@ -110,8 +110,8 @@ function HeroSection({ content, update }: SectionProps) {
         </div>
 
         <div>
-          <Label>H1 naslov — ispod accent bara</Label>
-          <p className="text-xs text-gray-500 mb-1">Prikazuje se kao &lt;h1&gt; ispod accent linije (npr. "Trusted & Experienced Lawyers in Atlanta.")</p>
+          <Label>H1 Title — below accent bar</Label>
+          <p className="text-xs text-gray-500 mb-1">Rendered as the &lt;h1&gt; below the accent line (e.g. "Trusted & Experienced Lawyers in Atlanta.")</p>
           <Input value={hero.h1Title} onChange={(e) => set({ h1Title: e.target.value })} placeholder="Trusted & Experienced Lawyers in Atlanta." />
         </div>
         <div>
