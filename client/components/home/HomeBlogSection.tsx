@@ -9,6 +9,28 @@ interface PostRow {
   title: string | null;
   excerpt: string | null;
   featured_image: string | null;
+  body: string | null;
+}
+
+function extractIntro(html: string | null): string {
+  if (!html) return "";
+  const div = document.createElement("div");
+  div.innerHTML = html;
+  const headings = div.querySelectorAll("h1,h2,h3,h4,h5,h6");
+  for (const h of headings) {
+    const text = h.textContent?.trim().toLowerCase() ?? "";
+    if (text.includes("introduction")) {
+      let sibling = h.nextElementSibling;
+      while (sibling) {
+        const tag = sibling.tagName.toLowerCase();
+        if (tag.match(/^h[1-6]$/)) break;
+        const content = sibling.textContent?.trim();
+        if (content) return content;
+        sibling = sibling.nextElementSibling;
+      }
+    }
+  }
+  return "";
 }
 
 const FALLBACK_IMAGES = [
@@ -27,7 +49,7 @@ export default function HomeBlogSection({ content }: Props) {
 
   useEffect(() => {
     fetchRestRows<PostRow>(
-      `posts?select=slug,title,excerpt,featured_image&status=eq.published&order=published_at.desc&limit=${count}`
+      `posts?select=slug,title,excerpt,featured_image,body&status=eq.published&order=published_at.desc&limit=${count}`
     )
       .then((rows) => setPosts(rows))
       .catch(() => setPosts([]));
@@ -37,7 +59,7 @@ export default function HomeBlogSection({ content }: Props) {
     ? posts.map((p, i) => ({
         href: `/blog/${p.slug}`,
         image: (p.featured_image && !p.featured_image.includes("placeholder")) ? p.featured_image : FALLBACK_IMAGES[i % 3],
-        text: p.title || p.excerpt || "Read more",
+        text: extractIntro(p.body) || p.excerpt || p.title || "Read more",
       }))
     : FALLBACK_IMAGES.slice(0, count).map((img, i) => ({
         href: "/blog",
