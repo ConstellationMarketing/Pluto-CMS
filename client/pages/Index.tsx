@@ -61,16 +61,16 @@ export default function Index() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-[48px] items-center">
             {/* Left column */}
             <div>
-              {/* Tagline H1 */}
+              {/* Tagline — decorative, rendered as p */}
               {heroContent.taglineHtml ? (
-                <h1
+                <p
                   className="mb-[24px] md:mb-[32px] leading-none font-outfit text-[48px] sm:text-[64px] md:text-[80px] lg:text-[96px] font-light text-white
                     [&_p]:block [&_p]:leading-none [&_p]:m-0
                     [&_strong]:font-semibold [&_strong]:text-[56px] [&_strong]:sm:text-[80px] [&_strong]:md:text-[100px] [&_strong]:lg:text-[128px]"
                   dangerouslySetInnerHTML={{ __html: heroContent.taglineHtml }}
                 />
               ) : (
-                <h1 className="mb-[24px] md:mb-[32px] leading-none">
+                <p className="mb-[24px] md:mb-[32px] leading-none">
                   <span className="block font-outfit text-[48px] sm:text-[64px] md:text-[80px] lg:text-[96px] font-light leading-none text-white">
                     {heroContent.taglineWord1 || "TRUSTED"}
                   </span>
@@ -80,7 +80,7 @@ export default function Index() {
                   <span className="block font-outfit text-[48px] sm:text-[64px] md:text-[80px] lg:text-[96px] font-light leading-none text-white">
                     {heroContent.taglineWord3 || "READY"}
                   </span>
-                </h1>
+                </p>
               )}
 
               {/* CTA Button - always shown with default text */}
@@ -99,12 +99,12 @@ export default function Index() {
                   style={{ backgroundColor: heroContent.accentBarColor || "#2ba6a3" }}
                 />
                 {heroContent.h1Title && (
-                  <p
-                    className="text-white font-light text-[20px] md:text-[28px] lg:text-[36px] leading-tight md:leading-[40px]"
+                  <h1
+                    className="text-white font-light text-[20px] md:text-[28px] lg:text-[36px] leading-tight md:leading-[40px] m-0"
                     style={{ fontFamily: "'Crimson Pro', Georgia, serif" }}
                   >
                     {heroContent.h1Title}
-                  </p>
+                  </h1>
                 )}
               </div>
             </div>
