@@ -57,6 +57,13 @@ export default function Header() {
                 {headerPhoneLabel && (
                   <p className="font-outfit text-[18px] font-light text-white">{headerPhoneLabel}</p>
                 )}
+                {headerPhoneIconUrl && (
+                  <img
+                    src={headerPhoneIconUrl}
+                    alt="Phone"
+                    className="h-[32px] w-auto"
+                  />
+                )}
                 {phoneNumber && phoneDisplay && (
                   <a
                     href={`tel:${phoneNumber.replace(/\D/g, "")}`}
@@ -64,13 +71,6 @@ export default function Header() {
                   >
                     {phoneDisplay}
                   </a>
-                )}
-                {headerPhoneIconUrl && (
-                  <img
-                    src={headerPhoneIconUrl}
-                    alt="Phone"
-                    className="h-[32px] w-auto"
-                  />
                 )}
               </div>
             )}
