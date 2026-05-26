@@ -45,22 +45,21 @@ export default function Footer() {
         fontFamily: "Outfit, Helvetica, Arial, sans-serif",
       }}
     >
-      {/* Top Section wrapper — bg image clipped here so it never bleeds into bottom section */}
-      <div className="relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-full pointer-events-none hidden md:block">
-          <div className="flex justify-end">
-            <img
-              src={bgImage}
-              alt=""
-              style={{ width: "1724px", maxWidth: "100%" }}
-              loading="lazy"
-              decoding="async"
-            />
-          </div>
+      {/* Decorative bg image — footer-absolute, image shows in top section + top padding gap of bottom section */}
+      <div className="absolute top-0 right-0 w-full pointer-events-none hidden md:block" style={{zIndex: 1}}>
+        <div className="flex justify-end">
+          <img
+            src={bgImage}
+            alt=""
+            style={{ width: "1724px", maxWidth: "100%" }}
+            loading="lazy"
+            decoding="async"
+          />
         </div>
+      </div>
 
-        {/* Top Section: Form box + CTA box — stack on mobile, side-by-side on desktop */}
-        <div className="relative z-[2] mx-auto w-[95%] lg:w-[90%] max-w-[2560px] flex flex-col lg:flex-row lg:items-end">
+      {/* Top Section: Form box + CTA box */}
+      <div className="relative mx-auto w-[95%] lg:w-[90%] max-w-[2560px] flex flex-col lg:flex-row lg:items-end" style={{zIndex: 2}}>
         {/* Left: Contact Form Box */}
         <div
           className="w-full lg:w-[36.7%] lg:mr-[5.5%] p-[24px] md:p-[40px] relative z-[2]"
@@ -99,11 +98,11 @@ export default function Footer() {
             </div>
           </div>
         </div>
-        </div>
-      </div>{/* end top section wrapper */}
+      </div>
 
-      {/* Bottom Section: 4 columns — stack on mobile, 2-col on sm, 4-col on lg */}
-      <div className="relative z-[2] mx-auto w-[90%] max-w-[2560px] pt-[40px] md:pt-[60px] lg:pt-[80px] pb-[40px] md:pb-[54px] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[32px] lg:gap-0">
+      {/* Bottom Section — outer padding gap lets image show through; inner grid has matching bg to cover the rest */}
+      <div className="pt-[40px] md:pt-[60px] lg:pt-[80px] pb-[40px] md:pb-[54px]">
+      <div className="relative mx-auto w-[90%] max-w-[2560px] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[32px] lg:gap-0" style={{zIndex: 2, backgroundColor: "rgb(29, 129, 128)", paddingBottom: "40px"}}>
 
         {/* Column 1: Logo + Phone */}
         <div className="relative z-[2] lg:mr-[5.5%]">
@@ -186,6 +185,7 @@ export default function Footer() {
             />
           ) : null}
         </div>
+      </div>
       </div>
 
       {/* Copyright */}
