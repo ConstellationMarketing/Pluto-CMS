@@ -228,19 +228,6 @@ export default function TestimonialsSection({ content, practiceAreasIntro }: Pro
                 </strong>
               </h2>
             )}
-            <p
-              style={{
-                color: "rgb(48, 48, 48)",
-                fontFamily: '"Crimson Pro", Georgia, serif',
-                fontSize: "clamp(16px, 2.5vw, 32px)",
-                fontWeight: 300,
-                lineHeight: 1.3,
-                overflowWrap: "anywhere",
-                wordBreak: "break-word",
-              }}
-            >
-              {practiceAreasIntro.sectionLabel || "OUR PRACTICE AREAS"}
-            </p>
             {practiceAreasIntro.descriptionHtml && (
               <RichText
                 html={practiceAreasIntro.descriptionHtml}
