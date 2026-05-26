@@ -25,7 +25,10 @@ function extractIntro(html: string | null): string {
         const tag = sibling.tagName.toLowerCase();
         if (tag.match(/^h[1-6]$/)) break;
         const content = sibling.textContent?.trim();
-        if (content) return content;
+        if (content) {
+          const sentence = content.match(/^[^.!?]+[.!?]/);
+          return sentence ? sentence[0].trim() : content.split(/\s+/).slice(0, 20).join(" ") + "...";
+        }
         sibling = sibling.nextElementSibling;
       }
     }
@@ -49,7 +52,7 @@ export default function HomeBlogSection({ content }: Props) {
 
   useEffect(() => {
     fetchRestRows<PostRow>(
-      `posts?select=slug,title,excerpt,featured_image,body&status=eq.published&order=published_at.desc&limit=${count}`
+      `posts?select=slug,title,excerpt,featured_image,body&order=published_at.desc&limit=${count}`
     )
       .then((rows) => setPosts(rows))
       .catch(() => setPosts([]));
