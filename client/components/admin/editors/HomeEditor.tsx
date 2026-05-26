@@ -565,7 +565,11 @@ function AwardsSection({ content, update }: SectionProps) {
 
 /* ------------------------------------------------------------------ */
 function TestimonialsSection({ content, update }: SectionProps) {
-  const t = { ...defaultHomeContent.testimonials, ...(content.testimonials ?? {}) };
+  const t = {
+    ...defaultHomeContent.testimonials,
+    ...(content.testimonials ?? {}),
+    items: content.testimonials?.items ?? defaultHomeContent.testimonials.items,
+  };
   const set = (patch: Partial<typeof t>) => update("testimonials", { ...t, ...patch });
   const ht = useHeadingTag(content, update);
 

@@ -58,23 +58,24 @@ export function ArrayEditor<T extends object>({
   newItem,
   itemLabel = "Item",
 }: {
-  items: T[];
+  items: T[] | undefined | null;
   onChange: (items: T[]) => void;
   renderItem: (item: T, index: number, update: (item: T) => void) => React.ReactNode;
   newItem: () => T;
   itemLabel?: string;
 }) {
-  const addItem = () => onChange([...items, newItem()]);
-  const removeItem = (index: number) => onChange(items.filter((_, i) => i !== index));
+  const safeItems = items ?? [];
+  const addItem = () => onChange([...safeItems, newItem()]);
+  const removeItem = (index: number) => onChange(safeItems.filter((_, i) => i !== index));
   const updateItem = (index: number, item: T) => {
-    const next = [...items];
+    const next = [...safeItems];
     next[index] = item;
     onChange(next);
   };
 
   return (
     <div className="space-y-4">
-      {items.map((item, index) => (
+      {safeItems.map((item, index) => (
         <div key={index} className="relative border rounded-lg p-4 bg-gray-50">
           <div className="absolute top-2 right-2 flex gap-2">
             <GripVertical className="h-4 w-4 text-gray-400 cursor-move" />
