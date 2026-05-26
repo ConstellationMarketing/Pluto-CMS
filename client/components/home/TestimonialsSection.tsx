@@ -198,22 +198,6 @@ export default function TestimonialsSection({ content, practiceAreasIntro }: Pro
       {practiceAreasIntro && (
         <div className="mx-auto w-[90%] md:w-[80%] max-w-[1080px] pt-[40px] md:pt-[80px] lg:pt-[335px] pb-[56px]">
           <div className="text-center">
-            {practiceAreasIntro.sectionLabel && (
-              <p
-                style={{
-                  color: "rgb(48, 48, 48)",
-                  fontFamily: '"Crimson Pro", Georgia, serif',
-                  fontSize: "clamp(16px, 2.5vw, 32px)",
-                  fontWeight: 300,
-                  lineHeight: 1.3,
-                  overflowWrap: "anywhere",
-                  wordBreak: "break-word",
-                  paddingBottom: "10px",
-                }}
-              >
-                {practiceAreasIntro.sectionLabel}
-              </p>
-            )}
             {practiceAreasIntro.headingHtml ? (
               <h2
                 style={{
@@ -243,6 +227,21 @@ export default function TestimonialsSection({ content, practiceAreasIntro }: Pro
                   {practiceAreasIntro.headingBold || "Cases We Handle"}
                 </strong>
               </h2>
+            )}
+            {practiceAreasIntro.sectionLabel && (
+              <p
+                style={{
+                  color: "rgb(48, 48, 48)",
+                  fontFamily: '"Crimson Pro", Georgia, serif',
+                  fontSize: "clamp(16px, 2.5vw, 32px)",
+                  fontWeight: 300,
+                  lineHeight: 1.3,
+                  overflowWrap: "anywhere",
+                  wordBreak: "break-word",
+                }}
+              >
+                {practiceAreasIntro.sectionLabel}
+              </p>
             )}
             {practiceAreasIntro.descriptionHtml && (
               <RichText
