@@ -1,9 +1,8 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import RichText from "@site/components/shared/RichText";
 import { MapPin } from "lucide-react";
 import { useSiteSettings } from "@site/contexts/SiteSettingsContext";
-import ContactForm from "@site/components/home/ContactForm";
+import CmsFormRenderer from "@site/components/shared/CmsFormRenderer";
 
 export default function Footer() {
   const { settings } = useSiteSettings();
@@ -74,7 +73,7 @@ export default function Footer() {
               {formHeadingBold}
             </h2>
           </div>
-          <FooterContactForm />
+          <CmsFormRenderer formId="contact" className="space-y-[20px]" />
         </div>
 
         {/* Right: CTA Box */}
@@ -224,135 +223,5 @@ export default function Footer() {
         </div>
       ) : null}
     </footer>
-  );
-}
-
-function FooterContactForm() {
-  const [form, setForm] = React.useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    phone: "",
-    message: "",
-  });
-  const [submitted, setSubmitted] = React.useState(false);
-  const [submitting, setSubmitting] = React.useState(false);
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setSubmitting(true);
-    await new Promise((r) => setTimeout(r, 800));
-    setSubmitted(true);
-    setSubmitting(false);
-  };
-
-  const inputStyle: React.CSSProperties = {
-    backgroundColor: "rgb(247, 247, 247)",
-    border: "1px solid rgb(196, 196, 196)",
-    color: "rgb(107, 107, 107)",
-    height: "50px",
-    padding: "12px",
-    width: "100%",
-    boxSizing: "border-box",
-    fontSize: "16px",
-  };
-
-  if (submitted) {
-    return (
-      <div style={{ color: "rgb(255, 255, 255)", textAlign: "center", padding: "40px 0" }}>
-        <p style={{ fontSize: "20px", fontWeight: 300 }}>Thank you! We will be in touch soon.</p>
-      </div>
-    );
-  }
-
-  return (
-    <form onSubmit={handleSubmit} role="form">
-      <div style={{ padding: "5px" }}>
-        <div style={{ marginBottom: "25px" }}>
-          <input
-            type="text"
-            placeholder="First Name *"
-            name="firstName"
-            required
-            aria-required="true"
-            value={form.firstName}
-            onChange={(e) => setForm((f) => ({ ...f, firstName: e.target.value }))}
-            style={inputStyle}
-          />
-        </div>
-        <div style={{ marginBottom: "25px" }}>
-          <input
-            type="text"
-            placeholder="Last Name *"
-            name="lastName"
-            required
-            aria-required="true"
-            value={form.lastName}
-            onChange={(e) => setForm((f) => ({ ...f, lastName: e.target.value }))}
-            style={inputStyle}
-          />
-        </div>
-        <div style={{ marginBottom: "25px" }}>
-          <input
-            type="email"
-            placeholder="Email Address *"
-            name="email"
-            required
-            aria-required="true"
-            value={form.email}
-            onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
-            style={inputStyle}
-          />
-        </div>
-        <div style={{ marginBottom: "25px" }}>
-          <input
-            type="tel"
-            placeholder="Phone Number"
-            name="phone"
-            value={form.phone}
-            onChange={(e) => setForm((f) => ({ ...f, phone: e.target.value }))}
-            style={inputStyle}
-          />
-        </div>
-        <div style={{ marginBottom: "25px" }}>
-          <textarea
-            placeholder="Message *"
-            name="message"
-            required
-            aria-required="true"
-            value={form.message}
-            onChange={(e) => setForm((f) => ({ ...f, message: e.target.value }))}
-            style={{
-              ...inputStyle,
-              height: "200px",
-              resize: "vertical",
-              whiteSpace: "pre-wrap",
-            }}
-          />
-        </div>
-        <div style={{ marginBottom: "25px" }}>
-          <button
-            type="submit"
-            disabled={submitting}
-            style={{
-              backgroundColor: "rgb(238, 83, 14)",
-              color: "rgb(247, 247, 247)",
-              cursor: "pointer",
-              display: "block",
-              fontSize: "22px",
-              height: "60px",
-              lineHeight: "33px",
-              padding: "12px",
-              textAlign: "center",
-              width: "100%",
-              border: "none",
-              boxSizing: "border-box",
-            }}
-          >
-            {submitting ? "SUBMITTING..." : "SUBMIT"}
-          </button>
-        </div>
-      </div>
-    </form>
   );
 }
