@@ -46,7 +46,14 @@ export default function Footer() {
       }}
     >
       {/* Decorative bg image — footer-absolute, image shows in top section + top padding gap of bottom section */}
-      <div className="absolute top-0 right-0 w-full pointer-events-none hidden md:block" style={{zIndex: 1}}>
+      <div
+        className="absolute top-0 right-0 w-full pointer-events-none hidden md:block"
+        style={{
+          zIndex: 1,
+          WebkitMaskImage: "linear-gradient(to bottom, black 60%, transparent 100%)",
+          maskImage: "linear-gradient(to bottom, black 60%, transparent 100%)",
+        }}
+      >
         <div className="flex justify-end">
           <img
             src={bgImage}
