@@ -752,16 +752,12 @@ function BlogPreviewSectionEditor({ content, update }: SectionProps) {
   return (
     <Section title="Blog Preview Section" defaultOpen={false}>
       <div className="grid gap-4">
-        <div className="grid grid-cols-2 gap-3">
-          <div>
-            <Label>Heading — Light Part</Label>
-            <Input value={blog.headingLight} onChange={(e) => set({ headingLight: e.target.value })} placeholder="News and" />
-          </div>
-          <div>
-            <Label>Heading — Bold Part</Label>
-            <Input value={blog.headingBold} onChange={(e) => set({ headingBold: e.target.value })} placeholder="Updates From Our Blogs" />
-          </div>
-        </div>
+        <RichTextField
+          label="Heading"
+          value={blog.headingHtml}
+          onChange={(html) => set({ headingHtml: html })}
+          placeholder="News and Updates From Our Blogs — use Bold for emphasis"
+        />
         <div className="grid grid-cols-2 gap-3">
           <div>
             <Label>"View All" Button Text</Label>

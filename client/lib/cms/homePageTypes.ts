@@ -192,8 +192,9 @@ export interface ContactContent {
 }
 
 export interface BlogPreviewContent {
-  headingLight: string;  // "News and"
-  headingBold: string;   // "Updates From Our Blogs"
+  headingHtml: string;   // rich text, replaces headingLight+headingBold
+  headingLight: string;  // legacy fallback
+  headingBold: string;   // legacy fallback
   viewAllUrl: string;
   viewAllText: string;
   postCount: number;
@@ -361,6 +362,7 @@ export const defaultHomeContent: HomePageContent = {
     reviews: [],
   },
   blogPreview: {
+    headingHtml: "",
     headingLight: "News and",
     headingBold: "Updates From Our Blogs",
     viewAllUrl: "/blog",

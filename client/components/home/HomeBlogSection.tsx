@@ -57,21 +57,36 @@ export default function HomeBlogSection({ content }: Props) {
     >
       {/* Heading */}
       <div className="mx-auto w-[90%] md:w-[80%] max-w-[2560px] py-[28px] text-center">
-        <h2
-          style={{
-            fontSize: "clamp(26px, 5vw, 59.136px)",
-            fontWeight: 300,
-            lineHeight: 1.05,
-            overflowWrap: "anywhere",
-            paddingBottom: "10px",
-            wordBreak: "break-word",
-          }}
-        >
-          {content.headingLight || "News and"}{" "}
-          <strong style={{ fontWeight: 700 }}>
-            {content.headingBold || "Updates From Our Blogs"}
-          </strong>
-        </h2>
+        {content.headingHtml ? (
+          <h2
+            style={{
+              fontSize: "clamp(26px, 5vw, 59.136px)",
+              fontWeight: 300,
+              lineHeight: 1.05,
+              overflowWrap: "anywhere",
+              paddingBottom: "10px",
+              wordBreak: "break-word",
+            }}
+            className="[&_strong]:font-bold [&_p]:m-0"
+            dangerouslySetInnerHTML={{ __html: content.headingHtml }}
+          />
+        ) : (
+          <h2
+            style={{
+              fontSize: "clamp(26px, 5vw, 59.136px)",
+              fontWeight: 300,
+              lineHeight: 1.05,
+              overflowWrap: "anywhere",
+              paddingBottom: "10px",
+              wordBreak: "break-word",
+            }}
+          >
+            {content.headingLight || "News and"}{" "}
+            <strong style={{ fontWeight: 700 }}>
+              {content.headingBold || "Updates From Our Blogs"}
+            </strong>
+          </h2>
+        )}
       </div>
 
       {/* Blog cards */}
