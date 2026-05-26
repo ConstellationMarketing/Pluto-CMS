@@ -2,6 +2,7 @@ import { useState } from "react";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import type { TestimonialsContent, PracticeAreasIntroContent } from "@site/lib/cms/homePageTypes";
+import RichText from "@site/components/shared/RichText";
 
 interface Props {
   content: TestimonialsContent;
@@ -93,7 +94,8 @@ export default function TestimonialsSection({ content, practiceAreasIntro }: Pro
                   </h2>
                 )}
                 {active?.text && (
-                  <p
+                  <RichText
+                    html={active.text}
                     style={{
                       fontSize: "clamp(14px, 1.8vw, 22px)",
                       lineHeight: 1.6,
@@ -101,9 +103,7 @@ export default function TestimonialsSection({ content, practiceAreasIntro }: Pro
                       wordBreak: "break-word",
                       marginBottom: "16px",
                     }}
-                  >
-                    {active.text}
-                  </p>
+                  />
                 )}
                 {active?.author && (
                   <div className="mt-[20px]">

@@ -570,14 +570,14 @@ function TestimonialsSection({ content, update }: SectionProps) {
   const ht = useHeadingTag(content, update);
 
   return (
-    <Section title="Testimonials" defaultOpen={false}>
+    <Section title="Testimonials">
       <div className="grid gap-4">
         <div>
-          <Label>Main Heading (bold, e.g. "Client Reviews & Testimonials")</Label>
+          <Label>Main Heading</Label>
           <Input value={t.heading} onChange={(e) => set({ heading: e.target.value })} placeholder="Client Reviews & Testimonials" />
         </div>
         <div>
-          <Label>Sub-label (Crimson Pro, e.g. "OUR CLIENTS STORIES")</Label>
+          <Label>Sub-label (e.g. "OUR CLIENTS STORIES")</Label>
           <Input value={t.sectionLabel} onChange={(e) => set({ sectionLabel: e.target.value })} placeholder="OUR CLIENTS STORIES" />
         </div>
         <ImageField
@@ -617,10 +617,12 @@ function TestimonialsSection({ content, update }: SectionProps) {
                 <Label>Testimonial Heading (e.g. "4.8 Star Review Rating on Google")</Label>
                 <Input value={item.itemHeading || ""} onChange={(e) => upd({ ...item, itemHeading: e.target.value })} placeholder="4.8 Star Review Rating on Google" />
               </div>
-              <div>
-                <Label>Review Text</Label>
-                <Textarea value={item.text} onChange={(e) => upd({ ...item, text: e.target.value })} rows={4} />
-              </div>
+              <RichTextField
+                label="Review Text"
+                value={item.text}
+                onChange={(html) => upd({ ...item, text: html })}
+                placeholder="Enter the review text..."
+              />
               <div className="grid grid-cols-2 gap-3">
                 <div>
                   <Label>Author Name</Label>
