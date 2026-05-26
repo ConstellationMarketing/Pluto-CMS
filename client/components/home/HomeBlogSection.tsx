@@ -91,18 +91,18 @@ export default function HomeBlogSection({ content }: Props) {
 
       {/* Blog cards */}
       <div className="mx-auto w-[95%] md:w-[90%] max-w-[2560px] py-[28px]">
-        <div className="flex flex-col sm:flex-row sm:items-start gap-[24px] sm:gap-[3%]">
+        <div className="flex flex-col sm:flex-row gap-[24px] sm:gap-[3%]">
           {cards.map((card, i) => (
             <Link
               key={i}
               to={card.href}
-              className="w-full sm:w-[31.3333%] block no-underline"
+              className="w-full sm:w-[31.3333%] block no-underline flex-1"
               style={{
                 backgroundImage: `url(${card.image})`,
                 backgroundPosition: "50% 50%",
                 backgroundRepeat: "no-repeat",
                 backgroundSize: "cover",
-                paddingTop: "clamp(180px, 28vw, 300px)",
+                height: "clamp(280px, 32vw, 420px)",
                 position: "relative",
               }}
             >
@@ -112,6 +112,9 @@ export default function HomeBlogSection({ content }: Props) {
                   borderRight: "8px solid rgb(29, 129, 128)",
                   padding: "16px 20px",
                   width: "85%",
+                  position: "absolute",
+                  bottom: 0,
+                  left: 0,
                 }}
               >
                 <p
