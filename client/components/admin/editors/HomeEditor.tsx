@@ -492,7 +492,7 @@ function PracticeAreasItemsSection({ content, update }: SectionProps) {
 
 /* ------------------------------------------------------------------ */
 function AwardsSection({ content, update }: SectionProps) {
-  const awards = content.awards;
+  const awards = content.awards ?? defaultHomeContent.awards;
   const set = (patch: Partial<typeof awards>) => update("awards", { ...awards, ...patch });
   const ht = useHeadingTag(content, update);
 
@@ -565,7 +565,7 @@ function AwardsSection({ content, update }: SectionProps) {
 
 /* ------------------------------------------------------------------ */
 function TestimonialsSection({ content, update }: SectionProps) {
-  const t = content.testimonials;
+  const t = content.testimonials ?? defaultHomeContent.testimonials;
   const set = (patch: Partial<typeof t>) => update("testimonials", { ...t, ...patch });
   const ht = useHeadingTag(content, update);
 
@@ -643,7 +643,7 @@ function TestimonialsSection({ content, update }: SectionProps) {
 
 /* ------------------------------------------------------------------ */
 function ProcessSection({ content, update }: SectionProps) {
-  const p = content.process;
+  const p = content.process ?? defaultHomeContent.process;
   const set = (patch: Partial<typeof p>) => update("process", { ...p, ...patch });
   const ht = useHeadingTag(content, update);
 
@@ -693,7 +693,7 @@ function ProcessSection({ content, update }: SectionProps) {
 
 /* ------------------------------------------------------------------ */
 function GoogleReviewsSection({ content, update }: SectionProps) {
-  const r = content.googleReviews;
+  const r = content.googleReviews ?? defaultHomeContent.googleReviews;
   const set = (patch: Partial<typeof r>) => update("googleReviews", { ...r, ...patch });
   const ht = useHeadingTag(content, update);
 
@@ -751,7 +751,7 @@ function GoogleReviewsSection({ content, update }: SectionProps) {
 
 /* ------------------------------------------------------------------ */
 function BlogPreviewSectionEditor({ content, update }: SectionProps) {
-  const blog = content.blogPreview;
+  const blog = content.blogPreview ?? defaultHomeContent.blogPreview;
   const set = (patch: Partial<typeof blog>) => update("blogPreview", { ...blog, ...patch });
 
   return (
@@ -795,7 +795,7 @@ function BlogPreviewSectionEditor({ content, update }: SectionProps) {
 
 /* ------------------------------------------------------------------ */
 function FaqSectionEditor({ content, update }: SectionProps) {
-  const faq = content.faq;
+  const faq = content.faq ?? defaultHomeContent.faq;
   const set = (patch: Partial<typeof faq>) => update("faq", { ...faq, ...patch });
   const ht = useHeadingTag(content, update);
 
@@ -852,7 +852,7 @@ function FaqSectionEditor({ content, update }: SectionProps) {
 
 /* ------------------------------------------------------------------ */
 function ContactSectionEditor({ content, update }: SectionProps) {
-  const c = content.contact;
+  const c = content.contact ?? defaultHomeContent.contact;
   const set = (patch: Partial<typeof c>) => update("contact", { ...c, ...patch });
   const ht = useHeadingTag(content, update);
 
