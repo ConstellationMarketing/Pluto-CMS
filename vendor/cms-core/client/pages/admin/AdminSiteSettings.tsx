@@ -868,21 +868,12 @@ export default function AdminSiteSettings() {
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="footerCtaHeadingLight">Heading (light part)</Label>
-                <Input
-                  id="footerCtaHeadingLight"
+                <Label>Heading</Label>
+                <RichTextEditor
                   value={settings.footerCtaHeadingLight}
-                  onChange={(e) => updateSettings({ footerCtaHeadingLight: e.target.value })}
-                  placeholder="Trusted Counsel When You"
-                />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="footerCtaHeadingBold">Heading (bold part)</Label>
-                <Input
-                  id="footerCtaHeadingBold"
-                  value={settings.footerCtaHeadingBold}
-                  onChange={(e) => updateSettings({ footerCtaHeadingBold: e.target.value })}
-                  placeholder="Need it Most"
+                  onChange={(html) => updateSettings({ footerCtaHeadingLight: html })}
+                  placeholder="Trusted Counsel When You Need it Most"
+                  minHeight="80px"
                 />
               </div>
               <div className="space-y-2">

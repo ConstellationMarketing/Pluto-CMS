@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import RichText from "@site/components/shared/RichText";
 import { MapPin } from "lucide-react";
 import { useSiteSettings } from "@site/contexts/SiteSettingsContext";
 import ContactForm from "@site/components/home/ContactForm";
@@ -30,8 +31,8 @@ export default function Footer() {
   const bgImage = settings.footerBgImage?.trim() || "https://design-pluto.netlify.app/images/footer-bg.jpg";
   const formHeadingLight = settings.footerFormHeadingLight?.trim() || "REQUEST A FREE CASE";
   const formHeadingBold = settings.footerFormHeadingBold?.trim() || "EVALUATION";
-  const ctaHeadingLight = settings.footerCtaHeadingLight?.trim() || "Trusted Counsel When You";
-  const ctaHeadingBold = settings.footerCtaHeadingBold?.trim() || "Need it Most";
+  const ctaHeadingHtml = settings.footerCtaHeadingLight?.trim() || "";
+  const ctaHeadingFallback = "Trusted Counsel When You <strong>Need it Most</strong>";
   const ctaButtonText = settings.footerCtaButtonText?.trim() || "SCHEDULE A CONSULTATION";
   const ctaButtonUrl = settings.footerCtaButtonUrl?.trim() || "/contact";
 
@@ -84,8 +85,7 @@ export default function Footer() {
           >
             <div className="text-center">
               <h2 className="text-white font-light text-[28px] md:text-[36px] lg:text-[43px] leading-tight pb-[10px] m-0">
-                {ctaHeadingLight}{" "}
-                <strong className="font-bold">{ctaHeadingBold}</strong>
+                <RichText html={ctaHeadingHtml || ctaHeadingFallback} className="[&_strong]:font-bold [&_em]:italic" />
               </h2>
             </div>
             <div className="mt-[16px] text-center">
