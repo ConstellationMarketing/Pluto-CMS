@@ -405,12 +405,6 @@ function PracticeAreasIntroSection({ content, update }: SectionProps) {
           onChange={(html) => set({ headingHtml: html })}
           placeholder="Types Of Cases We Handle — use Bold for emphasis"
         />
-        <RichTextField
-          label="Description"
-          value={intro.descriptionHtml}
-          onChange={(html) => set({ descriptionHtml: html })}
-          placeholder="Optional paragraph below the heading..."
-        />
         <div className="grid grid-cols-2 gap-4">
           <div>
             <Label>Button Text Line 1</Label>
