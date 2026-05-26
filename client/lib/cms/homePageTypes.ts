@@ -4,9 +4,10 @@
 export interface HeroContent {
   backgroundImage: string;
   backgroundOverlayOpacity: number; // 0-1, default 0.4
-  taglineWord1: string; // e.g. "TRUSTED" (light 96px)
-  taglineWord2: string; // e.g. "TESTED" (bold 128px)
-  taglineWord3: string; // e.g. "READY" (light 96px)
+  taglineHtml: string; // rich text HTML for the H1 tagline
+  taglineWord1: string; // legacy fallback
+  taglineWord2: string; // legacy fallback
+  taglineWord3: string; // legacy fallback
   ctaText: string;
   ctaUrl: string;
   accentBarColor: string; // teal line above h1, default #2ba6a3
@@ -217,6 +218,7 @@ export const defaultHomeContent: HomePageContent = {
   hero: {
     backgroundImage: "",
     backgroundOverlayOpacity: 0.4,
+    taglineHtml: "",
     taglineWord1: "TRUSTED",
     taglineWord2: "TESTED",
     taglineWord3: "READY",

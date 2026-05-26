@@ -70,25 +70,14 @@ function HeroSection({ content, update }: SectionProps) {
           />
         </div>
 
-        <div className="border rounded-lg p-3 space-y-3 bg-gray-50">
-          <div>
-            <Label className="font-semibold">H1 Tagline (3 words)</Label>
-            <p className="text-xs text-gray-500 mt-0.5">Displayed as the large H1 heading in the hero section (e.g. TRUSTED / TESTED / READY)</p>
-          </div>
-          <div className="grid grid-cols-3 gap-3">
-            <div>
-              <Label>Word 1 — &lt;h1&gt; light (96px)</Label>
-              <Input value={hero.taglineWord1} onChange={(e) => set({ taglineWord1: e.target.value })} placeholder="TRUSTED" />
-            </div>
-            <div>
-              <Label>Word 2 — &lt;h1&gt; bold (128px)</Label>
-              <Input value={hero.taglineWord2} onChange={(e) => set({ taglineWord2: e.target.value })} placeholder="TESTED" />
-            </div>
-            <div>
-              <Label>Word 3 — &lt;h1&gt; light (96px)</Label>
-              <Input value={hero.taglineWord3} onChange={(e) => set({ taglineWord3: e.target.value })} placeholder="READY" />
-            </div>
-          </div>
+        <div className="space-y-2">
+          <RichTextField
+            label="H1 Tagline"
+            value={hero.taglineHtml}
+            onChange={(html) => set({ taglineHtml: html })}
+            placeholder="TRUSTED TESTED READY — use Bold for the main word"
+          />
+          <p className="text-xs text-gray-500">Rendered as the large H1 in the hero. Use <strong>Bold</strong> to emphasise the main word.</p>
         </div>
 
         <div className="grid grid-cols-2 gap-3">

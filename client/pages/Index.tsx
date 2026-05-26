@@ -61,18 +61,27 @@ export default function Index() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-[48px] items-center">
             {/* Left column */}
             <div>
-              {/* Tagline: TRUSTED TESTED READY - H1 */}
-              <h1 className="mb-[24px] md:mb-[32px] leading-none">
-                <span className="block font-outfit text-[48px] sm:text-[64px] md:text-[80px] lg:text-[96px] font-light leading-none text-white">
-                  {heroContent.taglineWord1 || "TRUSTED"}
-                </span>
-                <span className="block font-outfit text-[56px] sm:text-[80px] md:text-[100px] lg:text-[128px] font-semibold leading-none text-white">
-                  {heroContent.taglineWord2 || "TESTED"}
-                </span>
-                <span className="block font-outfit text-[48px] sm:text-[64px] md:text-[80px] lg:text-[96px] font-light leading-none text-white">
-                  {heroContent.taglineWord3 || "READY"}
-                </span>
-              </h1>
+              {/* Tagline H1 */}
+              {heroContent.taglineHtml ? (
+                <h1
+                  className="mb-[24px] md:mb-[32px] leading-none font-outfit text-[48px] sm:text-[64px] md:text-[80px] lg:text-[96px] font-light text-white
+                    [&_p]:block [&_p]:leading-none [&_p]:m-0
+                    [&_strong]:font-semibold [&_strong]:text-[56px] [&_strong]:sm:text-[80px] [&_strong]:md:text-[100px] [&_strong]:lg:text-[128px]"
+                  dangerouslySetInnerHTML={{ __html: heroContent.taglineHtml }}
+                />
+              ) : (
+                <h1 className="mb-[24px] md:mb-[32px] leading-none">
+                  <span className="block font-outfit text-[48px] sm:text-[64px] md:text-[80px] lg:text-[96px] font-light leading-none text-white">
+                    {heroContent.taglineWord1 || "TRUSTED"}
+                  </span>
+                  <span className="block font-outfit text-[56px] sm:text-[80px] md:text-[100px] lg:text-[128px] font-semibold leading-none text-white">
+                    {heroContent.taglineWord2 || "TESTED"}
+                  </span>
+                  <span className="block font-outfit text-[48px] sm:text-[64px] md:text-[80px] lg:text-[96px] font-light leading-none text-white">
+                    {heroContent.taglineWord3 || "READY"}
+                  </span>
+                </h1>
+              )}
 
               {/* CTA Button - always shown with default text */}
               <a
