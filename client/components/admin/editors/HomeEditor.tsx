@@ -114,16 +114,6 @@ function HeroSection({ content, update }: SectionProps) {
             />
           </div>
         </div>
-        <div>
-          <Label>Full Headline</Label>
-          <Input value={hero.headline} onChange={(e) => set({ headline: e.target.value })} />
-          <p className="text-xs text-gray-500 mt-1">The complete headline sentence displayed in the hero</p>
-        </div>
-        <div>
-          <Label>Highlighted Text</Label>
-          <Input value={hero.highlightedText} onChange={(e) => set({ highlightedText: e.target.value })} />
-          <p className="text-xs text-gray-500 mt-1">Portion of headline to display in accent color</p>
-        </div>
         <p className="text-xs text-gray-500 italic">Phone number is managed in Site Settings &gt; Contact Info</p>
       </div>
     </Section>
