@@ -85,8 +85,6 @@ export default function ContactPage() {
         tagline={content.hero.tagline}
         h1Title={content.hero.sectionLabel}
         description={content.hero.description}
-        ctaText={content.hero.ctaText || "SCHEDULE A CONSULTATION"}
-        ctaUrl={content.hero.ctaUrl || "#contact-form"}
       />
 
       {/* Contact Methods Section */}

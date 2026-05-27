@@ -86,16 +86,6 @@ export default function PracticeAreas() {
         tagline={content.hero.tagline}
         h1Title={content.hero.sectionLabel}
         description={content.hero.description}
-        ctaText={content.hero.ctaText || "SCHEDULE A CONSULTATION"}
-        ctaUrl={content.hero.ctaUrl || "/contact/"}
-        rightContent={
-          <CallBox
-            icon={Phone}
-            title={phoneLabel}
-            subtitle={phoneDisplay}
-            phone={phoneNumber}
-          />
-        }
       />
 
       {/* Practice Areas Grid Section */}

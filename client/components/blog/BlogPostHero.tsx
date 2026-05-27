@@ -1,5 +1,4 @@
-import { Calendar as CalendarIcon, Tag, ArrowRight } from "lucide-react";
-import { useGlobalPhone } from "@site/contexts/SiteSettingsContext";
+import { Calendar as CalendarIcon, Tag } from "lucide-react";
 
 interface BlogPostHeroProps {
   title: string;
@@ -14,8 +13,6 @@ export default function BlogPostHero({
   publishedDate,
   featuredImage,
 }: BlogPostHeroProps) {
-  const { phoneDisplay, phoneNumber } = useGlobalPhone();
-
   const formattedDate = new Date(publishedDate).toLocaleDateString("en-US", {
     month: "long",
     day: "numeric",
@@ -51,21 +48,10 @@ export default function BlogPostHero({
           </span>
         </div>
 
-        {/* Title as large tagline text */}
-        <h1
-          className="mb-[24px] md:mb-[32px] font-outfit text-[32px] sm:text-[44px] md:text-[56px] lg:text-[68px] font-light leading-tight text-white max-w-[900px]"
-        >
+        {/* Post title */}
+        <h1 className="mb-[28px] font-outfit text-[32px] sm:text-[44px] md:text-[56px] lg:text-[68px] font-light leading-tight text-white max-w-[900px]">
           {title}
         </h1>
-
-        {/* CTA Button */}
-        <a
-          href={`tel:${phoneNumber.replace(/\D/g, "")}`}
-          className="inline-flex items-center gap-[8px] md:gap-[12px] bg-[#ee530e] text-white font-outfit font-semibold text-[14px] md:text-[18px] px-[20px] md:px-[32px] py-[12px] md:py-[16px] mb-[24px] md:mb-[32px] hover:opacity-90 transition-opacity no-underline"
-        >
-          {phoneDisplay}
-          <ArrowRight className="w-5 h-5" />
-        </a>
 
         {/* Accent bar */}
         <div className="h-[4px] w-[96px]" style={{ backgroundColor: "#2ba6a3" }} />
