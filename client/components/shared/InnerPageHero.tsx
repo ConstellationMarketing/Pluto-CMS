@@ -1,3 +1,4 @@
+import { ArrowRight } from "lucide-react";
 import RichText from "./RichText";
 
 interface InnerPageHeroProps {
@@ -12,6 +13,9 @@ interface InnerPageHeroProps {
   /** Optional description HTML rendered below the H1 */
   description?: string;
   accentBarColor?: string;
+  /** Optional CTA button — only rendered when ctaText is provided */
+  ctaText?: string;
+  ctaUrl?: string;
 }
 
 export default function InnerPageHero({
@@ -22,6 +26,8 @@ export default function InnerPageHero({
   h1Title,
   description,
   accentBarColor = "#2ba6a3",
+  ctaText,
+  ctaUrl = "/contact/",
 }: InnerPageHeroProps) {
   const bgStyle: React.CSSProperties = backgroundImage
     ? {
@@ -36,26 +42,35 @@ export default function InnerPageHero({
 
   return (
     <section
-      className="relative flex items-center justify-center w-full min-h-[350px] md:min-h-[480px] lg:min-h-[580px] pt-[90px] pb-[48px]"
+      className="relative flex items-center justify-center w-full min-h-[430px] md:min-h-[630px] lg:min-h-[755px] pt-[90px] pb-[48px]"
       style={bgStyle}
     >
       <div className="max-w-[1280px] mx-auto px-[16px] md:px-[32px] w-full">
-        {/* Tagline */}
+        {/* Tagline — same font sizes as homepage hero */}
         {hasTagline && (
-          <>
-            {taglineHtml ? (
-              <p
-                className="mb-[24px] md:mb-[32px] leading-none font-outfit text-[36px] sm:text-[48px] md:text-[60px] lg:text-[72px] font-light text-white
-                  [&_p]:block [&_p]:leading-none [&_p]:m-0
-                  [&_strong]:font-semibold [&_strong]:text-[44px] [&_strong]:sm:text-[60px] [&_strong]:md:text-[72px] [&_strong]:lg:text-[88px]"
-                dangerouslySetInnerHTML={{ __html: taglineHtml }}
-              />
-            ) : (
-              <p className="mb-[24px] md:mb-[32px] font-outfit text-[36px] sm:text-[48px] md:text-[60px] lg:text-[72px] font-light leading-tight text-white">
-                {tagline}
-              </p>
-            )}
-          </>
+          taglineHtml ? (
+            <p
+              className="mb-[24px] md:mb-[32px] leading-none font-outfit text-[48px] sm:text-[64px] md:text-[80px] lg:text-[96px] font-light text-white
+                [&_p]:block [&_p]:leading-none [&_p]:m-0
+                [&_strong]:font-semibold [&_strong]:text-[56px] [&_strong]:sm:text-[80px] [&_strong]:md:text-[100px] [&_strong]:lg:text-[128px]"
+              dangerouslySetInnerHTML={{ __html: taglineHtml }}
+            />
+          ) : (
+            <p className="mb-[24px] md:mb-[32px] font-outfit text-[48px] sm:text-[64px] md:text-[80px] lg:text-[96px] font-light leading-none text-white">
+              {tagline}
+            </p>
+          )
+        )}
+
+        {/* CTA Button — only rendered when ctaText is set */}
+        {ctaText && (
+          <a
+            href={ctaUrl}
+            className="inline-flex items-center gap-[8px] md:gap-[12px] bg-[#ee530e] text-white font-outfit font-semibold text-[14px] md:text-[18px] px-[20px] md:px-[32px] py-[12px] md:py-[16px] mb-[24px] md:mb-[32px] hover:opacity-90 transition-opacity no-underline"
+          >
+            {ctaText}
+            <ArrowRight className="w-5 h-5" />
+          </a>
         )}
 
         {/* Accent bar + H1 title */}

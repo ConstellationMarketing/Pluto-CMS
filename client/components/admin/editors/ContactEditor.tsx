@@ -74,6 +74,16 @@ function HeroSection({ content, update }: SectionProps) {
           />
           <p className="text-xs text-gray-500">Rendered as large decorative text. Use <strong>Bold</strong> to emphasise the main word.</p>
         </div>
+        <div className="grid grid-cols-2 gap-3">
+          <div>
+            <Label>CTA Button Text</Label>
+            <Input value={hero.ctaText ?? ""} onChange={(e) => set({ ctaText: e.target.value })} placeholder="SCHEDULE A CONSULTATION" />
+          </div>
+          <div>
+            <Label>CTA Button URL</Label>
+            <Input value={hero.ctaUrl ?? ""} onChange={(e) => set({ ctaUrl: e.target.value })} placeholder="/contact/" />
+          </div>
+        </div>
         <div>
           <Label>Accent Bar Color</Label>
           <div className="flex items-center gap-2">

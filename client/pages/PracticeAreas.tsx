@@ -88,6 +88,8 @@ export default function PracticeAreas() {
         h1Title={content.hero.sectionLabel}
         description={content.hero.description}
         accentBarColor={content.hero.accentBarColor}
+        ctaText={content.hero.ctaText}
+        ctaUrl={content.hero.ctaUrl}
       />
 
       {/* Practice Areas Grid Section */}

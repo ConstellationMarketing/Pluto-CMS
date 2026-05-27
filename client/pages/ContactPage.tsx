@@ -87,6 +87,8 @@ export default function ContactPage() {
         h1Title={content.hero.sectionLabel}
         description={content.hero.description}
         accentBarColor={content.hero.accentBarColor}
+        ctaText={content.hero.ctaText}
+        ctaUrl={content.hero.ctaUrl}
       />
 
       {/* Contact Methods Section */}
