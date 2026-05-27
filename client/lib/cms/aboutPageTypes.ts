@@ -1,7 +1,7 @@
 // Type definitions for structured About page content
 // Each section maps directly to a static component's data needs
-import type { AboutFirmContent, AwardsContent, TestimonialsContent } from "./homePageTypes";
-export type { AboutFirmContent, AwardsContent, TestimonialsContent };
+import type { AboutFirmContent, AwardsContent, TestimonialsContent, PracticeAreasIntroContent } from "./homePageTypes";
+export type { AboutFirmContent, AwardsContent, TestimonialsContent, PracticeAreasIntroContent };
 
 export interface AboutHeroContent {
   sectionLabel: string; // "– About Us" (H1)
@@ -108,6 +108,7 @@ export interface AboutPageContent {
   firmIntro?: AboutFirmContent;
   awardsSection?: AwardsContent;
   testimonialsSection?: TestimonialsContent;
+  practiceAreasIntroSection?: PracticeAreasIntroContent;
   story: StoryContent;
   missionVision: MissionVisionContent;
   team: TeamContent;
@@ -129,6 +130,16 @@ export const defaultAboutContent: AboutPageContent = {
     description: "",
     logos: [],
     features: [],
+  },
+  practiceAreasIntroSection: {
+    sectionLabel: "OUR PRACTICE AREAS",
+    headingHtml: "",
+    descriptionHtml: "",
+    heading: "Types Of",
+    headingBold: "Cases We Handle",
+    buttonLink: "/practice-areas",
+    buttonTextLine1: "",
+    buttonTextLine2: "",
   },
   testimonialsSection: {
     sectionLabel: "",

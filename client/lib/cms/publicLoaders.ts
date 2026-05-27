@@ -293,6 +293,7 @@ const ABOUT_CONTENT_KEYS: (keyof AboutPageContent)[] = [
   "firmIntro",
   "awardsSection",
   "testimonialsSection",
+  "practiceAreasIntroSection",
   "story",
   "missionVision",
   "team",
@@ -663,6 +664,9 @@ export function mergeAboutContentWithDefaults(cmsContent: Partial<AboutPageConte
           items: cmsContent.testimonialsSection.items?.length ? cmsContent.testimonialsSection.items : (defaults.testimonialsSection?.items ?? []),
         }
       : defaults.testimonialsSection,
+    practiceAreasIntroSection: cmsContent.practiceAreasIntroSection
+      ? { ...(defaults.practiceAreasIntroSection ?? {}), ...cmsContent.practiceAreasIntroSection }
+      : defaults.practiceAreasIntroSection,
     headingTags: cmsContent.headingTags ?? defaults.headingTags,
   };
 }

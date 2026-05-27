@@ -96,7 +96,10 @@ export default function AboutUs() {
 
       {/* Testimonials — independent from homepage */}
       {content.testimonialsSection && (content.testimonialsSection.heading || (content.testimonialsSection.items?.length ?? 0) > 0) && (
-        <TestimonialsSection content={content.testimonialsSection} />
+        <TestimonialsSection
+          content={content.testimonialsSection}
+          practiceAreasIntro={content.practiceAreasIntroSection}
+        />
       )}
 
       {/* Our Story Section */}

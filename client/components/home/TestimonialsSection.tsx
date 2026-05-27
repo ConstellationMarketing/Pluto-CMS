@@ -198,7 +198,7 @@ export default function TestimonialsSection({ content, practiceAreasIntro }: Pro
       {practiceAreasIntro && (
         <div className="mx-auto w-[90%] md:w-[80%] max-w-[1080px] pt-[40px] md:pt-[80px] lg:pt-[335px] pb-[56px]">
           <div className="text-center">
-            {practiceAreasIntro.headingHtml ? (
+            {practiceAreasIntro.headingHtml?.replace(/<[^>]+>/g, "").trim() ? (
               <h2
                 style={{
                   fontSize: "clamp(26px, 5vw, 59.136px)",
@@ -228,7 +228,7 @@ export default function TestimonialsSection({ content, practiceAreasIntro }: Pro
                 </strong>
               </h2>
             )}
-            {practiceAreasIntro.sectionLabel && (
+            {(practiceAreasIntro.sectionLabel || true) && (
               <p
                 style={{
                   color: "rgb(48, 48, 48)",
@@ -240,7 +240,7 @@ export default function TestimonialsSection({ content, practiceAreasIntro }: Pro
                   wordBreak: "break-word",
                 }}
               >
-                {practiceAreasIntro.sectionLabel}
+                {practiceAreasIntro.sectionLabel || "OUR PRACTICE AREAS"}
               </p>
             )}
           </div>
