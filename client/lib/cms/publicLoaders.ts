@@ -661,6 +661,7 @@ export function mergeAboutContentWithDefaults(cmsContent: Partial<AboutPageConte
       ? {
           ...(defaults.testimonialsSection ?? {}),
           ...cmsContent.testimonialsSection,
+          backgroundOverlayOpacity: cmsContent.testimonialsSection.backgroundOverlayOpacity ?? (defaults.testimonialsSection?.backgroundOverlayOpacity ?? 0.4),
           items: cmsContent.testimonialsSection.items?.length ? cmsContent.testimonialsSection.items : (defaults.testimonialsSection?.items ?? []),
         }
       : defaults.testimonialsSection,

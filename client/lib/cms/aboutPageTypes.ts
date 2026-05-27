@@ -148,6 +148,7 @@ export const defaultAboutContent: AboutPageContent = {
     starsImageAlt: "",
     backgroundImage: "",
     backgroundImageAlt: "",
+    backgroundOverlayOpacity: 0.4,
     viewAllUrl: "",
     viewAllText: "",
     items: [],
