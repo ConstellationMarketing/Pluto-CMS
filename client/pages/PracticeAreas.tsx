@@ -3,6 +3,7 @@ import Layout from "@site/components/layout/Layout";
 import PracticeAreaCard from "@site/components/practice/PracticeAreaCard";
 import PracticeAreasGrid from "@site/components/home/PracticeAreasGrid";
 import AwardsSection from "@site/components/home/AwardsSection";
+import TestimonialsSection from "@site/components/home/TestimonialsSection";
 import {
   Scale,
   Car,
@@ -97,6 +98,14 @@ export default function PracticeAreas() {
       {/* Awards & Memberships — independent CMS data */}
       {content.awardsSection && (content.awardsSection.headingHtml || content.awardsSection.heading || (content.awardsSection.logos?.length ?? 0) > 0) && (
         <AwardsSection content={content.awardsSection} />
+      )}
+
+      {/* Testimonials — independent CMS data */}
+      {content.testimonialsSection && (content.testimonialsSection.heading || (content.testimonialsSection.items?.length ?? 0) > 0) && (
+        <TestimonialsSection
+          content={content.testimonialsSection}
+          practiceAreasIntro={content.practiceAreasIntroSection}
+        />
       )}
 
       {/* Practice Areas Grid Section */}

@@ -1,4 +1,4 @@
-import type { PracticeAreasPageContent, PracticeAreasVisualGridContent, AwardsContent } from "@site/lib/cms/practiceAreasPageTypes";
+import type { PracticeAreasPageContent, PracticeAreasVisualGridContent, AwardsContent, TestimonialsContent, PracticeAreasIntroContent } from "@site/lib/cms/practiceAreasPageTypes";
 import { Section, ArrayEditor, ImageField, GlobalSectionInfo, RichTextField, HeadingField, Input, Label, Textarea } from "./EditorShared";
 
 interface PracticeAreasEditorProps {
@@ -16,6 +16,8 @@ export default function PracticeAreasEditor({ content, onChange }: PracticeAreas
       <HeroSection content={content} update={update} />
       <VisualGridSection content={content} update={update} />
       <AwardsSectionEditor content={content} update={update} />
+      <TestimonialsSectionEditor content={content} update={update} />
+      <PracticeAreasIntroEditor content={content} update={update} />
       <GridSection content={content} update={update} />
       <GlobalSectionInfo sectionTitle="Why Choose Us" managedIn="About Us" />
       <GlobalSectionInfo sectionTitle="Call to Action" managedIn="About Us" />
@@ -231,6 +233,123 @@ function VisualGridSection({ content, update }: SectionProps) {
           </div>
         )}
       />
+    </Section>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+function TestimonialsSectionEditor({ content, update }: SectionProps) {
+  const t: TestimonialsContent = {
+    sectionLabel: "", heading: "", starsImage: "", starsImageAlt: "",
+    backgroundImage: "https://design-pluto.netlify.app/images/testimonials-bg.jpg",
+    backgroundImageAlt: "", backgroundOverlayOpacity: 0, viewAllUrl: "", viewAllText: "", items: [],
+    ...(content.testimonialsSection ?? {}),
+  };
+  const set = (patch: Partial<TestimonialsContent>) => update("testimonialsSection", { ...t, ...patch });
+
+  return (
+    <Section title="Testimonials" defaultOpen={false}>
+      <div className="grid gap-4">
+        <div>
+          <Label>Main Heading</Label>
+          <Input value={t.heading} onChange={(e) => set({ heading: e.target.value })} placeholder="Client Reviews & Testimonials" />
+        </div>
+        <div>
+          <Label>Sub-label</Label>
+          <Input value={t.sectionLabel} onChange={(e) => set({ sectionLabel: e.target.value })} placeholder="OUR CLIENTS STORIES" />
+        </div>
+        <ImageField
+          label="Stars Image"
+          value={t.starsImage || ""}
+          onChange={(url) => set({ starsImage: url })}
+          altValue={t.starsImageAlt || ""}
+          onAltChange={(starsImageAlt) => set({ starsImageAlt })}
+          folder="logos"
+        />
+        <ImageField
+          label="Section Background Image"
+          value={t.backgroundImage}
+          onChange={(url) => set({ backgroundImage: url })}
+          altValue={t.backgroundImageAlt || ""}
+          onAltChange={(backgroundImageAlt) => set({ backgroundImageAlt })}
+          folder="backgrounds"
+        />
+        <div>
+          <Label>Background Overlay Opacity (0–1)</Label>
+          <Input
+            type="number" min={0} max={1} step={0.05}
+            value={t.backgroundOverlayOpacity ?? 0}
+            onChange={(e) => set({ backgroundOverlayOpacity: parseFloat(e.target.value) || 0 })}
+          />
+        </div>
+        <div className="grid grid-cols-2 gap-3">
+          <div>
+            <Label>"View All" Button Text</Label>
+            <Input value={t.viewAllText || ""} onChange={(e) => set({ viewAllText: e.target.value })} placeholder="VIEW ALL TESTIMONIALS" />
+          </div>
+          <div>
+            <Label>"View All" Button URL</Label>
+            <Input value={t.viewAllUrl || ""} onChange={(e) => set({ viewAllUrl: e.target.value })} placeholder="/testimonials" />
+          </div>
+        </div>
+        <ArrayEditor
+          items={t.items}
+          onChange={(items) => set({ items })}
+          itemLabel="Testimonial"
+          newItem={() => ({ itemHeading: "", text: "", author: "", authorUrl: "", ratingImage: "", ratingImageAlt: "" })}
+          renderItem={(item, _, upd) => (
+            <div className="grid gap-3">
+              <div>
+                <Label>Testimonial Heading</Label>
+                <Input value={item.itemHeading || ""} onChange={(e) => upd({ ...item, itemHeading: e.target.value })} placeholder="4.8 Star Review Rating on Google" />
+              </div>
+              <RichTextField label="Review Text" value={item.text} onChange={(html) => upd({ ...item, text: html })} />
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <Label>Author Name</Label>
+                  <Input value={item.author} onChange={(e) => upd({ ...item, author: e.target.value })} />
+                </div>
+                <div>
+                  <Label>Author URL (optional)</Label>
+                  <Input value={item.authorUrl || ""} onChange={(e) => upd({ ...item, authorUrl: e.target.value })} placeholder="https://..." />
+                </div>
+              </div>
+            </div>
+          )}
+        />
+      </div>
+    </Section>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+function PracticeAreasIntroEditor({ content, update }: SectionProps) {
+  const intro: PracticeAreasIntroContent = {
+    sectionLabel: "OUR PRACTICE AREAS", headingHtml: "", descriptionHtml: "",
+    heading: "Types Of", headingBold: "Cases We Handle",
+    buttonLink: "/practice-areas", buttonTextLine1: "", buttonTextLine2: "",
+    ...(content.practiceAreasIntroSection ?? {}),
+  };
+  const set = (patch: Partial<PracticeAreasIntroContent>) => update("practiceAreasIntroSection", { ...intro, ...patch });
+
+  return (
+    <Section title="Practice Areas Intro (inside Testimonials)" defaultOpen={false}>
+      <div className="grid gap-4">
+        <RichTextField
+          label="Heading"
+          value={intro.headingHtml}
+          onChange={(html) => set({ headingHtml: html })}
+          placeholder="Types Of Cases We Handle — use Bold for emphasis"
+        />
+        <div>
+          <Label>Section Label</Label>
+          <Input value={intro.sectionLabel} onChange={(e) => set({ sectionLabel: e.target.value })} placeholder="OUR PRACTICE AREAS" />
+        </div>
+        <div>
+          <Label>Button Link</Label>
+          <Input value={intro.buttonLink} onChange={(e) => set({ buttonLink: e.target.value })} placeholder="/practice-areas" />
+        </div>
+      </div>
     </Section>
   );
 }

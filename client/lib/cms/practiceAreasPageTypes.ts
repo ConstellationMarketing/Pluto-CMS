@@ -1,7 +1,7 @@
 // Type definitions for structured Practice Areas page content
 // Each section maps directly to a static component's data needs
-import type { AwardsContent } from "./homePageTypes";
-export type { AwardsContent };
+import type { AwardsContent, TestimonialsContent, PracticeAreasIntroContent } from "./homePageTypes";
+export type { AwardsContent, TestimonialsContent, PracticeAreasIntroContent };
 
 export interface PracticeAreasVisualCardItem {
   title: string;
@@ -80,6 +80,8 @@ export interface PracticeAreasPageContent {
   hero: PracticeAreasHeroContent;
   visualGrid?: PracticeAreasVisualGridContent;
   awardsSection?: AwardsContent;
+  testimonialsSection?: TestimonialsContent;
+  practiceAreasIntroSection?: PracticeAreasIntroContent;
   grid: PracticeAreasGridContent;
   whyChoose: WhyChooseContent;
   cta: CTAContent;
@@ -111,6 +113,28 @@ export const defaultPracticeAreasContent: PracticeAreasPageContent = {
     description: "",
     logos: [],
     features: [],
+  },
+  testimonialsSection: {
+    sectionLabel: "",
+    heading: "",
+    starsImage: "",
+    starsImageAlt: "",
+    backgroundImage: "https://design-pluto.netlify.app/images/testimonials-bg.jpg",
+    backgroundImageAlt: "",
+    backgroundOverlayOpacity: 0,
+    viewAllUrl: "",
+    viewAllText: "",
+    items: [],
+  },
+  practiceAreasIntroSection: {
+    sectionLabel: "OUR PRACTICE AREAS",
+    headingHtml: "",
+    descriptionHtml: "",
+    heading: "Types Of",
+    headingBold: "Cases We Handle",
+    buttonLink: "/practice-areas",
+    buttonTextLine1: "",
+    buttonTextLine2: "",
   },
   grid: {
     heading: "",

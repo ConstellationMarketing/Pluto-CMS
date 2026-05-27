@@ -317,6 +317,8 @@ const PRACTICE_AREAS_CONTENT_KEYS: (keyof PracticeAreasPageContent)[] = [
   "hero",
   "visualGrid",
   "awardsSection",
+  "testimonialsSection",
+  "practiceAreasIntroSection",
   "grid",
   "whyChoose",
   "cta",
@@ -758,6 +760,18 @@ export function mergePracticeAreasContentWithDefaults(cmsContent: Partial<Practi
           features: cmsContent.awardsSection.features?.length ? cmsContent.awardsSection.features : (defaults.awardsSection?.features ?? []),
         }
       : defaults.awardsSection,
+    testimonialsSection: cmsContent.testimonialsSection
+      ? {
+          ...(defaults.testimonialsSection ?? {}),
+          ...cmsContent.testimonialsSection,
+          backgroundImage: cmsContent.testimonialsSection.backgroundImage || (defaults.testimonialsSection?.backgroundImage ?? ""),
+          backgroundOverlayOpacity: cmsContent.testimonialsSection.backgroundOverlayOpacity ?? (defaults.testimonialsSection?.backgroundOverlayOpacity ?? 0),
+          items: cmsContent.testimonialsSection.items?.length ? cmsContent.testimonialsSection.items : (defaults.testimonialsSection?.items ?? []),
+        }
+      : defaults.testimonialsSection,
+    practiceAreasIntroSection: cmsContent.practiceAreasIntroSection
+      ? { ...(defaults.practiceAreasIntroSection ?? {}), ...cmsContent.practiceAreasIntroSection }
+      : defaults.practiceAreasIntroSection,
     grid: {
       ...defaults.grid,
       ...cmsContent.grid,
