@@ -40,47 +40,58 @@ function useHeadingTag(content: ContactPageContent, update: Updater) {
 function HeroSection({ content, update }: SectionProps) {
   const hero = content.hero;
   const set = (patch: Partial<typeof hero>) => update("hero", { ...hero, ...patch });
-  const ht = useHeadingTag(content, update);
 
   return (
     <Section title="Hero Section">
       <div className="grid gap-4">
-        <HeadingField
-          label="Section Heading"
-          value={hero.sectionLabel}
-          onChange={(v) => set({ sectionLabel: v })}
-          tag={content.headingTags?.["hero.sectionLabel"] ?? "h1"}
-          onTagChange={(t) => ht.set("hero.sectionLabel", t)}
-        />
-        <div>
-          <Label>Tagline</Label>
-          <Input value={hero.tagline} onChange={(e) => set({ tagline: e.target.value })} />
-        </div>
-        <RichTextField label="Description" value={hero.description} onChange={(v) => set({ description: v })} />
         <ImageField
           label="Background Image"
           value={hero.backgroundImage ?? ""}
           onChange={(v) => set({ backgroundImage: v })}
         />
         <div>
-          <Label>Background Overlay Opacity (0–1)</Label>
+          <Label>Overlay Opacity (0–1)</Label>
           <Input
             type="number"
             min={0}
             max={1}
             step={0.05}
             value={hero.backgroundOverlayOpacity ?? 0.55}
-            onChange={(e) => set({ backgroundOverlayOpacity: parseFloat(e.target.value) })}
+            onChange={(e) => set({ backgroundOverlayOpacity: parseFloat(e.target.value) || 0.55 })}
           />
         </div>
         <div>
-          <Label>CTA Button Text</Label>
-          <Input value={hero.ctaText ?? ""} onChange={(e) => set({ ctaText: e.target.value })} placeholder="SCHEDULE A CONSULTATION" />
+          <Label>H1 Title — below accent bar</Label>
+          <p className="text-xs text-gray-500 mb-1">Rendered as the &lt;h1&gt; below the accent line.</p>
+          <Input value={hero.sectionLabel} onChange={(e) => set({ sectionLabel: e.target.value })} placeholder="Contact Us" />
+        </div>
+        <div className="space-y-2">
+          <RichTextField
+            label="Tagline — decorative text"
+            value={hero.taglineHtml ?? ""}
+            onChange={(html) => set({ taglineHtml: html })}
+            placeholder="Use Bold to emphasise the key word"
+          />
+          <p className="text-xs text-gray-500">Rendered as large decorative text. Use <strong>Bold</strong> to emphasise the main word.</p>
         </div>
         <div>
-          <Label>CTA Button URL</Label>
-          <Input value={hero.ctaUrl ?? ""} onChange={(e) => set({ ctaUrl: e.target.value })} placeholder="/contact/" />
+          <Label>Accent Bar Color</Label>
+          <div className="flex items-center gap-2">
+            <input
+              type="color"
+              value={hero.accentBarColor || "#2ba6a3"}
+              onChange={(e) => set({ accentBarColor: e.target.value })}
+              className="h-9 w-12 cursor-pointer rounded border border-input p-0.5"
+            />
+            <Input
+              value={hero.accentBarColor || "#2ba6a3"}
+              onChange={(e) => set({ accentBarColor: e.target.value })}
+              placeholder="#2ba6a3"
+              className="font-mono text-sm"
+            />
+          </div>
         </div>
+        <RichTextField label="Description — text below H1" value={hero.description} onChange={(v) => set({ description: v })} />
       </div>
     </Section>
   );

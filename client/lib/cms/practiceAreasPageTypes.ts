@@ -3,12 +3,14 @@
 
 export interface PracticeAreasHeroContent {
   sectionLabel: string; // "– Practice Areas" (H1)
-  tagline: string; // "Comprehensive Legal Expertise" (styled text)
+  tagline: string; // plain text fallback
+  taglineHtml?: string; // rich text tagline (takes priority)
   description: string; // Description paragraph
   phone: string;
   phoneLabel: string;
   backgroundImage?: string;
   backgroundOverlayOpacity?: number;
+  accentBarColor?: string;
   ctaText?: string;
   ctaUrl?: string;
 }

@@ -3,10 +3,12 @@
 
 export interface ContactHeroContent {
   sectionLabel: string; // "– Contact Us" (H1)
-  tagline: string; // "Let's Talk About Your Case" (styled paragraph)
+  tagline: string; // plain text fallback
+  taglineHtml?: string; // rich text tagline (takes priority)
   description: string; // Description paragraph
   backgroundImage?: string;
   backgroundOverlayOpacity?: number;
+  accentBarColor?: string;
   ctaText?: string;
   ctaUrl?: string;
 }

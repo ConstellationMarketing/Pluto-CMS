@@ -83,9 +83,11 @@ export default function PracticeAreas() {
       <InnerPageHero
         backgroundImage={content.hero.backgroundImage}
         overlayOpacity={content.hero.backgroundOverlayOpacity}
+        taglineHtml={content.hero.taglineHtml}
         tagline={content.hero.tagline}
         h1Title={content.hero.sectionLabel}
         description={content.hero.description}
+        accentBarColor={content.hero.accentBarColor}
       />
 
       {/* Practice Areas Grid Section */}
