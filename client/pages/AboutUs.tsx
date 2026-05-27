@@ -2,6 +2,7 @@ import Seo from "@site/components/Seo";
 import Layout from "@site/components/layout/Layout";
 import InnerPageHero from "@site/components/shared/InnerPageHero";
 import AboutFirmSection from "@site/components/home/AboutFirmSection";
+import AwardsSection from "@site/components/home/AwardsSection";
 import CallBox from "@site/components/shared/CallBox";
 import StatsGrid from "@site/components/shared/StatsGrid";
 import TeamMemberCard from "@site/components/about/TeamMemberCard";
@@ -85,6 +86,11 @@ export default function AboutUs() {
       {/* Firm Intro Section — independent from homepage, same visual layout */}
       {content.firmIntro && (content.firmIntro.sectionLabel || content.firmIntro.headingBold || content.firmIntro.bodyHtml) && (
         <AboutFirmSection content={content.firmIntro} />
+      )}
+
+      {/* Awards & Memberships — independent from homepage */}
+      {content.awardsSection && (content.awardsSection.headingHtml || content.awardsSection.heading || (content.awardsSection.logos?.length ?? 0) > 0) && (
+        <AwardsSection content={content.awardsSection} />
       )}
 
       {/* Our Story Section */}

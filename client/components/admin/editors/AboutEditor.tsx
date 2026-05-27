@@ -16,6 +16,7 @@ export default function AboutEditor({ content, onChange }: AboutEditorProps) {
     <div className="space-y-6">
       <HeroSection content={content} update={update} />
       <FirmIntroSection content={content} update={update} />
+      <AwardsSectionEditor content={content} update={update} />
       <StorySection content={content} update={update} />
       <MissionVisionSection content={content} update={update} />
       <TeamSection content={content} update={update} />
@@ -172,6 +173,77 @@ function FirmIntroSection({ content, update }: SectionProps) {
           value={firm.bodyHtml}
           onChange={(html) => set({ bodyHtml: html })}
           placeholder="Enter the firm description..."
+        />
+      </div>
+    </Section>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+function AwardsSectionEditor({ content, update }: SectionProps) {
+  const def = defaultAboutContent.awardsSection!;
+  const awards = { ...def, ...(content.awardsSection ?? {}) };
+  const set = (patch: Partial<typeof awards>) => update("awardsSection", { ...awards, ...patch });
+
+  return (
+    <Section title="Awards & Memberships" defaultOpen={false}>
+      <div className="grid gap-4">
+        <RichTextField
+          label="Heading"
+          value={awards.headingHtml}
+          onChange={(html) => set({ headingHtml: html })}
+          placeholder="Over The Years, Our dedication to excellence... — use Bold for emphasis"
+        />
+
+        <h4 className="font-medium pt-2">Award Logos (full-width row)</h4>
+        <ArrayEditor
+          items={awards.logos?.length ? awards.logos : []}
+          onChange={(items) => set({ logos: items })}
+          itemLabel="Logo"
+          newItem={() => ({ src: "", alt: "" })}
+          renderItem={(item, _, upd) => (
+            <div className="grid gap-3">
+              <ImageField
+                label="Logo Image"
+                value={item.src}
+                onChange={(url) => upd({ ...item, src: url })}
+                altValue={item.alt}
+                onAltChange={(alt) => upd({ ...item, alt })}
+                onSelectAsset={(asset) => upd({ ...item, src: asset.url, alt: asset.suggestedAltText || item.alt })}
+                folder="awards"
+              />
+              <div>
+                <Label>Alt Text</Label>
+                <Input value={item.alt} onChange={(e) => upd({ ...item, alt: e.target.value })} />
+              </div>
+            </div>
+          )}
+        />
+
+        <h4 className="font-medium pt-2">Feature Columns (icon + title)</h4>
+        <ArrayEditor
+          items={awards.features?.length ? awards.features : []}
+          onChange={(items) => set({ features: items })}
+          itemLabel="Feature"
+          newItem={() => ({ icon: "", iconAlt: "", title: "" })}
+          renderItem={(item, _, upd) => (
+            <div className="grid gap-3">
+              <ImageField
+                label="Icon Image"
+                value={item.icon}
+                onChange={(url) => upd({ ...item, icon: url })}
+                folder="awards"
+              />
+              <div>
+                <Label>Icon Alt Text</Label>
+                <Input value={item.iconAlt || ""} onChange={(e) => upd({ ...item, iconAlt: e.target.value })} />
+              </div>
+              <div>
+                <Label>Title (uppercase)</Label>
+                <Input value={item.title} onChange={(e) => upd({ ...item, title: e.target.value })} placeholder="SOLUTIONS-FOCUSED REPRESENTATION" />
+              </div>
+            </div>
+          )}
         />
       </div>
     </Section>
