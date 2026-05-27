@@ -5,6 +5,10 @@ export interface ContactHeroContent {
   sectionLabel: string; // "– Contact Us" (H1)
   tagline: string; // "Let's Talk About Your Case" (styled paragraph)
   description: string; // Description paragraph
+  backgroundImage?: string;
+  backgroundOverlayOpacity?: number;
+  ctaText?: string;
+  ctaUrl?: string;
 }
 
 export interface ContactMethodItem {

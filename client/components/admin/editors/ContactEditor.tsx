@@ -1,5 +1,5 @@
 import type { ContactPageContent } from "@site/lib/cms/contactPageTypes";
-import { Section, ArrayEditor, GlobalSectionInfo, RichTextField, HeadingField, Input, Label, Textarea } from "./EditorShared";
+import { Section, ArrayEditor, GlobalSectionInfo, ImageField, RichTextField, HeadingField, Input, Label, Textarea } from "./EditorShared";
 
 interface ContactEditorProps {
   content: ContactPageContent;
@@ -57,6 +57,30 @@ function HeroSection({ content, update }: SectionProps) {
           <Input value={hero.tagline} onChange={(e) => set({ tagline: e.target.value })} />
         </div>
         <RichTextField label="Description" value={hero.description} onChange={(v) => set({ description: v })} />
+        <ImageField
+          label="Background Image"
+          value={hero.backgroundImage ?? ""}
+          onChange={(v) => set({ backgroundImage: v })}
+        />
+        <div>
+          <Label>Background Overlay Opacity (0–1)</Label>
+          <Input
+            type="number"
+            min={0}
+            max={1}
+            step={0.05}
+            value={hero.backgroundOverlayOpacity ?? 0.55}
+            onChange={(e) => set({ backgroundOverlayOpacity: parseFloat(e.target.value) })}
+          />
+        </div>
+        <div>
+          <Label>CTA Button Text</Label>
+          <Input value={hero.ctaText ?? ""} onChange={(e) => set({ ctaText: e.target.value })} placeholder="SCHEDULE A CONSULTATION" />
+        </div>
+        <div>
+          <Label>CTA Button URL</Label>
+          <Input value={hero.ctaUrl ?? ""} onChange={(e) => set({ ctaUrl: e.target.value })} placeholder="/contact/" />
+        </div>
       </div>
     </Section>
   );

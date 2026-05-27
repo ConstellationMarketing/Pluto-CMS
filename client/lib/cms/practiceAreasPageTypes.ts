@@ -7,6 +7,10 @@ export interface PracticeAreasHeroContent {
   description: string; // Description paragraph
   phone: string;
   phoneLabel: string;
+  backgroundImage?: string;
+  backgroundOverlayOpacity?: number;
+  ctaText?: string;
+  ctaUrl?: string;
 }
 
 export interface PracticeAreaGridItem {

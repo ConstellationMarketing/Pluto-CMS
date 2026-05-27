@@ -21,6 +21,7 @@ import {
 } from "lucide-react";
 import { usePracticeAreasContent } from "@site/hooks/usePracticeAreasContent";
 import { useGlobalPhone } from "@site/contexts/SiteSettingsContext";
+import InnerPageHero from "@site/components/shared/InnerPageHero";
 import RichText from "@site/components/shared/RichText";
 import DynamicHeading from "@site/components/shared/DynamicHeading";
 import { Loader2 } from "lucide-react";
@@ -79,48 +80,23 @@ export default function PracticeAreas() {
       />
 
       {/* Hero Section */}
-      <div className="bg-brand-dark pt-[30px] md:pt-[54px] pb-[30px] md:pb-[54px]">
-        <div className="max-w-[2560px] mx-auto w-[95%] md:w-[90%]">
-          <div className="flex flex-col lg:flex-row gap-8 lg:gap-[5%]">
-            {/* Left Side - Heading */}
-            <div className="lg:w-[65%]">
-              {/* H1 Title - Section Heading */}
-              <DynamicHeading
-                tag={content.headingTags?.["hero.sectionLabel"]}
-                defaultTag="h1"
-                className="font-outfit text-[18px] md:text-[24px] leading-tight md:leading-[36px] text-brand-accent mb-[10px]"
-              >
-                {content.hero.sectionLabel}
-              </DynamicHeading>
-              {/* Tagline - styled as large text */}
-              <p className="font-playfair text-[clamp(2.5rem,7vw,68.8px)] font-light leading-[1.2] text-white mb-[20px] md:mb-[30px]">
-                <span
-                  dangerouslySetInnerHTML={{
-                    __html: content.hero.tagline.replace(
-                      /(Expertise)/g,
-                      '<span class="text-brand-accent">$1</span>',
-                    ),
-                  }}
-                />
-              </p>
-              <RichText
-                html={content.hero.description}
-                className="font-outfit text-[16px] md:text-[20px] leading-[24px] md:leading-[30px] text-white/90"
-              />
-            </div>
-
-            {/* Right Side - CallBox */}
-            <div className="w-full lg:w-[30%] lg:flex lg:items-center">
-              <CallBox
-                icon={Phone}
-                title={phoneLabel}
-                subtitle={phoneDisplay}
-                phone={phoneNumber}
-              />
-            </div>
-          </div>
-        </div>
-      </div>
+      <InnerPageHero
+        backgroundImage={content.hero.backgroundImage}
+        overlayOpacity={content.hero.backgroundOverlayOpacity}
+        tagline={content.hero.tagline}
+        h1Title={content.hero.sectionLabel}
+        description={content.hero.description}
+        ctaText={content.hero.ctaText || "SCHEDULE A CONSULTATION"}
+        ctaUrl={content.hero.ctaUrl || "/contact/"}
+        rightContent={
+          <CallBox
+            icon={Phone}
+            title={phoneLabel}
+            subtitle={phoneDisplay}
+            phone={phoneNumber}
+          />
+        }
+      />
 
       {/* Practice Areas Grid Section */}
       <div className="bg-white py-[40px] md:py-[60px]">
