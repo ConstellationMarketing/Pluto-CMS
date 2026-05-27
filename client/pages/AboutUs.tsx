@@ -1,6 +1,7 @@
 import Seo from "@site/components/Seo";
 import Layout from "@site/components/layout/Layout";
 import InnerPageHero from "@site/components/shared/InnerPageHero";
+import AboutFirmSection from "@site/components/home/AboutFirmSection";
 import CallBox from "@site/components/shared/CallBox";
 import StatsGrid from "@site/components/shared/StatsGrid";
 import TeamMemberCard from "@site/components/about/TeamMemberCard";
@@ -80,6 +81,11 @@ export default function AboutUs() {
         ctaText={content.hero.ctaText}
         ctaUrl={content.hero.ctaUrl}
       />
+
+      {/* Firm Intro Section — independent from homepage, same visual layout */}
+      {content.firmIntro && (content.firmIntro.sectionLabel || content.firmIntro.headingBold || content.firmIntro.bodyHtml) && (
+        <AboutFirmSection content={content.firmIntro} />
+      )}
 
       {/* Our Story Section */}
       {(content.story.heading || content.story.paragraphs.length > 0) && (

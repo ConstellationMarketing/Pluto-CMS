@@ -1,5 +1,7 @@
 // Type definitions for structured About page content
 // Each section maps directly to a static component's data needs
+import type { AboutFirmContent } from "./homePageTypes";
+export type { AboutFirmContent };
 
 export interface AboutHeroContent {
   sectionLabel: string; // "– About Us" (H1)
@@ -103,6 +105,7 @@ export interface CTAContent {
 // Complete About page content structure
 export interface AboutPageContent {
   hero: AboutHeroContent;
+  firmIntro?: AboutFirmContent;
   story: StoryContent;
   missionVision: MissionVisionContent;
   team: TeamContent;
@@ -116,6 +119,34 @@ export interface AboutPageContent {
 
 // Default content - empty defaults, content comes exclusively from the CMS
 export const defaultAboutContent: AboutPageContent = {
+  firmIntro: {
+    sectionLabel: "",
+    headingBold: "",
+    headingLight: "",
+    badgeImage: "",
+    badgeImageAlt: "",
+    photo: "",
+    photoAlt: "",
+    accentBarColor: "#2ba6a3",
+    subHeading: "",
+    bodyHtml: "",
+    paragraph1: "",
+    paragraph2: "",
+    paragraph3: "",
+    paragraph4: "",
+    attorneyName: "",
+    attorneyTitle: "",
+    attorneyBioHtml: "",
+    attorneyBio1: "",
+    attorneyBio2: "",
+    meetCtaText: "",
+    meetCtaUrl: "",
+    callLabel: "",
+    phoneIconUrl: "",
+    attorneyPhoto: "",
+    attorneyPhotoAlt: "",
+    bgDecorImage: "",
+  },
   hero: {
     sectionLabel: "",
     tagline: "",

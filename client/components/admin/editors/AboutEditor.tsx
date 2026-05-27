@@ -1,4 +1,5 @@
 import type { AboutPageContent } from "@site/lib/cms/aboutPageTypes";
+import { defaultAboutContent } from "@site/lib/cms/aboutPageTypes";
 import { Section, ArrayEditor, ImageField, RichTextField, HeadingField, Input, Label, Textarea } from "./EditorShared";
 
 interface AboutEditorProps {
@@ -14,6 +15,7 @@ export default function AboutEditor({ content, onChange }: AboutEditorProps) {
   return (
     <div className="space-y-6">
       <HeroSection content={content} update={update} />
+      <FirmIntroSection content={content} update={update} />
       <StorySection content={content} update={update} />
       <MissionVisionSection content={content} update={update} />
       <TeamSection content={content} update={update} />
@@ -104,6 +106,73 @@ function HeroSection({ content, update }: SectionProps) {
           </div>
         </div>
         <RichTextField label="Description — text below H1" value={hero.description} onChange={(v) => set({ description: v })} />
+      </div>
+    </Section>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+function FirmIntroSection({ content, update }: SectionProps) {
+  const firm = { ...defaultAboutContent.firmIntro!, ...(content.firmIntro ?? {}) };
+  const set = (patch: Partial<typeof firm>) => update("firmIntro", { ...firm, ...patch });
+
+  return (
+    <Section title="About Firm Section" defaultOpen={false}>
+      <div className="grid gap-4">
+        <div>
+          <Label>Section Label (small text above heading)</Label>
+          <Input value={firm.sectionLabel} onChange={(e) => set({ sectionLabel: e.target.value })} placeholder="ABOUT OUR LAW FIRM" />
+        </div>
+        <div className="grid grid-cols-2 gap-3">
+          <div>
+            <Label>Heading — Bold Part</Label>
+            <Input value={firm.headingBold} onChange={(e) => set({ headingBold: e.target.value })} placeholder="Trusted Experienced" />
+          </div>
+          <div>
+            <Label>Heading — Light Part</Label>
+            <Input value={firm.headingLight} onChange={(e) => set({ headingLight: e.target.value })} placeholder="Attorneys In Atlanta" />
+          </div>
+        </div>
+        <ImageField
+          label="Experience Badge Image"
+          value={firm.badgeImage}
+          onChange={(url) => set({ badgeImage: url })}
+          altValue={firm.badgeImageAlt}
+          onAltChange={(badgeImageAlt) => set({ badgeImageAlt })}
+          onSelectAsset={(asset) => set({ badgeImage: asset.url, badgeImageAlt: asset.suggestedAltText || firm.badgeImageAlt })}
+          folder="about"
+        />
+        <ImageField
+          label="About Photo"
+          value={firm.photo}
+          onChange={(url) => set({ photo: url })}
+          altValue={firm.photoAlt}
+          onAltChange={(photoAlt) => set({ photoAlt })}
+          onSelectAsset={(asset) => set({ photo: asset.url, photoAlt: asset.suggestedAltText || firm.photoAlt })}
+          folder="about"
+        />
+        <div>
+          <Label>Accent Bar Color</Label>
+          <div className="flex items-center gap-2">
+            <input
+              type="color"
+              value={firm.accentBarColor || "#2ba6a3"}
+              onChange={(e) => set({ accentBarColor: e.target.value })}
+              className="h-9 w-12 cursor-pointer rounded border border-input p-0.5"
+            />
+            <Input value={firm.accentBarColor} onChange={(e) => set({ accentBarColor: e.target.value })} placeholder="#2ba6a3" className="font-mono text-sm" />
+          </div>
+        </div>
+        <div>
+          <Label>Sub-heading</Label>
+          <Input value={firm.subHeading} onChange={(e) => set({ subHeading: e.target.value })} placeholder="Providing Legal Services Throughout Atlanta" />
+        </div>
+        <RichTextField
+          label="Body Text"
+          value={firm.bodyHtml}
+          onChange={(html) => set({ bodyHtml: html })}
+          placeholder="Enter the firm description..."
+        />
       </div>
     </Section>
   );
