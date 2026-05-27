@@ -130,6 +130,7 @@ export interface TestimonialsContent {
   starsImageAlt?: string;
   backgroundImage: string;
   backgroundImageAlt?: string;
+  backgroundOverlayOpacity?: number;
   viewAllUrl: string;
   viewAllText: string;
   items: TestimonialItem[];
@@ -320,6 +321,7 @@ export const defaultHomeContent: HomePageContent = {
     starsImageAlt: "5 Star Rating",
     backgroundImage: "https://design-pluto.netlify.app/images/testimonials-bg.jpg",
     backgroundImageAlt: "",
+    backgroundOverlayOpacity: 0,
     viewAllUrl: "/testimonials",
     viewAllText: "VIEW ALL TESTIMONIALS",
     items: [

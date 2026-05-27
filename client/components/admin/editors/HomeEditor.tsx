@@ -591,6 +591,17 @@ function TestimonialsSection({ content, update }: SectionProps) {
           onAltChange={(backgroundImageAlt) => set({ backgroundImageAlt })}
           folder="backgrounds"
         />
+        <div>
+          <Label>Background Overlay Opacity (0–1, 0 = no overlay)</Label>
+          <Input
+            type="number"
+            min={0}
+            max={1}
+            step={0.05}
+            value={t.backgroundOverlayOpacity ?? 0}
+            onChange={(e) => set({ backgroundOverlayOpacity: parseFloat(e.target.value) || 0 })}
+          />
+        </div>
         <div className="grid grid-cols-2 gap-3">
           <div>
             <Label>"View All" Button Text</Label>
