@@ -259,7 +259,7 @@ export const defaultHomeContent: HomePageContent = {
     attorneyBio1: "As your attorney, my goal is to provide legal solutions tailored to your unique needs and circumstances. I work closely with you to fully understand your situation—whether it involves your personal, financial, or professional life. Based on this assessment, I present thoughtful, strategic options designed to serve your best interests.",
     attorneyBio2: "With the knowledge and experience to guide you through every step, I help you choose the path that offers clarity, security, and confidence for the future. My commitment is to ensure you have a solid plan in place—one that protects what matters most.",
     meetCtaText: "MEET THE ATTORNEY",
-    meetCtaUrl: "/about-us",
+    meetCtaUrl: "/about-us/",
     callLabel: "Call For A Consultation",
     phoneIconUrl: "https://design-pluto.netlify.app/images/phone-icon.png",
     attorneyPhoto: "https://design-pluto.netlify.app/images/attorney-photo.jpg",
