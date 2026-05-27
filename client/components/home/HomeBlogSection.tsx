@@ -130,13 +130,14 @@ export default function HomeBlogSection({ content }: Props) {
             <Link
               key={i}
               to={card.href}
-              className="w-full sm:w-[31.3333%] block no-underline flex-1"
+              className="w-full sm:w-[31.3333%] block no-underline"
               style={{
                 backgroundImage: `url(${card.image})`,
                 backgroundPosition: "50% 50%",
                 backgroundRepeat: "no-repeat",
                 backgroundSize: "cover",
-                height: "clamp(280px, 32vw, 420px)",
+                height: "clamp(280px, 56vw, 420px)",
+                minHeight: "260px",
                 position: "relative",
               }}
             >
