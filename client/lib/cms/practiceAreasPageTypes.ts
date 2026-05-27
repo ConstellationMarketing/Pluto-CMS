@@ -1,6 +1,19 @@
 // Type definitions for structured Practice Areas page content
 // Each section maps directly to a static component's data needs
 
+export interface PracticeAreasVisualCardItem {
+  title: string;
+  image: string;
+  imageAlt: string;
+  link: string;
+  learnMoreText?: string;
+  featured?: boolean;
+}
+
+export interface PracticeAreasVisualGridContent {
+  items: PracticeAreasVisualCardItem[];
+}
+
 export interface PracticeAreasHeroContent {
   sectionLabel: string; // "– Practice Areas" (H1)
   tagline: string; // plain text fallback
@@ -63,6 +76,7 @@ export interface CTAContent {
 // Complete Practice Areas page content structure
 export interface PracticeAreasPageContent {
   hero: PracticeAreasHeroContent;
+  visualGrid?: PracticeAreasVisualGridContent;
   grid: PracticeAreasGridContent;
   whyChoose: WhyChooseContent;
   cta: CTAContent;
@@ -78,6 +92,13 @@ export const defaultPracticeAreasContent: PracticeAreasPageContent = {
     description: "",
     phone: "",
     phoneLabel: "",
+  },
+  visualGrid: {
+    items: [
+      { title: "Practice Area", image: "https://design-pluto.netlify.app/images/practice-1.jpg", imageAlt: "Practice Area 1", link: "/practice-areas" },
+      { title: "Practice Area", image: "https://design-pluto.netlify.app/images/practice-2.jpg", imageAlt: "Practice Area 2", link: "/practice-areas", featured: true },
+      { title: "Practice Area", image: "https://design-pluto.netlify.app/images/practice-3.jpg", imageAlt: "Practice Area 3", link: "/practice-areas" },
+    ],
   },
   grid: {
     heading: "",

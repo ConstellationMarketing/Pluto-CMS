@@ -1,10 +1,8 @@
 import Seo from "@site/components/Seo";
 import Layout from "@site/components/layout/Layout";
 import PracticeAreaCard from "@site/components/practice/PracticeAreaCard";
-import CallBox from "@site/components/shared/CallBox";
+import PracticeAreasGrid from "@site/components/home/PracticeAreasGrid";
 import {
-  Phone,
-  Calendar,
   Scale,
   Car,
   Briefcase,
@@ -20,7 +18,6 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { usePracticeAreasContent } from "@site/hooks/usePracticeAreasContent";
-import { useGlobalPhone } from "@site/contexts/SiteSettingsContext";
 import InnerPageHero from "@site/components/shared/InnerPageHero";
 import RichText from "@site/components/shared/RichText";
 import DynamicHeading from "@site/components/shared/DynamicHeading";
@@ -44,7 +41,6 @@ const iconMap: Record<string, LucideIcon> = {
 
 export default function PracticeAreas() {
   const { content, meta, title, publishedAt, updatedAt, isLoading } = usePracticeAreasContent();
-  const { phoneNumber, phoneDisplay, phoneLabel } = useGlobalPhone();
 
   // Map practice areas from CMS content with icon components
   const practiceAreas = content.grid.areas.map((area) => ({
@@ -91,6 +87,11 @@ export default function PracticeAreas() {
         ctaText={content.hero.ctaText}
         ctaUrl={content.hero.ctaUrl}
       />
+
+      {/* Visual Cards Grid — homepage style, independent CMS data */}
+      {content.visualGrid && content.visualGrid.items.length > 0 && (
+        <PracticeAreasGrid areas={content.visualGrid.items} />
+      )}
 
       {/* Practice Areas Grid Section */}
       <div className="bg-white py-[40px] md:py-[60px]">

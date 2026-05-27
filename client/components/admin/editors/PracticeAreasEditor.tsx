@@ -1,4 +1,4 @@
-import type { PracticeAreasPageContent } from "@site/lib/cms/practiceAreasPageTypes";
+import type { PracticeAreasPageContent, PracticeAreasVisualGridContent } from "@site/lib/cms/practiceAreasPageTypes";
 import { Section, ArrayEditor, ImageField, GlobalSectionInfo, RichTextField, HeadingField, Input, Label, Textarea } from "./EditorShared";
 
 interface PracticeAreasEditorProps {
@@ -14,6 +14,7 @@ export default function PracticeAreasEditor({ content, onChange }: PracticeAreas
   return (
     <div className="space-y-6">
       <HeroSection content={content} update={update} />
+      <VisualGridSection content={content} update={update} />
       <GridSection content={content} update={update} />
       <GlobalSectionInfo sectionTitle="Why Choose Us" managedIn="About Us" />
       <GlobalSectionInfo sectionTitle="Call to Action" managedIn="About Us" />
@@ -100,6 +101,62 @@ function HeroSection({ content, update }: SectionProps) {
         </div>
         <RichTextField label="Description — text below H1" value={hero.description} onChange={(v) => set({ description: v })} />
       </div>
+    </Section>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+function VisualGridSection({ content, update }: SectionProps) {
+  const vg: PracticeAreasVisualGridContent = content.visualGrid ?? { items: [] };
+  const set = (patch: Partial<PracticeAreasVisualGridContent>) => update("visualGrid", { ...vg, ...patch });
+
+  return (
+    <Section title="Visual Cards Grid (Homepage-style)" defaultOpen={false}>
+      <p className="text-xs text-gray-500 mb-3">Image cards with teal/orange overlay — same layout as homepage Practice Areas section.</p>
+      <ArrayEditor
+        items={vg.items}
+        onChange={(items) => set({ items })}
+        itemLabel="Card"
+        newItem={() => ({ title: "", image: "", imageAlt: "", link: "/practice-areas", learnMoreText: "LEARN MORE", featured: false })}
+        renderItem={(item, _, upd) => (
+          <div className="grid gap-3">
+            <div className="grid grid-cols-2 gap-3">
+              <div>
+                <Label>Title</Label>
+                <Input value={item.title} onChange={(e) => upd({ ...item, title: e.target.value })} placeholder="Personal Injury" />
+              </div>
+              <div>
+                <Label>Link</Label>
+                <Input value={item.link} onChange={(e) => upd({ ...item, link: e.target.value })} placeholder="/practice-areas/personal-injury/" />
+              </div>
+            </div>
+            <ImageField
+              label="Background Image"
+              value={item.image}
+              onChange={(url) => upd({ ...item, image: url })}
+              altValue={item.imageAlt}
+              onAltChange={(imageAlt) => upd({ ...item, imageAlt })}
+              folder="practice-areas"
+            />
+            <div className="grid grid-cols-2 gap-3">
+              <div>
+                <Label>Learn More Text</Label>
+                <Input value={item.learnMoreText ?? "LEARN MORE"} onChange={(e) => upd({ ...item, learnMoreText: e.target.value })} placeholder="LEARN MORE" />
+              </div>
+              <div className="flex items-center gap-2 pt-6">
+                <input
+                  type="checkbox"
+                  id={`featured-${_}`}
+                  checked={item.featured ?? false}
+                  onChange={(e) => upd({ ...item, featured: e.target.checked })}
+                  className="h-4 w-4"
+                />
+                <Label htmlFor={`featured-${_}`}>Featured (teal gradient)</Label>
+              </div>
+            </div>
+          </div>
+        )}
+      />
     </Section>
   );
 }

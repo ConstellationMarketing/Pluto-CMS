@@ -315,6 +315,7 @@ const CONTACT_CONTENT_KEYS: (keyof ContactPageContent)[] = [
 
 const PRACTICE_AREAS_CONTENT_KEYS: (keyof PracticeAreasPageContent)[] = [
   "hero",
+  "visualGrid",
   "grid",
   "whyChoose",
   "cta",
@@ -743,6 +744,11 @@ export function mergePracticeAreasContentWithDefaults(cmsContent: Partial<Practi
 
   return {
     hero: { ...defaults.hero, ...cmsContent.hero },
+    visualGrid: cmsContent.visualGrid
+      ? {
+          items: cmsContent.visualGrid.items?.length ? cmsContent.visualGrid.items : (defaults.visualGrid?.items ?? []),
+        }
+      : defaults.visualGrid,
     grid: {
       ...defaults.grid,
       ...cmsContent.grid,
