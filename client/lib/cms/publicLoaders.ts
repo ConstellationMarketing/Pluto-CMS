@@ -290,6 +290,7 @@ const HOME_CONTENT_KEYS: (keyof HomePageContent)[] = [
 
 const ABOUT_CONTENT_KEYS: (keyof AboutPageContent)[] = [
   "hero",
+  "firmIntro",
   "story",
   "missionVision",
   "team",
@@ -642,6 +643,9 @@ export function mergeAboutContentWithDefaults(cmsContent: Partial<AboutPageConte
         ...cmsContent.cta?.secondaryButton,
       },
     },
+    firmIntro: cmsContent.firmIntro
+      ? { ...(defaults.firmIntro ?? {}), ...cmsContent.firmIntro }
+      : defaults.firmIntro,
     headingTags: cmsContent.headingTags ?? defaults.headingTags,
   };
 }

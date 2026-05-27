@@ -24,6 +24,7 @@ let cachedUpdatedAt: string | null = null;
 
 const ABOUT_CONTENT_KEYS: (keyof AboutPageContent)[] = [
   "hero",
+  "firmIntro",
   "story",
   "missionVision",
   "team",
