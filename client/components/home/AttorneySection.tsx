@@ -121,7 +121,7 @@ export default function AttorneySection({ content }: Props) {
                         href={`tel:${phoneNumber.replace(/\D/g, "")}`}
                         style={{
                           fontFamily: '"Crimson Text", serif',
-                          fontSize: "clamp(24px, 4vw, 48px)",
+                          fontSize: "clamp(19px, 4vw, 43px)",
                           lineHeight: 1.2,
                           textDecoration: "none",
                           color: "inherit",
