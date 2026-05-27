@@ -1,5 +1,7 @@
 // Type definitions for structured Practice Areas page content
 // Each section maps directly to a static component's data needs
+import type { AwardsContent } from "./homePageTypes";
+export type { AwardsContent };
 
 export interface PracticeAreasVisualCardItem {
   title: string;
@@ -77,6 +79,7 @@ export interface CTAContent {
 export interface PracticeAreasPageContent {
   hero: PracticeAreasHeroContent;
   visualGrid?: PracticeAreasVisualGridContent;
+  awardsSection?: AwardsContent;
   grid: PracticeAreasGridContent;
   whyChoose: WhyChooseContent;
   cta: CTAContent;
@@ -99,6 +102,15 @@ export const defaultPracticeAreasContent: PracticeAreasPageContent = {
       { title: "Practice Area", image: "https://design-pluto.netlify.app/images/practice-2.jpg", imageAlt: "Practice Area 2", link: "/practice-areas", featured: true },
       { title: "Practice Area", image: "https://design-pluto.netlify.app/images/practice-3.jpg", imageAlt: "Practice Area 3", link: "/practice-areas" },
     ],
+  },
+  awardsSection: {
+    sectionLabel: "",
+    headingHtml: "",
+    heading: "",
+    headingBold: "",
+    description: "",
+    logos: [],
+    features: [],
   },
   grid: {
     heading: "",

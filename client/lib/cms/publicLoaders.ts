@@ -316,6 +316,7 @@ const CONTACT_CONTENT_KEYS: (keyof ContactPageContent)[] = [
 const PRACTICE_AREAS_CONTENT_KEYS: (keyof PracticeAreasPageContent)[] = [
   "hero",
   "visualGrid",
+  "awardsSection",
   "grid",
   "whyChoose",
   "cta",
@@ -749,6 +750,14 @@ export function mergePracticeAreasContentWithDefaults(cmsContent: Partial<Practi
           items: cmsContent.visualGrid.items?.length ? cmsContent.visualGrid.items : (defaults.visualGrid?.items ?? []),
         }
       : defaults.visualGrid,
+    awardsSection: cmsContent.awardsSection
+      ? {
+          ...(defaults.awardsSection ?? {}),
+          ...cmsContent.awardsSection,
+          logos: cmsContent.awardsSection.logos?.length ? cmsContent.awardsSection.logos : (defaults.awardsSection?.logos ?? []),
+          features: cmsContent.awardsSection.features?.length ? cmsContent.awardsSection.features : (defaults.awardsSection?.features ?? []),
+        }
+      : defaults.awardsSection,
     grid: {
       ...defaults.grid,
       ...cmsContent.grid,

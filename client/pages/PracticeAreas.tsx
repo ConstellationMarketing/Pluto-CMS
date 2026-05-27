@@ -2,6 +2,7 @@ import Seo from "@site/components/Seo";
 import Layout from "@site/components/layout/Layout";
 import PracticeAreaCard from "@site/components/practice/PracticeAreaCard";
 import PracticeAreasGrid from "@site/components/home/PracticeAreasGrid";
+import AwardsSection from "@site/components/home/AwardsSection";
 import {
   Scale,
   Car,
@@ -91,6 +92,11 @@ export default function PracticeAreas() {
       {/* Visual Cards Grid — homepage style, independent CMS data */}
       {content.visualGrid && content.visualGrid.items.length > 0 && (
         <PracticeAreasGrid areas={content.visualGrid.items} />
+      )}
+
+      {/* Awards & Memberships — independent CMS data */}
+      {content.awardsSection && (content.awardsSection.headingHtml || content.awardsSection.heading || (content.awardsSection.logos?.length ?? 0) > 0) && (
+        <AwardsSection content={content.awardsSection} />
       )}
 
       {/* Practice Areas Grid Section */}
