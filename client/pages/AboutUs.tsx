@@ -3,6 +3,7 @@ import Layout from "@site/components/layout/Layout";
 import InnerPageHero from "@site/components/shared/InnerPageHero";
 import AboutFirmSection from "@site/components/home/AboutFirmSection";
 import AwardsSection from "@site/components/home/AwardsSection";
+import TestimonialsSection from "@site/components/home/TestimonialsSection";
 import CallBox from "@site/components/shared/CallBox";
 import StatsGrid from "@site/components/shared/StatsGrid";
 import TeamMemberCard from "@site/components/about/TeamMemberCard";
@@ -91,6 +92,11 @@ export default function AboutUs() {
       {/* Awards & Memberships — independent from homepage */}
       {content.awardsSection && (content.awardsSection.headingHtml || content.awardsSection.heading || (content.awardsSection.logos?.length ?? 0) > 0) && (
         <AwardsSection content={content.awardsSection} />
+      )}
+
+      {/* Testimonials — independent from homepage */}
+      {content.testimonialsSection && (content.testimonialsSection.heading || (content.testimonialsSection.items?.length ?? 0) > 0) && (
+        <TestimonialsSection content={content.testimonialsSection} />
       )}
 
       {/* Our Story Section */}

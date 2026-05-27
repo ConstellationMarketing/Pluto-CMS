@@ -26,6 +26,7 @@ const ABOUT_CONTENT_KEYS: (keyof AboutPageContent)[] = [
   "hero",
   "firmIntro",
   "awardsSection",
+  "testimonialsSection",
   "story",
   "missionVision",
   "team",
