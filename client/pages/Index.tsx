@@ -46,7 +46,7 @@ export default function Index() {
 
       {/* Hero Section */}
       <section
-        className="relative flex items-center justify-center w-full min-h-[580px] md:min-h-[880px] lg:min-h-[1205px] pt-[70px] pb-[10px]"
+        className="relative flex items-center justify-center w-full min-h-[480px] md:min-h-[700px] lg:min-h-[950px] pt-[70px] pb-[10px]"
         style={{
           backgroundImage: heroContent.backgroundImage
             ? `linear-gradient(rgba(0,0,0,${heroContent.backgroundOverlayOpacity ?? 0.4}), rgba(0,0,0,${heroContent.backgroundOverlayOpacity ?? 0.4})), url(${heroContent.backgroundImage})`
