@@ -128,7 +128,7 @@ export default function Header() {
           <Sheet>
             <SheetTrigger asChild className="lg:hidden">
               <button type="button" className="text-white flex items-center justify-center" style={{ background: "none", border: "none", cursor: "pointer", padding: "4px" }}>
-                <Menu style={{ width: "40px", height: "40px" }} />
+                <Menu style={{ width: "35px", height: "35px" }} />
               </button>
             </SheetTrigger>
             <SheetContent side="right" className="bg-black border-none">
