@@ -42,9 +42,19 @@ export default function PracticeAreasGrid({ areas, intro }: Props) {
               <strong style={{ fontWeight: 700 }}>{intro.headingBold || "Cases We Handle"}</strong>
             </h2>
           )}
-          <p style={{ color: "rgb(48, 48, 48)", fontFamily: '"Crimson Pro", Georgia, serif', fontSize: "clamp(16px, 2.5vw, 32px)", fontWeight: 300, lineHeight: 1.3 }}>
+          <p style={{ color: "rgb(48, 48, 48)", fontFamily: '"Crimson Pro", Georgia, serif', fontSize: "clamp(16px, 2.5vw, 32px)", fontWeight: 300, lineHeight: 1.3, marginBottom: "16px" }}>
             {intro.sectionLabel || "OUR PRACTICE AREAS"}
           </p>
+          {intro.descriptionHtml ? (
+            <div
+              style={{ color: "rgb(80, 80, 80)", fontSize: "clamp(15px, 1.8vw, 20px)", lineHeight: 1.6, maxWidth: "760px", margin: "0 auto" }}
+              dangerouslySetInnerHTML={{ __html: intro.descriptionHtml }}
+            />
+          ) : (
+            <p style={{ color: "rgb(80, 80, 80)", fontSize: "clamp(15px, 1.8vw, 20px)", lineHeight: 1.6, maxWidth: "760px", margin: "0 auto" }}>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.
+            </p>
+          )}
         </div>
       )}
       <div className="mx-auto w-full max-w-[2560px] py-[28px]">

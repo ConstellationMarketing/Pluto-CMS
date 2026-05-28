@@ -328,9 +328,8 @@ function PracticeAreasIntroEditor({ content, update }: SectionProps) {
     ...(content.practiceAreasIntroSection ?? {}),
   };
   const set = (patch: Partial<PracticeAreasIntroContent>) => update("practiceAreasIntroSection", { ...intro, ...patch });
-
   return (
-    <Section title="Practice Areas Intro (inside Testimonials)" defaultOpen={false}>
+    <Section title="Practice Areas Intro" defaultOpen={false}>
       <div className="grid gap-4">
         <RichTextField
           label="Heading"
@@ -342,10 +341,12 @@ function PracticeAreasIntroEditor({ content, update }: SectionProps) {
           <Label>Section Label</Label>
           <Input value={intro.sectionLabel} onChange={(e) => set({ sectionLabel: e.target.value })} placeholder="OUR PRACTICE AREAS" />
         </div>
-        <div>
-          <Label>Button Link</Label>
-          <Input value={intro.buttonLink} onChange={(e) => set({ buttonLink: e.target.value })} placeholder="/practice-areas" />
-        </div>
+        <RichTextField
+          label="Description"
+          value={intro.descriptionHtml}
+          onChange={(html) => set({ descriptionHtml: html })}
+          placeholder="Add a description paragraph below the heading..."
+        />
       </div>
     </Section>
   );
