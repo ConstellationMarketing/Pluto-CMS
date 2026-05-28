@@ -113,14 +113,11 @@ export default function TestimonialsSection({ content, practiceAreasIntro }: Pro
                       <a
                         href={active.authorUrl}
                         style={{
-                          border: "1px solid rgb(0,0,0)",
-                          borderRadius: "3px",
                           display: "inline-block",
                           fontFamily: '"Crimson Pro", Georgia, serif',
                           fontSize: "clamp(18px, 2.5vw, 36px)",
                           fontWeight: 700,
                           lineHeight: 1.5,
-                          padding: "8px 24px",
                           textDecoration: "none",
                           color: "inherit",
                         }}
@@ -130,14 +127,11 @@ export default function TestimonialsSection({ content, practiceAreasIntro }: Pro
                     ) : (
                       <span
                         style={{
-                          border: "1px solid rgb(0,0,0)",
-                          borderRadius: "3px",
                           display: "inline-block",
                           fontFamily: '"Crimson Pro", Georgia, serif',
                           fontSize: "clamp(18px, 2.5vw, 36px)",
                           fontWeight: 700,
                           lineHeight: 1.5,
-                          padding: "8px 24px",
                         }}
                       >
                         {active.author}
