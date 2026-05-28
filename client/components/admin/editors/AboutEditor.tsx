@@ -19,7 +19,6 @@ export default function AboutEditor({ content, onChange }: AboutEditorProps) {
       <AwardsSectionEditor content={content} update={update} />
       <TestimonialsSectionEditor content={content} update={update} />
       <PracticeAreasIntroEditor content={content} update={update} />
-      <StorySection content={content} update={update} />
       <MissionVisionSection content={content} update={update} />
       <TeamSection content={content} update={update} />
       <ValuesSection content={content} update={update} />
@@ -364,57 +363,6 @@ function PracticeAreasIntroEditor({ content, update }: SectionProps) {
           <Label>Button Link</Label>
           <Input value={intro.buttonLink} onChange={(e) => set({ buttonLink: e.target.value })} placeholder="/practice-areas" />
         </div>
-      </div>
-    </Section>
-  );
-}
-
-/* ------------------------------------------------------------------ */
-function StorySection({ content, update }: SectionProps) {
-  const story = content.story;
-  const set = (patch: Partial<typeof story>) => update("story", { ...story, ...patch });
-  const ht = useHeadingTag(content, update);
-
-  return (
-    <Section title="Our Story" defaultOpen={false}>
-      <div className="grid gap-4">
-        <HeadingField
-          label="Section Heading"
-          value={story.sectionLabel}
-          onChange={(v) => set({ sectionLabel: v })}
-          tag={ht.get("story.sectionLabel")}
-          onTagChange={(t) => ht.set("story.sectionLabel", t)}
-        />
-        <div>
-          <Label>Subtitle</Label>
-          <Input value={story.heading} onChange={(e) => set({ heading: e.target.value })} />
-        </div>
-        <ImageField
-          label="Image"
-          value={story.image}
-          onChange={(url) => set({ image: url })}
-          altValue={story.imageAlt}
-          onAltChange={(imageAlt) => set({ imageAlt })}
-          onSelectAsset={(asset) => set({
-            image: asset.url,
-            imageAlt: asset.suggestedAltText || story.imageAlt,
-          })}
-          folder="team"
-        />
-        <div>
-          <Label>Image Alt Text</Label>
-          <Input value={story.imageAlt} onChange={(e) => set({ imageAlt: e.target.value })} />
-        </div>
-        <h4 className="font-medium mt-2">Paragraphs</h4>
-        <ArrayEditor
-          items={story.paragraphs.map((text, i) => ({ id: String(i), text }))}
-          onChange={(items) => set({ paragraphs: items.map((it) => it.text) })}
-          itemLabel="Paragraph"
-          newItem={() => ({ id: String(Date.now()), text: "" })}
-          renderItem={(item, _, upd) => (
-            <RichTextField label="" value={item.text} onChange={(v) => upd({ ...item, text: v })} />
-          )}
-        />
       </div>
     </Section>
   );
