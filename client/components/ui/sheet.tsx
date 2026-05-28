@@ -63,10 +63,6 @@ const SheetContent = React.forwardRef<
       {...props}
     >
       {children}
-      <SheetPrimitive.Close style={{ position: "absolute", right: "16px", top: "16px", background: "none", border: "none", cursor: "pointer", padding: "4px", color: "white", opacity: 1 }}>
-        <X style={{ width: "32px", height: "32px", color: "white", display: "block" }} />
-        <span className="sr-only">Close</span>
-      </SheetPrimitive.Close>
     </SheetPrimitive.Content>
   </SheetPortal>
 ));
