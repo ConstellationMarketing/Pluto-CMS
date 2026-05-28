@@ -67,10 +67,11 @@ export default function Index() {
                   className="mb-[24px] md:mb-[32px] leading-none font-outfit text-[48px] sm:text-[64px] md:text-[80px] lg:text-[96px] font-light text-white
                     [&_p]:block [&_p]:leading-none [&_p]:m-0
                     [&_strong]:font-semibold [&_strong]:text-[56px] [&_strong]:sm:text-[80px] [&_strong]:md:text-[100px] [&_strong]:lg:text-[128px]"
+                  style={{ paddingTop: "5rem" }}
                   dangerouslySetInnerHTML={{ __html: heroContent.taglineHtml }}
                 />
               ) : (
-                <p className="mb-[24px] md:mb-[32px] leading-none">
+                <p className="mb-[24px] md:mb-[32px] leading-none" style={{ paddingTop: "5rem" }}>
                   <span className="block font-outfit text-[48px] sm:text-[64px] md:text-[80px] lg:text-[96px] font-light leading-none text-white">
                     {heroContent.taglineWord1 || "TRUSTED"}
                   </span>
