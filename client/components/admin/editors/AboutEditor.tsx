@@ -19,7 +19,6 @@ export default function AboutEditor({ content, onChange }: AboutEditorProps) {
       <AwardsSectionEditor content={content} update={update} />
       <TestimonialsSectionEditor content={content} update={update} />
       <PracticeAreasIntroEditor content={content} update={update} />
-      <WhyChooseUsSection content={content} update={update} />
       <CTASection content={content} update={update} />
     </div>
   );
@@ -359,69 +358,6 @@ function PracticeAreasIntroEditor({ content, update }: SectionProps) {
           <Label>Button Link</Label>
           <Input value={intro.buttonLink} onChange={(e) => set({ buttonLink: e.target.value })} placeholder="/practice-areas" />
         </div>
-      </div>
-    </Section>
-  );
-}
-
-/* ------------------------------------------------------------------ */
-function WhyChooseUsSection({ content, update }: SectionProps) {
-  const wcu = content.whyChooseUs;
-  const set = (patch: Partial<typeof wcu>) => update("whyChooseUs", { ...wcu, ...patch });
-  const ht = useHeadingTag(content, update);
-
-  return (
-    <Section title="Why Choose Us" defaultOpen={false}>
-      <div className="grid gap-4">
-        <HeadingField
-          label="Section Heading"
-          value={wcu.sectionLabel}
-          onChange={(v) => set({ sectionLabel: v })}
-          tag={ht.get("whyChooseUs.sectionLabel")}
-          onTagChange={(t) => ht.set("whyChooseUs.sectionLabel", t)}
-        />
-        <div>
-          <Label>Subtitle</Label>
-          <Input value={wcu.heading} onChange={(e) => set({ heading: e.target.value })} />
-        </div>
-        <RichTextField label="Description" value={wcu.description} onChange={(v) => set({ description: v })} />
-        <ImageField
-          label="Section Image"
-          value={wcu.image}
-          onChange={(url) => set({ image: url })}
-          altValue={wcu.imageAlt}
-          onAltChange={(imageAlt) => set({ imageAlt })}
-          onSelectAsset={(asset) => set({
-            image: asset.url,
-            imageAlt: asset.suggestedAltText || wcu.imageAlt,
-          })}
-          folder="about"
-        />
-        <div>
-          <Label>Image Alt Text</Label>
-          <Input value={wcu.imageAlt} onChange={(e) => set({ imageAlt: e.target.value })} />
-        </div>
-        <ArrayEditor
-          items={wcu.items}
-          onChange={(items) => set({ items })}
-          itemLabel="Item"
-          newItem={() => ({ number: String(wcu.items.length + 1), title: "", description: "" })}
-          renderItem={(item, _, upd) => (
-            <div className="grid gap-3">
-              <div className="grid grid-cols-4 gap-3">
-                <div>
-                  <Label>Number</Label>
-                  <Input value={item.number} onChange={(e) => upd({ ...item, number: e.target.value })} />
-                </div>
-                <div className="col-span-3">
-                  <Label>Title</Label>
-                  <Input value={item.title} onChange={(e) => upd({ ...item, title: e.target.value })} />
-                </div>
-              </div>
-              <RichTextField label="Description" value={item.description} onChange={(v) => upd({ ...item, description: v })} />
-            </div>
-          )}
-        />
       </div>
     </Section>
   );
