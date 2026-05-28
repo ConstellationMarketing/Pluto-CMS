@@ -19,7 +19,6 @@ export default function AboutEditor({ content, onChange }: AboutEditorProps) {
       <AwardsSectionEditor content={content} update={update} />
       <TestimonialsSectionEditor content={content} update={update} />
       <PracticeAreasIntroEditor content={content} update={update} />
-      <ValuesSection content={content} update={update} />
       <StatsSection content={content} update={update} />
       <WhyChooseUsSection content={content} update={update} />
       <CTASection content={content} update={update} />
@@ -361,56 +360,6 @@ function PracticeAreasIntroEditor({ content, update }: SectionProps) {
           <Label>Button Link</Label>
           <Input value={intro.buttonLink} onChange={(e) => set({ buttonLink: e.target.value })} placeholder="/practice-areas" />
         </div>
-      </div>
-    </Section>
-  );
-}
-
-/* ------------------------------------------------------------------ */
-function ValuesSection({ content, update }: SectionProps) {
-  const values = content.values;
-  const set = (patch: Partial<typeof values>) => update("values", { ...values, ...patch });
-  const ht = useHeadingTag(content, update);
-
-  return (
-    <Section title="Our Values" defaultOpen={false}>
-      <div className="grid gap-4">
-        <HeadingField
-          label="Section Heading"
-          value={values.sectionLabel}
-          onChange={(v) => set({ sectionLabel: v })}
-          tag={ht.get("values.sectionLabel")}
-          onTagChange={(t) => ht.set("values.sectionLabel", t)}
-        />
-        <div>
-          <Label>Subtitle</Label>
-          <Input value={values.heading} onChange={(e) => set({ heading: e.target.value })} />
-        </div>
-        <div>
-          <Label>Description</Label>
-          <Input value={values.subtitle} onChange={(e) => set({ subtitle: e.target.value })} />
-        </div>
-        <ArrayEditor
-          items={values.items}
-          onChange={(items) => set({ items })}
-          itemLabel="Value"
-          newItem={() => ({ icon: "Star", title: "", description: "" })}
-          renderItem={(item, _, upd) => (
-            <div className="grid gap-3">
-              <div className="grid grid-cols-4 gap-3">
-                <div>
-                  <Label>Icon</Label>
-                  <Input value={item.icon} onChange={(e) => upd({ ...item, icon: e.target.value })} placeholder="Lucide icon name" />
-                </div>
-                <div className="col-span-3">
-                  <Label>Title</Label>
-                  <Input value={item.title} onChange={(e) => upd({ ...item, title: e.target.value })} />
-                </div>
-              </div>
-              <RichTextField label="Description" value={item.description} onChange={(v) => upd({ ...item, description: v })} />
-            </div>
-          )}
-        />
       </div>
     </Section>
   );
