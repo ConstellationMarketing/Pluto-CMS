@@ -71,8 +71,7 @@ export default function PracticeAreasGrid({ areas, intro }: Props) {
             return (
               <div
                 key={index}
-                className="w-full sm:w-[31.3333%]"
-                style={{ paddingTop: isOffset ? "clamp(0px, 8vw, 100px)" : "0" }}
+                className={`w-full sm:w-[31.3333%] ${isOffset ? "sm:pt-[clamp(0px,8vw,100px)]" : ""}`}
               >
                 <Link
                   to={area.link}
@@ -85,10 +84,10 @@ export default function PracticeAreasGrid({ areas, intro }: Props) {
                     backgroundSize: "cover",
                     cursor: "pointer",
                     display: "block",
-                    minHeight: "clamp(240px, 40vw, 485px)",
+                    minHeight: "clamp(200px, 40vw, 485px)",
                     overflow: "hidden",
                     paddingBottom: "32px",
-                    paddingTop: "clamp(120px, 22vw, 300px)",
+                    paddingTop: "clamp(60px, 22vw, 300px)",
                     position: "relative",
                     textDecoration: "none",
                   }}
