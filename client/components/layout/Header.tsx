@@ -127,7 +127,7 @@ export default function Header() {
           {/* Mobile Menu */}
           <Sheet>
             <SheetTrigger asChild className="lg:hidden">
-              <Button variant="ghost" size="icon" className="text-white h-20 w-20">
+              <Button variant="ghost" className="text-white h-20 w-20 p-0">
                 <Menu className="h-16 w-16" />
               </Button>
             </SheetTrigger>
