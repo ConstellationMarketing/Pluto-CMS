@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, ChevronDown } from "lucide-react";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { useSiteSettings } from "@site/contexts/SiteSettingsContext";
 import NavDropdown from "./NavDropdown";
 
@@ -132,6 +132,7 @@ export default function Header() {
               </button>
             </SheetTrigger>
             <SheetContent side="right" className="bg-black border-none">
+              <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
               <nav className="flex flex-col gap-4 mt-8">
                 {headerPhoneLabel && phoneNumber && (
                   <div className="flex flex-col gap-1 pb-4 border-b border-white/20">
