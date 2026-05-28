@@ -29,7 +29,7 @@ export default function PracticeAreasGrid({ areas, intro }: Props) {
       }}
     >
       {intro && (
-        <div className="mx-auto w-[90%] md:w-[80%] max-w-[1080px] text-center pb-[32px]">
+        <div className="mx-auto w-[90%] md:w-[80%] max-w-[2560px] text-center pb-[32px]">
           {intro.headingHtml?.replace(/<[^>]+>/g, "").trim() ? (
             <h2
               style={{ fontSize: "clamp(26px, 5vw, 59.136px)", fontWeight: 300, lineHeight: 1.05, overflowWrap: "anywhere", paddingBottom: "10px", wordBreak: "break-word" }}
@@ -47,11 +47,11 @@ export default function PracticeAreasGrid({ areas, intro }: Props) {
           </p>
           {intro.descriptionHtml ? (
             <div
-              style={{ color: "rgb(80, 80, 80)", fontSize: "clamp(15px, 1.8vw, 20px)", lineHeight: 1.6, maxWidth: "760px", margin: "0 auto" }}
+              style={{ color: "rgb(80, 80, 80)", fontSize: "clamp(15px, 1.8vw, 20px)", lineHeight: 1.6 }}
               dangerouslySetInnerHTML={{ __html: intro.descriptionHtml }}
             />
           ) : (
-            <p style={{ color: "rgb(80, 80, 80)", fontSize: "clamp(15px, 1.8vw, 20px)", lineHeight: 1.6, maxWidth: "760px", margin: "0 auto" }}>
+            <p style={{ color: "rgb(80, 80, 80)", fontSize: "clamp(15px, 1.8vw, 20px)", lineHeight: 1.6 }}>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.
             </p>
           )}
