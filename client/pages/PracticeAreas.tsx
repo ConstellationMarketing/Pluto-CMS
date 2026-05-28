@@ -90,6 +90,57 @@ export default function PracticeAreas() {
         ctaUrl={content.hero.ctaUrl}
       />
 
+      {/* Practice Areas Intro — below hero, above grid */}
+      {content.practiceAreasIntroSection && (
+        <div className="bg-white py-[48px] md:py-[64px]" style={{ fontFamily: "Outfit, Helvetica, Arial, sans-serif" }}>
+          <div className="mx-auto w-[90%] md:w-[80%] max-w-[1080px] text-center">
+            {content.practiceAreasIntroSection.headingHtml?.replace(/<[^>]+>/g, "").trim() ? (
+              <h2
+                style={{
+                  fontSize: "clamp(26px, 5vw, 59.136px)",
+                  fontWeight: 300,
+                  lineHeight: 1.05,
+                  overflowWrap: "anywhere",
+                  paddingBottom: "10px",
+                  wordBreak: "break-word",
+                }}
+                className="[&_strong]:font-bold"
+                dangerouslySetInnerHTML={{ __html: content.practiceAreasIntroSection.headingHtml }}
+              />
+            ) : (
+              <h2
+                style={{
+                  fontSize: "clamp(26px, 5vw, 59.136px)",
+                  fontWeight: 300,
+                  lineHeight: 1.05,
+                  overflowWrap: "anywhere",
+                  paddingBottom: "10px",
+                  wordBreak: "break-word",
+                }}
+              >
+                {content.practiceAreasIntroSection.heading || "Types Of"}{" "}
+                <strong style={{ fontWeight: 700 }}>
+                  {content.practiceAreasIntroSection.headingBold || "Cases We Handle"}
+                </strong>
+              </h2>
+            )}
+            <p
+              style={{
+                color: "rgb(48, 48, 48)",
+                fontFamily: '"Crimson Pro", Georgia, serif',
+                fontSize: "clamp(16px, 2.5vw, 32px)",
+                fontWeight: 300,
+                lineHeight: 1.3,
+                overflowWrap: "anywhere",
+                wordBreak: "break-word",
+              }}
+            >
+              {content.practiceAreasIntroSection.sectionLabel || "OUR PRACTICE AREAS"}
+            </p>
+          </div>
+        </div>
+      )}
+
       {/* Visual Cards Grid — homepage style, independent CMS data */}
       {content.visualGrid && content.visualGrid.items.length > 0 && (
         <PracticeAreasGrid areas={content.visualGrid.items} />
@@ -104,7 +155,6 @@ export default function PracticeAreas() {
       {content.testimonialsSection && (content.testimonialsSection.heading || (content.testimonialsSection.items?.length ?? 0) > 0) && (
         <TestimonialsSection
           content={content.testimonialsSection}
-          practiceAreasIntro={content.practiceAreasIntroSection}
         />
       )}
 
