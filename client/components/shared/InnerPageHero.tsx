@@ -42,7 +42,7 @@ export default function InnerPageHero({
 
   return (
     <section
-      className="relative flex items-center justify-center w-full min-h-[50vh] md:min-h-screen pt-[80px] pb-[10px]"
+      className="hero-section relative flex items-center justify-center w-full min-h-[50vh] md:min-h-screen pt-[80px] pb-[10px]"
       style={bgStyle}
     >
       <div className="max-w-[1280px] mx-auto px-[16px] md:px-[32px] w-full">

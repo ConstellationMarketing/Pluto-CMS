@@ -176,6 +176,44 @@
     height: 0;
   }
 
+  /* Mobile centering — text, icons, buttons, dividers (exclude hero) */
+  @media (max-width: 767px) {
+    main section:not(.hero-section) h1,
+    main section:not(.hero-section) h2,
+    main section:not(.hero-section) h3,
+    main section:not(.hero-section) h4,
+    main section:not(.hero-section) h5,
+    main section:not(.hero-section) h6,
+    main section:not(.hero-section) p,
+    main div:not(.hero-section *) > h1,
+    main div:not(.hero-section *) > h2,
+    main div:not(.hero-section *) > h3,
+    main div:not(.hero-section *) > h4,
+    main div:not(.hero-section *) > h5,
+    main div:not(.hero-section *) > h6,
+    main div:not(.hero-section *) > p,
+    footer h1, footer h2, footer h3,
+    footer h4, footer h5, footer h6,
+    footer p, footer a, footer li, footer span {
+      text-align: center;
+    }
+
+    main section:not(.hero-section) .flex:not([class*="flex-col"]),
+    main section:not(.hero-section) > div > .flex:not([class*="flex-col"]),
+    footer .flex:not([class*="flex-col"]) {
+      justify-content: center;
+    }
+
+    main section:not(.hero-section) [class*="h-[1px]"],
+    main section:not(.hero-section) [class*="h-[2px]"],
+    main section:not(.hero-section) [class*="h-[4px]"],
+    footer [class*="h-[1px]"],
+    footer [class*="h-[4px]"] {
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+
   /* Force Lucide icons to render as outlines */
   svg.lucide *,
   .lucide * {
