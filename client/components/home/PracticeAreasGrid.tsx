@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import type { PracticeAreaItem } from "@site/lib/cms/homePageTypes";
+import type { PracticeAreaItem, PracticeAreasIntroContent } from "@site/lib/cms/homePageTypes";
 
 interface Props {
   areas?: PracticeAreaItem[];
+  intro?: PracticeAreasIntroContent;
 }
 
 const DEFAULT_AREAS: PracticeAreaItem[] = [
@@ -12,7 +13,7 @@ const DEFAULT_AREAS: PracticeAreaItem[] = [
   { title: "Practice Area", image: "https://design-pluto.netlify.app/images/practice-3.jpg", imageAlt: "Practice Area 3", link: "/practice-areas" },
 ];
 
-export default function PracticeAreasGrid({ areas }: Props) {
+export default function PracticeAreasGrid({ areas, intro }: Props) {
   const [hovered, setHovered] = useState<number | null>(null);
   const items = areas && areas.length > 0 ? areas : DEFAULT_AREAS;
 
@@ -27,6 +28,25 @@ export default function PracticeAreasGrid({ areas }: Props) {
         fontFamily: "Outfit, Helvetica, Arial, sans-serif",
       }}
     >
+      {intro && (
+        <div className="mx-auto w-[90%] md:w-[80%] max-w-[1080px] text-center pb-[32px]">
+          {intro.headingHtml?.replace(/<[^>]+>/g, "").trim() ? (
+            <h2
+              style={{ fontSize: "clamp(26px, 5vw, 59.136px)", fontWeight: 300, lineHeight: 1.05, overflowWrap: "anywhere", paddingBottom: "10px", wordBreak: "break-word" }}
+              className="[&_strong]:font-bold"
+              dangerouslySetInnerHTML={{ __html: intro.headingHtml }}
+            />
+          ) : (
+            <h2 style={{ fontSize: "clamp(26px, 5vw, 59.136px)", fontWeight: 300, lineHeight: 1.05, overflowWrap: "anywhere", paddingBottom: "10px", wordBreak: "break-word" }}>
+              {intro.heading || "Types Of"}{" "}
+              <strong style={{ fontWeight: 700 }}>{intro.headingBold || "Cases We Handle"}</strong>
+            </h2>
+          )}
+          <p style={{ color: "rgb(48, 48, 48)", fontFamily: '"Crimson Pro", Georgia, serif', fontSize: "clamp(16px, 2.5vw, 32px)", fontWeight: 300, lineHeight: 1.3 }}>
+            {intro.sectionLabel || "OUR PRACTICE AREAS"}
+          </p>
+        </div>
+      )}
       <div className="mx-auto w-full max-w-[2560px] py-[28px]">
         <div className="flex flex-col sm:flex-row gap-[16px] sm:gap-[3%] px-[16px] sm:px-0">
           {items.map((area, index) => {
