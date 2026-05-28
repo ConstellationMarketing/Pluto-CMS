@@ -121,6 +121,7 @@ export default function TestimonialsSection({ content, practiceAreasIntro }: Pro
                           lineHeight: 1.5,
                           textDecoration: "none",
                           color: "inherit",
+                          border: "1px solid rgb(0, 0, 0)",
                         }}
                       >
                         {active.author}
@@ -133,6 +134,7 @@ export default function TestimonialsSection({ content, practiceAreasIntro }: Pro
                           fontSize: "clamp(18px, 2.5vw, 36px)",
                           fontWeight: 700,
                           lineHeight: 1.5,
+                          border: "1px solid rgb(0, 0, 0)",
                         }}
                       >
                         {active.author}
