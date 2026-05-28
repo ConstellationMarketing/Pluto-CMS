@@ -243,7 +243,7 @@ export const DEFAULT_SITE_SETTINGS: SiteSettings = {
   footerCtaButtonUrl: "",
   addressLine1: "",
   addressLine2: "",
-  mapEmbedUrl: "",
+  mapEmbedUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d106135.53646432716!2d-84.50260696059786!3d33.7674998287243!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88f5045d6993098d%3A0x66fede2f990b630b!2sAtlanta%2C%20GA%2C%20USA!5e0!3m2!1sen!2srs!4v1779973273933!5m2!1sen!2srs",
   socialLinks: [],
   copyrightText: "",
   siteUrl: "",
