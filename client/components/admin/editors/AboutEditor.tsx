@@ -19,7 +19,6 @@ export default function AboutEditor({ content, onChange }: AboutEditorProps) {
       <AwardsSectionEditor content={content} update={update} />
       <TestimonialsSectionEditor content={content} update={update} />
       <PracticeAreasIntroEditor content={content} update={update} />
-      <StatsSection content={content} update={update} />
       <WhyChooseUsSection content={content} update={update} />
       <CTASection content={content} update={update} />
     </div>
@@ -361,32 +360,6 @@ function PracticeAreasIntroEditor({ content, update }: SectionProps) {
           <Input value={intro.buttonLink} onChange={(e) => set({ buttonLink: e.target.value })} placeholder="/practice-areas" />
         </div>
       </div>
-    </Section>
-  );
-}
-
-/* ------------------------------------------------------------------ */
-function StatsSection({ content, update }: SectionProps) {
-  return (
-    <Section title="Stats" defaultOpen={false}>
-      <ArrayEditor
-        items={content.stats.stats}
-        onChange={(items) => update("stats", { stats: items })}
-        itemLabel="Stat"
-        newItem={() => ({ value: "", label: "" })}
-        renderItem={(item, _, upd) => (
-          <div className="grid grid-cols-2 gap-3">
-            <div>
-              <Label>Value</Label>
-              <Input value={item.value} onChange={(e) => upd({ ...item, value: e.target.value })} />
-            </div>
-            <div>
-              <Label>Label</Label>
-              <Input value={item.label} onChange={(e) => upd({ ...item, label: e.target.value })} />
-            </div>
-          </div>
-        )}
-      />
     </Section>
   );
 }
