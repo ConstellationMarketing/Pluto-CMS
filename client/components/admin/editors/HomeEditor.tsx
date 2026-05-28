@@ -16,7 +16,6 @@ export default function HomeEditor({ content, onChange }: HomeEditorProps) {
   return (
     <div className="space-y-6">
       <HeroSection content={content} update={update} />
-      <PartnerLogosSection content={content} update={update} />
       <AboutFirmSectionEditor content={content} update={update} />
       <PracticeAreasIntroSection content={content} update={update} />
       <PracticeAreasItemsSection content={content} update={update} />
@@ -116,41 +115,6 @@ function HeroSection({ content, update }: SectionProps) {
         </div>
         <p className="text-xs text-gray-500 italic">Phone number is managed in Site Settings &gt; Contact Info</p>
       </div>
-    </Section>
-  );
-}
-
-/* ------------------------------------------------------------------ */
-function PartnerLogosSection({ content, update }: SectionProps) {
-  return (
-    <Section title="Partner Logos" defaultOpen={false}>
-      <ArrayEditor
-        items={content.partnerLogos}
-        onChange={(items) => update("partnerLogos", items)}
-        itemLabel="Logo"
-        newItem={() => ({ src: "", alt: "" })}
-        renderItem={(item, _, upd) => (
-          <div className="grid gap-3">
-            <ImageField
-              label="Logo Image"
-              value={item.src}
-              onChange={(url) => upd({ ...item, src: url })}
-              altValue={item.alt}
-              onAltChange={(alt) => upd({ ...item, alt })}
-              onSelectAsset={(asset) => upd({
-                ...item,
-                src: asset.url,
-                alt: asset.suggestedAltText || item.alt,
-              })}
-              folder="logos"
-            />
-            <div>
-              <Label>Alt Text</Label>
-              <Input value={item.alt} onChange={(e) => upd({ ...item, alt: e.target.value })} />
-            </div>
-          </div>
-        )}
-      />
     </Section>
   );
 }
