@@ -27,6 +27,7 @@ export default function TestimonialsSection({ content, practiceAreasIntro }: Pro
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
         paddingTop: "56px",
+        paddingBottom: "40px",
         position: "relative",
         fontFamily: "Outfit, Helvetica, Arial, sans-serif",
       }}
