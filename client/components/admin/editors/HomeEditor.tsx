@@ -23,7 +23,6 @@ export default function HomeEditor({ content, onChange }: HomeEditorProps) {
       <TestimonialsSection content={content} update={update} />
       <BlogPreviewSectionEditor content={content} update={update} />
       <FaqSectionEditor content={content} update={update} />
-      <ContactSectionEditor content={content} update={update} />
     </div>
   );
 }
@@ -687,73 +686,6 @@ function FaqSectionEditor({ content, update }: SectionProps) {
             </div>
           )}
         />
-      </div>
-    </Section>
-  );
-}
-
-/* ------------------------------------------------------------------ */
-function ContactSectionEditor({ content, update }: SectionProps) {
-  const c = { ...defaultHomeContent.contact, ...(content.contact ?? {}) };
-  const set = (patch: Partial<typeof c>) => update("contact", { ...c, ...patch });
-  const ht = useHeadingTag(content, update);
-
-  return (
-    <Section title="Contact Section" defaultOpen={false}>
-      <div className="grid gap-4">
-        <HeadingField
-          label="Section Heading"
-          value={c.sectionLabel}
-          onChange={(v) => set({ sectionLabel: v })}
-          tag={ht.get("contact.sectionLabel")}
-          onTagChange={(t) => ht.set("contact.sectionLabel", t)}
-        />
-        <div>
-          <Label>Subtitle</Label>
-          <Input value={c.heading} onChange={(e) => set({ heading: e.target.value })} />
-        </div>
-        <RichTextField label="Description" value={c.description} onChange={(v) => set({ description: v })} />
-        <ImageField
-          label="Section Image"
-          value={c.image}
-          onChange={(url) => set({ image: url })}
-          altValue={c.imageAlt}
-          onAltChange={(imageAlt) => set({ imageAlt })}
-          onSelectAsset={(asset) => set({
-            image: asset.url,
-            imageAlt: asset.suggestedAltText || c.imageAlt,
-          })}
-          folder="team"
-        />
-        <div>
-          <Label>Image Alt Text</Label>
-          <Input value={c.imageAlt} onChange={(e) => set({ imageAlt: e.target.value })} placeholder="Describe the image" />
-        </div>
-        <ImageField
-          label="Background Image"
-          value={c.backgroundImage || ""}
-          onChange={(url) => set({ backgroundImage: url })}
-          altValue={c.backgroundImageAlt || ""}
-          onAltChange={(backgroundImageAlt) => set({ backgroundImageAlt })}
-          onSelectAsset={(asset) => set({
-            backgroundImage: asset.url,
-            backgroundImageAlt: asset.suggestedAltText || c.backgroundImageAlt || "",
-          })}
-          folder="backgrounds"
-        />
-        <div>
-          <Label>Background Image Alt Text</Label>
-          <Input value={c.backgroundImageAlt || ""} onChange={(e) => set({ backgroundImageAlt: e.target.value })} placeholder="Describe the background image" />
-        </div>
-        <p className="text-xs text-gray-500 italic">Phone and address are managed in Site Settings &gt; Contact Info</p>
-        <div>
-          <Label>Form Heading</Label>
-          <Input value={c.formHeading} onChange={(e) => set({ formHeading: e.target.value })} />
-        </div>
-        <div>
-          <Label>Availability Text</Label>
-          <Input value={c.availabilityText || ""} onChange={(e) => set({ availabilityText: e.target.value })} placeholder="Our intake team is available 24 hours a day, seven days a week" />
-        </div>
       </div>
     </Section>
   );
