@@ -18,7 +18,6 @@ export default function AboutEditor({ content, onChange }: AboutEditorProps) {
       <FirmIntroSection content={content} update={update} />
       <AwardsSectionEditor content={content} update={update} />
       <TestimonialsSectionEditor content={content} update={update} />
-      <PracticeAreasIntroEditor content={content} update={update} />
     </div>
   );
 }
@@ -329,34 +328,6 @@ function TestimonialsSectionEditor({ content, update }: SectionProps) {
             </div>
           )}
         />
-      </div>
-    </Section>
-  );
-}
-
-/* ------------------------------------------------------------------ */
-function PracticeAreasIntroEditor({ content, update }: SectionProps) {
-  const def = defaultAboutContent.practiceAreasIntroSection!;
-  const intro = { ...def, ...(content.practiceAreasIntroSection ?? {}) };
-  const set = (patch: Partial<typeof intro>) => update("practiceAreasIntroSection", { ...intro, ...patch });
-
-  return (
-    <Section title="Practice Areas Intro (inside Testimonials)" defaultOpen={false}>
-      <div className="grid gap-4">
-        <RichTextField
-          label="Heading"
-          value={intro.headingHtml}
-          onChange={(html) => set({ headingHtml: html })}
-          placeholder="Types Of Cases We Handle — use Bold for emphasis"
-        />
-        <div>
-          <Label>Section Label (small text below heading, e.g. "OUR PRACTICE AREAS")</Label>
-          <Input value={intro.sectionLabel} onChange={(e) => set({ sectionLabel: e.target.value })} placeholder="OUR PRACTICE AREAS" />
-        </div>
-        <div>
-          <Label>Button Link</Label>
-          <Input value={intro.buttonLink} onChange={(e) => set({ buttonLink: e.target.value })} placeholder="/practice-areas" />
-        </div>
       </div>
     </Section>
   );

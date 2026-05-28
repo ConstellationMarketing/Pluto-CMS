@@ -98,7 +98,6 @@ export default function AboutUs() {
       {content.testimonialsSection && (content.testimonialsSection.heading || (content.testimonialsSection.items?.length ?? 0) > 0) && (
         <TestimonialsSection
           content={content.testimonialsSection}
-          practiceAreasIntro={content.practiceAreasIntroSection}
         />
       )}
 
