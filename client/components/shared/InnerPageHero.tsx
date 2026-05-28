@@ -53,10 +53,11 @@ export default function InnerPageHero({
               className="mb-[24px] md:mb-[32px] leading-none font-outfit text-[48px] sm:text-[64px] md:text-[80px] lg:text-[96px] font-light text-white
                 [&_p]:block [&_p]:leading-none [&_p]:m-0
                 [&_strong]:font-semibold [&_strong]:text-[56px] [&_strong]:sm:text-[80px] [&_strong]:md:text-[100px] [&_strong]:lg:text-[128px]"
+              style={{ paddingTop: "5rem" }}
               dangerouslySetInnerHTML={{ __html: taglineHtml }}
             />
           ) : (
-            <p className="mb-[24px] md:mb-[32px] font-outfit text-[48px] sm:text-[64px] md:text-[80px] lg:text-[96px] font-light leading-none text-white">
+            <p className="mb-[24px] md:mb-[32px] font-outfit text-[48px] sm:text-[64px] md:text-[80px] lg:text-[96px] font-light leading-none text-white" style={{ paddingTop: "5rem" }}>
               {tagline}
             </p>
           )
