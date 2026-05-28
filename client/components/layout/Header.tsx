@@ -127,9 +127,9 @@ export default function Header() {
           {/* Mobile Menu */}
           <Sheet>
             <SheetTrigger asChild className="lg:hidden">
-              <Button variant="ghost" className="text-white h-20 w-20 p-0">
-                <Menu className="h-16 w-16" />
-              </Button>
+              <button type="button" className="text-white flex items-center justify-center" style={{ background: "none", border: "none", cursor: "pointer", padding: "4px" }}>
+                <Menu style={{ width: "40px", height: "40px" }} />
+              </button>
             </SheetTrigger>
             <SheetContent side="right" className="bg-black border-none">
               <nav className="flex flex-col gap-4 mt-8">
