@@ -81,7 +81,7 @@ export default function AttorneySection({ content }: Props) {
             <div className="pb-[32px] md:pb-[4.2415%]">
               <div className="flex flex-col sm:flex-row gap-[24px] sm:gap-[8.483%]">
                 {/* CTA button */}
-                <div className="w-full sm:w-auto">
+                <div className="w-full sm:w-auto flex justify-center sm:justify-start">
                   <Link
                     to={content.meetCtaUrl || "/about-us"}
                     className="inline-flex items-center gap-[10px] no-underline transition-opacity hover:opacity-85"

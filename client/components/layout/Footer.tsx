@@ -114,7 +114,7 @@ export default function Footer() {
         {/* Column 1: Logo + Phone */}
         <div className="relative z-[2] lg:mr-[5.5%]">
           {logoUrl ? (
-            <div className="mb-[20px]">
+            <div className="mb-[20px] flex justify-center lg:justify-start">
               <Link to="/">
                 <img src={logoUrl} alt={logoAlt} className="max-w-full w-[220px] md:w-[290px]" />
               </Link>
@@ -164,7 +164,7 @@ export default function Footer() {
         <div className="relative z-[2] lg:mr-[5.5%]">
           {(addressLine1 || addressLine2) ? (
             <>
-              <div className="mb-[16px]">
+              <div className="mb-[16px] flex justify-center lg:justify-start">
                 <MapPin className="text-white w-[36px] h-[36px] md:w-[43px] md:h-[43px]" />
               </div>
               <p className="text-white font-light text-[18px] md:text-[22px] leading-[33px] m-0">
