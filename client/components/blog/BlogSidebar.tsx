@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { Calendar, Phone } from "lucide-react";
-import CallBox from "@site/components/shared/CallBox";
+import { ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import { useGlobalPhone } from "@site/contexts/SiteSettingsContext";
 import {
   DEFAULT_BLOG_SIDEBAR,
@@ -15,7 +15,7 @@ let hasCachedSidebar = false;
 
 export default function BlogSidebar() {
   const { pathname } = useLocation();
-  const { phoneDisplay, phoneNumber, phoneLabel } = useGlobalPhone();
+  const { phoneDisplay, phoneNumber } = useGlobalPhone();
   const preloadedSidebar = getPreloadedBlogSidebar(pathname);
   const initialSidebar = preloadedSidebar || (hasCachedSidebar ? cachedSidebar : DEFAULT_BLOG_SIDEBAR);
 
@@ -60,10 +60,12 @@ export default function BlogSidebar() {
     };
   }, []);
 
+  const telHref = phoneNumber ? `tel:${phoneNumber.replace(/\D/g, "")}` : "#";
+
   return (
-    <aside className="space-y-6">
+    <aside className="space-y-4">
       {attorneyImage && (
-        <div className="overflow-hidden rounded-lg border border-gray-200 bg-gray-50">
+        <div className="overflow-hidden border border-gray-200 bg-gray-50">
           <img
             src={attorneyImage}
             alt="Attorney"
@@ -74,21 +76,41 @@ export default function BlogSidebar() {
         </div>
       )}
 
-      <CallBox
-        icon={Phone}
-        title={phoneLabel}
-        subtitle={phoneDisplay}
-        phone={phoneNumber}
-        className="w-full md:w-full"
-      />
+      {/* Phone button */}
+      <a
+        href={telHref}
+        className="inline-flex items-center justify-between gap-[10px] no-underline transition-opacity hover:opacity-85 w-full"
+        style={{
+          backgroundColor: "rgb(238, 83, 14)",
+          border: "1px solid rgb(238, 83, 14)",
+          color: "rgb(255, 255, 255)",
+          fontSize: "clamp(14px, 2vw, 22px)",
+          lineHeight: 1.5,
+          padding: "12px 20px",
+          fontFamily: "Outfit, Helvetica, Arial, sans-serif",
+        }}
+      >
+        {phoneDisplay || "Call Now"}
+        <ArrowRight width={18} height={18} aria-hidden="true" style={{ flexShrink: 0 }} />
+      </a>
 
-      <CallBox
-        icon={Calendar}
-        title="Schedule Today"
-        subtitle="Book a Consultation"
-        link="/contact/"
-        className="w-full md:w-full"
-      />
+      {/* Schedule button */}
+      <Link
+        to="/contact/"
+        className="inline-flex items-center justify-between gap-[10px] no-underline transition-opacity hover:opacity-85 w-full"
+        style={{
+          backgroundColor: "rgb(238, 83, 14)",
+          border: "1px solid rgb(238, 83, 14)",
+          color: "rgb(255, 255, 255)",
+          fontSize: "clamp(14px, 2vw, 22px)",
+          lineHeight: 1.5,
+          padding: "12px 20px",
+          fontFamily: "Outfit, Helvetica, Arial, sans-serif",
+        }}
+      >
+        SCHEDULE A CONSULTATION
+        <ArrowRight width={18} height={18} aria-hidden="true" style={{ flexShrink: 0 }} />
+      </Link>
 
       {awardImages.length > 0 && (
         <div className="space-y-4 pt-2">
@@ -102,7 +124,7 @@ export default function BlogSidebar() {
             {awardImages.map((award, index) => (
               <div
                 key={award.src || index}
-                className="bg-white border border-gray-100 rounded-md p-3 flex items-center justify-center"
+                className="bg-white border border-gray-100 p-3 flex items-center justify-center"
               >
                 <img
                   src={award.src}
