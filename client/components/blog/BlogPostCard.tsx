@@ -42,7 +42,7 @@ export default function BlogPostCard({ post }: BlogPostCardProps) {
       <div className="p-5">
         <div className="flex items-center gap-3 mb-3 text-sm text-gray-500">
           {post.post_categories?.name && (
-            <span className="flex items-center gap-1 text-brand-accent font-medium">
+            <span className="flex items-center gap-1 text-brand-accent-dark font-medium">
               <Tag className="h-3 w-3" />
               {post.post_categories.name}
             </span>
@@ -68,7 +68,7 @@ export default function BlogPostCard({ post }: BlogPostCardProps) {
           <p className="text-gray-600 text-sm line-clamp-3">{post.excerpt}</p>
         )}
 
-        <span className="inline-block mt-4 text-sm font-semibold text-brand-accent hover:opacity-80 transition-colors">
+        <span className="inline-block mt-4 text-sm font-semibold text-brand-accent-dark hover:opacity-80 transition-colors">
           Read More →
         </span>
       </div>
