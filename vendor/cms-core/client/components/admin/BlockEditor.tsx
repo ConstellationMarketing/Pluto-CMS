@@ -264,6 +264,16 @@ function HeroFields({ block, onUpdate }: { block: Extract<ContentBlock, { type: 
         <Label>Background Image Alt Text</Label>
         <Input value={block.backgroundImageAlt || ''} onChange={(e) => onUpdate({ backgroundImageAlt: e.target.value })} placeholder="Describe the background image" />
       </div>
+      <div className="flex items-center gap-2">
+        <input
+          type="checkbox"
+          id="hideCallBox"
+          checked={!!block.hideCallBox}
+          onChange={(e) => onUpdate({ hideCallBox: e.target.checked })}
+          className="w-4 h-4 cursor-pointer"
+        />
+        <Label htmlFor="hideCallBox" className="cursor-pointer">Hide Call Box (phone/schedule buttons)</Label>
+      </div>
     </div>
   );
 }
