@@ -64,20 +64,22 @@ async function fetchRestJson<T>(input: RequestInfo | URL, init?: RequestInit): P
   return Array.isArray(data) ? (data as T[]) : [];
 }
 
-export async function fetchRestRows<T>(resourcePath: string, apiKey?: string): Promise<T[]> {
+export async function fetchRestRows<T>(resourcePath: string, apiKey?: string, signal?: AbortSignal): Promise<T[]> {
   const { url, anonKey } = getPublicCmsConfig();
   const authKey = apiKey || anonKey;
 
   if (isBrowserRuntime()) {
     try {
-      return await fetchRestJson<T>(buildBrowserProxyUrl(resourcePath));
+      return await fetchRestJson<T>(buildBrowserProxyUrl(resourcePath), { signal });
     } catch (error) {
+      if (error instanceof Error && error.name === 'AbortError') throw error;
       if (!url || !authKey) {
         throw error;
       }
 
       return fetchRestJson<T>(buildRestUrl(url, resourcePath), {
         headers: buildRestHeaders(authKey),
+        signal,
       });
     }
   }

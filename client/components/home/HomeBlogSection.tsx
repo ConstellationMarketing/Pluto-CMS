@@ -60,11 +60,17 @@ export default function HomeBlogSection({ content }: Props) {
   const count = content.postCount || 3;
 
   useEffect(() => {
+    const controller = new AbortController();
     fetchRestRows<PostRow>(
-      `posts?select=slug,title,excerpt,featured_image,body&status=eq.published&order=published_at.desc&limit=${count}`
+      `posts?select=slug,title,excerpt,featured_image,body&status=eq.published&order=published_at.desc&limit=${count}`,
+      undefined,
+      controller.signal
     )
       .then((rows) => setPosts(rows))
-      .catch(() => setPosts([]));
+      .catch((err) => {
+        if (err?.name !== "AbortError") setPosts([]);
+      });
+    return () => controller.abort();
   }, [count]);
 
   const cards = posts.length > 0
