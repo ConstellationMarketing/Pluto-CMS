@@ -1,7 +1,4 @@
-import { Phone, Calendar } from "lucide-react";
 import type { ContentBlock } from "@site/lib/blocks";
-import { useGlobalPhone } from "@site/contexts/SiteSettingsContext";
-import CallBox from "@site/components/shared/CallBox";
 import RichText from "@site/components/shared/RichText";
 
 interface ContentSectionBlockProps {
@@ -10,10 +7,8 @@ interface ContentSectionBlockProps {
 }
 
 export default function ContentSectionBlock({ block, index }: ContentSectionBlockProps) {
-  const { phoneNumber, phoneDisplay, phoneLabel } = useGlobalPhone();
   const imageOnLeft = block.imagePosition === "left";
-  const showCTAs = block.showCTAs !== false;
-  const hasSidebar = showCTAs || !!block.image;
+  const hasSidebar = !!block.image;
 
   return (
     <div className={`py-[40px] md:py-[60px] ${index % 2 === 0 ? "bg-white" : "bg-gray-50"}`}>
@@ -32,34 +27,15 @@ export default function ContentSectionBlock({ block, index }: ContentSectionBloc
             />
           </div>
 
-          {/* Image + CTAs (sidebar) */}
-          {hasSidebar && (
+          {/* Image sidebar */}
+          {block.image && (
             <div className="lg:w-[35%]">
-              {block.image && (
-                <img
-                  src={block.image}
-                  alt={block.imageAlt || ""}
-                  className="w-full h-auto object-cover mb-6"
-                  loading="lazy"
-                />
-              )}
-
-              {showCTAs && (
-                <div className="flex flex-col gap-6">
-                  <CallBox
-                    icon={Phone}
-                    title={phoneLabel}
-                    subtitle={phoneDisplay}
-                    phone={phoneNumber}
-                  />
-                  <CallBox
-                    icon={Calendar}
-                    title="Schedule Now"
-                    subtitle="Free Consultation"
-                    link="/contact/"
-                  />
-                </div>
-              )}
+              <img
+                src={block.image}
+                alt={block.imageAlt || ""}
+                className="w-full h-auto object-cover"
+                loading="lazy"
+              />
             </div>
           )}
         </div>
